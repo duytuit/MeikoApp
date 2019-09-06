@@ -1,9 +1,0 @@
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\bin\Debug\SendMail.exe.config
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\bin\Debug\SendMail.exe
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\bin\Debug\SendMail.pdb
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.csprojResolveAssemblyReference.cache
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.Form1.resources
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.Properties.Resources.resources
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.csproj.GenerateResource.Cache
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.exe
-C:\Users\tu.nguyenduy\Documents\Visual Studio 2015\Projects\AppMeiko\SendMail\obj\Debug\SendMail.pdb
