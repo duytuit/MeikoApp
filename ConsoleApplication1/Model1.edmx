@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AppMeikoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Flux">
+          <Key>
+            <PropertyRef Name="Flux_id" />
+          </Key>
+          <Property Name="Flux_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Thoigiantao" Type="nvarchar(max)" />
+          <Property Name="Thoigianhoanthanh" Type="nvarchar(max)" />
+          <Property Name="Mahang" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Malot" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Doday" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Soluong" Type="int" Nullable="false" />
+          <Property Name="Dodaytruoc" Type="real" Nullable="false" />
+          <Property Name="Dodaysau" Type="real" Nullable="false" />
+          <Property Name="Xacnhantaixuly" Type="nvarchar(max)" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+          <Property Name="trangthai" Type="int" Nullable="false" />
+          <Property Name="Thutu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupFlux" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NhomKy">
+          <Key>
+            <PropertyRef Name="Nhomky_id" />
+          </Key>
+          <Property Name="Nhomky_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Tennhom" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Kieunhom" Type="int" Nullable="false" />
+          <Property Name="Trangthai" Type="bit" Nullable="false" />
+          <Property Name="Thutu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuyTrinh">
+          <Key>
+            <PropertyRef Name="Quytrinh_id" />
+          </Key>
+          <Property Name="Quytrinh_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="User_id" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Flux_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nhomky_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ngayky" Type="nvarchar(max)" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+          <Property Name="Daky" Type="bit" Nullable="false" />
+          <Property Name="Thutu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserNhomKy">
+          <Key>
+            <PropertyRef Name="Usernhomky_id" />
+          </Key>
+          <Property Name="Usernhomky_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="User_id" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nhomky_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Thutu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_QuyTrinh_dbo_Flux_Flux_id">
+          <End Role="Flux" Type="Self.Flux" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuyTrinh" Type="Self.QuyTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flux">
+              <PropertyRef Name="Flux_id" />
+            </Principal>
+            <Dependent Role="QuyTrinh">
+              <PropertyRef Name="Flux_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id">
+          <End Role="NhomKy" Type="Self.NhomKy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuyTrinh" Type="Self.QuyTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Principal>
+            <Dependent Role="QuyTrinh">
+              <PropertyRef Name="Nhomky_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id">
+          <End Role="NhomKy" Type="Self.NhomKy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserNhomKy" Type="Self.UserNhomKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Principal>
+            <Dependent Role="UserNhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppMeikoModelStoreContainer">
+          <EntitySet Name="Flux" EntityType="Self.Flux" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhomKy" EntityType="Self.NhomKy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuyTrinh" EntityType="Self.QuyTrinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserNhomKy" EntityType="Self.UserNhomKy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_QuyTrinh_dbo_Flux_Flux_id" Association="Self.FK_dbo_QuyTrinh_dbo_Flux_Flux_id">
+            <End Role="Flux" EntitySet="Flux" />
+            <End Role="QuyTrinh" EntitySet="QuyTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id" Association="Self.FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id">
+            <End Role="NhomKy" EntitySet="NhomKy" />
+            <End Role="QuyTrinh" EntitySet="QuyTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id" Association="Self.FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id">
+            <End Role="NhomKy" EntitySet="NhomKy" />
+            <End Role="UserNhomKy" EntitySet="UserNhomKy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AppMeikoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Flux">
+          <Key>
+            <PropertyRef Name="Flux_id" />
+          </Key>
+          <Property Name="Flux_id" Type="Guid" Nullable="false" />
+          <Property Name="Thoigiantao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Thoigianhoanthanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mahang" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Malot" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Doday" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soluong" Type="Int32" Nullable="false" />
+          <Property Name="Dodaytruoc" Type="Single" Nullable="false" />
+          <Property Name="Dodaysau" Type="Single" Nullable="false" />
+          <Property Name="Xacnhantaixuly" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="trangthai" Type="Int32" Nullable="false" />
+          <Property Name="Thutu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupFlux" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuyTrinhs" Relationship="Self.FK_dbo_QuyTrinh_dbo_Flux_Flux_id" FromRole="Flux" ToRole="QuyTrinh" />
+        </EntityType>
+        <EntityType Name="NhomKy">
+          <Key>
+            <PropertyRef Name="Nhomky_id" />
+          </Key>
+          <Property Name="Nhomky_id" Type="Guid" Nullable="false" />
+          <Property Name="Tennhom" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kieunhom" Type="Int32" Nullable="false" />
+          <Property Name="Trangthai" Type="Boolean" Nullable="false" />
+          <Property Name="Thutu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="QuyTrinhs" Relationship="Self.FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id" FromRole="NhomKy" ToRole="QuyTrinh" />
+          <NavigationProperty Name="UserNhomKies" Relationship="Self.FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id" FromRole="NhomKy" ToRole="UserNhomKy" />
+        </EntityType>
+        <EntityType Name="QuyTrinh">
+          <Key>
+            <PropertyRef Name="Quytrinh_id" />
+          </Key>
+          <Property Name="Quytrinh_id" Type="Guid" Nullable="false" />
+          <Property Name="User_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Flux_id" Type="Guid" Nullable="false" />
+          <Property Name="Nhomky_id" Type="Guid" Nullable="false" />
+          <Property Name="Ngayky" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Daky" Type="Boolean" Nullable="false" />
+          <Property Name="Thutu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Flux" Relationship="Self.FK_dbo_QuyTrinh_dbo_Flux_Flux_id" FromRole="QuyTrinh" ToRole="Flux" />
+          <NavigationProperty Name="NhomKy" Relationship="Self.FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id" FromRole="QuyTrinh" ToRole="NhomKy" />
+        </EntityType>
+        <EntityType Name="UserNhomKy">
+          <Key>
+            <PropertyRef Name="Usernhomky_id" />
+          </Key>
+          <Property Name="Usernhomky_id" Type="Guid" Nullable="false" />
+          <Property Name="User_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nhomky_id" Type="Guid" Nullable="false" />
+          <Property Name="Thutu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NhomKy" Relationship="Self.FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id" FromRole="UserNhomKy" ToRole="NhomKy" />
+        </EntityType>
+        <Association Name="FK_dbo_QuyTrinh_dbo_Flux_Flux_id">
+          <End Role="Flux" Type="Self.Flux" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuyTrinh" Type="Self.QuyTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flux">
+              <PropertyRef Name="Flux_id" />
+            </Principal>
+            <Dependent Role="QuyTrinh">
+              <PropertyRef Name="Flux_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id">
+          <End Role="NhomKy" Type="Self.NhomKy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuyTrinh" Type="Self.QuyTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Principal>
+            <Dependent Role="QuyTrinh">
+              <PropertyRef Name="Nhomky_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id">
+          <End Role="NhomKy" Type="Self.NhomKy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserNhomKy" Type="Self.UserNhomKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Principal>
+            <Dependent Role="UserNhomKy">
+              <PropertyRef Name="Nhomky_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppMeikoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fluxes" EntityType="Self.Flux" />
+          <EntitySet Name="NhomKies" EntityType="Self.NhomKy" />
+          <EntitySet Name="QuyTrinhs" EntityType="Self.QuyTrinh" />
+          <EntitySet Name="UserNhomKies" EntityType="Self.UserNhomKy" />
+          <AssociationSet Name="FK_dbo_QuyTrinh_dbo_Flux_Flux_id" Association="Self.FK_dbo_QuyTrinh_dbo_Flux_Flux_id">
+            <End Role="Flux" EntitySet="Fluxes" />
+            <End Role="QuyTrinh" EntitySet="QuyTrinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id" Association="Self.FK_dbo_QuyTrinh_dbo_NhomKy_Nhomky_id">
+            <End Role="NhomKy" EntitySet="NhomKies" />
+            <End Role="QuyTrinh" EntitySet="QuyTrinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id" Association="Self.FK_dbo_UserNhomKy_dbo_NhomKy_Nhomky_id">
+            <End Role="NhomKy" EntitySet="NhomKies" />
+            <End Role="UserNhomKy" EntitySet="UserNhomKies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AppMeikoModelStoreContainer" CdmEntityContainer="AppMeikoEntities">
+          <EntitySetMapping Name="Fluxes">
+            <EntityTypeMapping TypeName="AppMeikoModel.Flux">
+              <MappingFragment StoreEntitySet="Flux">
+                <ScalarProperty Name="Flux_id" ColumnName="Flux_id" />
+                <ScalarProperty Name="Thoigiantao" ColumnName="Thoigiantao" />
+                <ScalarProperty Name="Thoigianhoanthanh" ColumnName="Thoigianhoanthanh" />
+                <ScalarProperty Name="Mahang" ColumnName="Mahang" />
+                <ScalarProperty Name="Malot" ColumnName="Malot" />
+                <ScalarProperty Name="Doday" ColumnName="Doday" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Dodaytruoc" ColumnName="Dodaytruoc" />
+                <ScalarProperty Name="Dodaysau" ColumnName="Dodaysau" />
+                <ScalarProperty Name="Xacnhantaixuly" ColumnName="Xacnhantaixuly" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="Thutu" ColumnName="Thutu" />
+                <ScalarProperty Name="GroupFlux" ColumnName="GroupFlux" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhomKies">
+            <EntityTypeMapping TypeName="AppMeikoModel.NhomKy">
+              <MappingFragment StoreEntitySet="NhomKy">
+                <ScalarProperty Name="Nhomky_id" ColumnName="Nhomky_id" />
+                <ScalarProperty Name="Tennhom" ColumnName="Tennhom" />
+                <ScalarProperty Name="Kieunhom" ColumnName="Kieunhom" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+                <ScalarProperty Name="Thutu" ColumnName="Thutu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuyTrinhs">
+            <EntityTypeMapping TypeName="AppMeikoModel.QuyTrinh">
+              <MappingFragment StoreEntitySet="QuyTrinh">
+                <ScalarProperty Name="Quytrinh_id" ColumnName="Quytrinh_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Flux_id" ColumnName="Flux_id" />
+                <ScalarProperty Name="Nhomky_id" ColumnName="Nhomky_id" />
+                <ScalarProperty Name="Ngayky" ColumnName="Ngayky" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Daky" ColumnName="Daky" />
+                <ScalarProperty Name="Thutu" ColumnName="Thutu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserNhomKies">
+            <EntityTypeMapping TypeName="AppMeikoModel.UserNhomKy">
+              <MappingFragment StoreEntitySet="UserNhomKy">
+                <ScalarProperty Name="Usernhomky_id" ColumnName="Usernhomky_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Nhomky_id" ColumnName="Nhomky_id" />
+                <ScalarProperty Name="Thutu" ColumnName="Thutu" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

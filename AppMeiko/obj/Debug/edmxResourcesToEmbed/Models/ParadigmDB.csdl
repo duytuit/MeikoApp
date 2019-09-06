@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DATA0006">
+    <Key>
+      <PropertyRef Name="RKEY" />
+    </Key>
+    <Property Name="RKEY" Type="Int32" Nullable="false" />
+    <Property Name="WORK_ORDER_NUMBER" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="INVENTORY_PTR" Type="Int32" />
+    <Property Name="CUST_PART_PTR" Type="Int32" />
+    <Property Name="ROOT_PTR" Type="Int32" />
+    <Property Name="WHOUSE_PTR" Type="Int32" />
+    <Property Name="ENGG_RTE_PTR" Type="Int32" />
+    <Property Name="PROD_RTE_PTR" Type="Int32" />
+    <Property Name="CSI_USER_PTR" Type="Int32" />
+    <Property Name="EMPLOYEE_PTR" Type="Int32" />
+    <Property Name="BOM_PTR" Type="Int32" />
+    <Property Name="SUB_LEVELS" Type="Int32" />
+    <Property Name="PRIORITY_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ENGG_STATUS" Type="Int32" />
+    <Property Name="PROD_STATUS" Type="Int32" />
+    <Property Name="ENGG_PROD_FLAG" Type="Int32" />
+    <Property Name="ENGG_RTE_MOD_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PROD_RTE_MOD_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="BOM_MOD_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="QUAN_SCH" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_REJ" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_PROD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ENT_DATE" Type="DateTime" />
+    <Property Name="ENT_TIME" Type="Int32" />
+    <Property Name="SCH_COMPL_DATE" Type="DateTime" />
+    <Property Name="PROJ_START_DATE" Type="DateTime" />
+    <Property Name="PROJ_COMPL_DATE" Type="DateTime" />
+    <Property Name="CANCEL_HOLD_DATE" Type="DateTime" />
+    <Property Name="ACT_COMPL_DATE" Type="DateTime" />
+    <Property Name="CUST_PART_REV_NO" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="BOM_REV_NO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TAG_PTR" Type="Int32" />
+    <Property Name="DT_PTRAV_PRN" Type="DateTime" />
+    <Property Name="DT_ETRAV_PRN" Type="DateTime" />
+    <Property Name="SCRAP_RATE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_BAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="BASE_WO" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="PARENT_PTR" Type="Int32" />
+    <Property Name="RMA_PTR" Type="Int32" />
+    <Property Name="JOB_COST_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="LOCATION_PTR" Type="Int32" />
+    <Property Name="DIRECT_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="PARTS_PER_PANEL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="PRODUCTION_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="MATERIAL_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="OVERHEAD_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="EDITED_BY" Type="Int32" />
+    <Property Name="PLANNED_QTY" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="RELEASE_DATE" Type="DateTime" />
+    <Property Name="TRAV_PRINTED_BY_PTR" Type="Int32" />
+    <Property Name="LOT_NUMBER_COUNT" Type="Int32" />
+    <Property Name="HOLD_STEP_NO" Type="Int32" />
+    <Property Name="HARD_LINK_TO_PARENT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_1" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_3" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_4" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_5" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="DATE_CODE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="QUAN_SCH_PANELS" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_REJ_PANELS" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_PROD_PANELS" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_BAL_PANELS" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="XOUT_UNIT_PTR" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="PARTS_PER_XOUT" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_SCH_XOUT" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_REJ_XOUT" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_PROD_XOUT" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QUAN_BAL_XOUT" Type="Decimal" Precision="20" Scale="7" />
+  </EntityType>
+  <EntityType Name="DATA0035">
+    <Key>
+      <PropertyRef Name="RKEY" />
+    </Key>
+    <Property Name="RKEY" Type="Int32" Nullable="false" />
+    <Property Name="PRODUCTION_PARAMETER" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DATA0038">
+    <Key>
+      <PropertyRef Name="RKEY" />
+    </Key>
+    <Property Name="RKEY" Type="Int32" Nullable="false" />
+    <Property Name="TTYPE" Type="Int32" />
+    <Property Name="SOURCE_PTR" Type="Int32" />
+    <Property Name="DEPT_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_1_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_2_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_3_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_4_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_5_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_1_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_2_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_3_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_4_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_5_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_6_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_7_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_8_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_9_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_10_PTR" Type="Int32" />
+    <Property Name="PARAMETER_1" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_2" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_3" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_4" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_5" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_6" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_7" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_8" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_9" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_10" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="SETUP_TIME" Type="Int32" />
+    <Property Name="QUEUE_TIME" Type="Int32" />
+    <Property Name="PROCESS_TIME" Type="Int32" />
+    <Property Name="PERCENT_COMPLETE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="STEP_NUMBER" Type="Int32" />
+    <Property Name="UNIT_VALUE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="UNIT_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="YIELD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="STEP_HOLD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="WIP_APPROVAL_FLAG" Type="Int32" />
+    <Property Name="PROCESS_NAME" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="CIMNET_KEY" Type="Binary" MaxLength="12" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="DATA0050">
+    <Key>
+      <PropertyRef Name="RKEY" />
+    </Key>
+    <Property Name="RKEY" Type="Int32" Nullable="false" />
+    <Property Name="CUSTOMER_PART_NUMBER" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CUSTOMER_PART_DESC" Type="String" MaxLength="40" FixedLength="true" Unicode="false" />
+    <Property Name="CP_REV" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="QTY_SCH" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QTY_REJ" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QTY_ON_HAND" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="QTY_ALLOC" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="EST_SCRAP" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ENGG_ROUTE_PTR" Type="Int32" />
+    <Property Name="PROD_ROUTE_PTR" Type="Int32" />
+    <Property Name="CUSTOMER_PTR" Type="Int32" Nullable="false" />
+    <Property Name="BOM_PTR" Type="Int32" />
+    <Property Name="PROD_CODE_PTR" Type="Int32" />
+    <Property Name="ENGG_ROUTE_MOD_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PROD_ROUTE_MOD_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MFG_LEAD_TIME" Type="Int32" />
+    <Property Name="ACTIVE_S_ORDERS" Type="Int32" />
+    <Property Name="ACTIVE_W_ORDERS" Type="Int32" />
+    <Property Name="UNPLANNED_REL_S" Type="Int32" />
+    <Property Name="PLANNED_REL_S" Type="Int32" />
+    <Property Name="FIRM_REL_S" Type="Int32" />
+    <Property Name="SHELF_LIFE" Type="Int32" />
+    <Property Name="LAST_SO_DATE" Type="DateTime" />
+    <Property Name="OPT_LOT_SIZE" Type="Int32" />
+    <Property Name="FIXED_SCRAP_RATE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="CATALOG_NUMBER" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="STANDARD_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="STANDARD_MATERIAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="STANDARD_OVERHEAD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="INTERNAL_ECN_COUNTER" Type="Int32" />
+    <Property Name="EXTERNAL_ECN_COUNTER" Type="Int32" />
+    <Property Name="GENERIC_BOM_POINTER" Type="Int32" />
+    <Property Name="CURRENT_ACT_ACTIVITY" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="CURRENT_ACT_MATERIAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="LAST_CURNT_COST_UPDT" Type="DateTime" />
+    <Property Name="LAST_STD_COST_UPDT" Type="DateTime" />
+    <Property Name="ALLOW_EDIT_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="REPORT_UNIT_VALUE1" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="REPORT_UNIT_VALUE2" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="REPORT_UNIT_VALUE3" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="SALES_ORDER_UNIT_PTR" Type="Int32" />
+    <Property Name="SALES_ORDER_UNIT_VAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ON_HOLD_DATE" Type="DateTime" />
+    <Property Name="ON_HOLD_BY_PTR" Type="Int32" />
+    <Property Name="RELEASE_OPT_LOT_SIZE" Type="Int32" />
+    <Property Name="SET_UP_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="PROCESS_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="INDIRECT_MATERIAL1" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="INDIRECT_MATERIAL2" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="DIRECT_MATERIAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="OVER_HEAD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ONHOLD_PLANNING_FLAG" Type="Int32" />
+    <Property Name="ONHOLD_RELEASE_FLAG" Type="Int32" />
+    <Property Name="ONHOLD_SALES_FLAG" Type="Int32" />
+    <Property Name="CUSTPART_ENT_DATE" Type="DateTime" />
+    <Property Name="LAST_MODIFIED_BY_PTR" Type="Int32" />
+    <Property Name="LAST_MODIFIED_DATE" Type="DateTime" />
+    <Property Name="AUTO_PLANNING_FLAG" Type="Int32" />
+    <Property Name="AUTO_RELEASE_FLAG" Type="Int32" />
+    <Property Name="CUR_MONTH_OPEN_BAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ANALYSIS_CODE_1" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_3" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ACTIVE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CONSUME_FORECASTS" Type="Int32" />
+    <Property Name="BACKWARD_DAYS" Type="Int32" />
+    <Property Name="FORWARD_DAYS" Type="Int32" />
+    <Property Name="PLANNING_HORIZON" Type="Int32" />
+    <Property Name="RAW_HORIZON" Type="Int32" />
+    <Property Name="VISIBILITY_HORIZON" Type="Int32" />
+    <Property Name="DAYS_EARLY_SCHEDULE" Type="Int32" />
+    <Property Name="LOT_NUMBER_COUNT" Type="Int32" />
+    <Property Name="APPLY_IN_TRANSIT" Type="Int32" />
+    <Property Name="DO_SMOOTHING" Type="Int32" />
+    <Property Name="SMOOTHING_THRESHOLD" Type="Int32" />
+    <Property Name="ANALYSIS_CODE_4" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_5" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="PRODUCTION_PART_PTR" Type="Int32" />
+    <Property Name="PLAN_INNER_LAYER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="LAST_SO_PRICE" Type="Decimal" Precision="21" Scale="8" />
+    <Property Name="PBS_PART" Type="Int32" />
+    <Property Name="LAST_MODIFIED_TIME" Type="Int32" />
+    <Property Name="MIN_STOCK" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="CIMNET_KEY" Type="Binary" MaxLength="12" FixedLength="false" />
+    <Property Name="LONG_CUSTOMER_PART_NUMBER" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="LONG_CUSTOMER_PART_DESC" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="DATE_CODE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DATA0006" EntityType="Self.DATA0006" />
+    <EntitySet Name="DATA0035" EntityType="Self.DATA0035" />
+    <EntitySet Name="DATA0038" EntityType="Self.DATA0038" />
+    <EntitySet Name="DATA0050" EntityType="Self.DATA0050" />
+    <EntitySet Name="DATA0034" EntityType="Model.DATA0034" />
+  </EntityContainer>
+  <EntityType Name="DATA0034">
+    <Key>
+      <PropertyRef Name="RKEY" />
+    </Key>
+    <Property Name="RKEY" Type="Int32" Nullable="false" />
+    <Property Name="DEPT_CODE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TTYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DEPT_NAME" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="SUPERVISOR_PTR" Type="Int32" />
+    <Property Name="UNIT_PTR" Type="Int32" />
+    <Property Name="DEPT_PTR" Type="Int32" />
+    <Property Name="GROUP_PTR" Type="Int32" />
+    <Property Name="CAPACITY" Type="Int32" />
+    <Property Name="SHIFT_1_START_TIME" Type="Int32" />
+    <Property Name="SHIFT_2_START_TIME" Type="Int32" />
+    <Property Name="SHIFT_3_START_TIME" Type="Int32" />
+    <Property Name="SHIFT_1_STOP_TIME" Type="Int32" />
+    <Property Name="SHIFT_2_STOP_TIME" Type="Int32" />
+    <Property Name="SHIFT_3_STOP_TIME" Type="Int32" />
+    <Property Name="DEF_SETUP_TIME" Type="Int32" />
+    <Property Name="DEF_QUEUE_TIME" Type="Int32" />
+    <Property Name="DEF_PROCESS_TIME" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_1_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_2_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_3_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_4_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_INST_5_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_1_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_2_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_3_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_4_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_5_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_6_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_7_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_8_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_9_PTR" Type="Int32" />
+    <Property Name="DEF_ROUT_PARA_10_PTR" Type="Int32" />
+    <Property Name="PARAMETER_1" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_2" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_3" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_4" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_5" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_6" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_7" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_8" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_9" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="PARAMETER_10" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="LABOR_RATE_1" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="LABOR_RATE_2" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="LABOR_RATE_3" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="LABOR_OVERHEAD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="COST_UNIT_PTR" Type="Int32" />
+    <Property Name="COST_DRIVER" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="FIXED_BURDEN" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="VARIABLE_BURDEN" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="SCHEDULE_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="REMOTE_T_PUT_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="THRESHOLD_UNIT_PTR" Type="Int32" />
+    <Property Name="MINIMUM_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="SEQ_NO" Type="Int32" />
+    <Property Name="WORK_CENTER_TYPE" Type="Int32" />
+    <Property Name="SET_UP_TYPE" Type="Int32" />
+    <Property Name="BARCODE_ENTRY_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PRODUCTION_RATE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="WAREHOUSE_PTR" Type="Int32" />
+    <Property Name="THRESHOLD_AMOUNT" Type="Int32" />
+    <Property Name="FACILITY_CODE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ALLOW_SPLIT_LOTS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ACTUAL_ACTIVITY_RATE" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="DRIVER_BREAKDOWN1" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="DRIVER_BREAKDOWN2" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="DRIVER_BREAKDOWN3" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="ALLOW_OVERPRODUCTION" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="SET_UP_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="PROCESS_COST" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="DIRECT_MATERIAL" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="INDIRECT_MATERIAL_1" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="INDIRECT_MATERIAL_2" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="OVERHEAD" Type="Decimal" Precision="20" Scale="7" />
+    <Property Name="CONSIGNMENT_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="TRANSFER_RESOURCE" Type="Int32" />
+    <Property Name="DOCK_RESOURCE" Type="Int32" />
+    <Property Name="PRINTING_RESOURCE" Type="Int32" />
+    <Property Name="FACILITY_PTR" Type="Int32" />
+    <Property Name="BCODE_UNIT_PTR" Type="Int32" />
+    <Property Name="USE_DEFECT_UNIT" Type="Int32" />
+    <Property Name="STEP_HOLD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PROCESS_UNIT_PTR" Type="Int32" />
+    <Property Name="DM_UNIT_PTR" Type="Int32" />
+    <Property Name="IDM_1_UNIT_PTR" Type="Int32" />
+    <Property Name="IDM_2_UNIT_PTR" Type="Int32" />
+    <Property Name="OVHD_UNIT_PTR" Type="Int32" />
+    <Property Name="ANALYSIS_CODE_1" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_3" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_4" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="ANALYSIS_CODE_5" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="SUBCON_TYPE_PTR" Type="Int32" />
+    <Property Name="WIP_APPROVAL_FLAG" Type="Int32" />
+    <Property Name="PROCESS_NAME" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="ACTIVE_FLAG" Type="Boolean" />
+    <Property Name="XOUT_WC" Type="Int32" />
+  </EntityType>
+</Schema>
