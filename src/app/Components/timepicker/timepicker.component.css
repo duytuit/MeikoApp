@@ -1,0 +1,149 @@
+.time-picker {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 250px;
+    border-radius: 4px;
+    background: white;
+    box-shadow: 0 0 24px 0 rgba(23, 23, 77, 0.1), 0 24px 24px 0 rgba(23, 23, 77, 0.2);
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (pointer: coarse) {
+    .time-picker {
+      zoom: 125%;
+    }
+  }
+  .time-picker > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+    border-radius: 4px 4px 0 0;
+    background: #0089ff;
+    color: white;
+  }
+  .time-picker > header > .time-hhmm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 600 56px/66px 'Work Sans', sans-serif;
+  }
+  .time-picker > header > .time-hhmm > label {
+    cursor: pointer;
+  }
+  .time-picker > header > .time-hhmm > label > input[type=radio] {
+    display: none;
+  }
+  .time-picker > header > .time-hhmm > label > input[type=radio] + span {
+    opacity: 0.6;
+  }
+  .time-picker > header > .time-hhmm > label > input[type=radio]:checked + span {
+    opacity: 1;
+  }
+  .time-picker > header > .time-ampm {
+    display: flex;
+    flex-direction: column;
+    font: 600 21px/24px 'Work Sans', sans-serif;
+  }
+  .time-picker > header > .time-ampm > label {
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  .time-picker > header > .time-ampm > label > input[type=radio] {
+    display: none;
+  }
+  .time-picker > header > .time-ampm > label > input[type=radio] + span {
+    opacity: 0.6;
+  }
+  .time-picker > header > .time-ampm > label > input[type=radio]:checked + span {
+    opacity: 1;
+  }
+  .time-picker > article {
+    flex: 1;
+    display: flex;
+  }
+  .time-picker > article > .time-dial {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    background: rgba(23, 23, 77, 0.04);
+    font: 500 18px/32px 'Work Sans', sans-serif;
+  }
+  .time-picker > article > .time-dial::before {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #0089ff;
+  }
+  .time-picker > article > .time-dial > label {
+    position: absolute;
+  }
+  .time-picker > article > .time-dial > label > input[type=radio] {
+    display: none;
+  }
+  .time-picker > article > .time-dial > label > input[type=radio]:checked + div {
+    background: #0089ff;
+    color: white;
+  }
+  .time-picker > article > .time-dial > label > div {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .time-picker > article > .time-dial > label > div:hover, .time-picker > article > .time-dial > label > div:active {
+    background: rgba(23, 23, 77, 0.1);
+  }
+  .time-picker > article > .time-dial > .hand {
+    position: absolute;
+    height: 69px;
+    width: 3px;
+    top: 15.5%;
+    left: 49%;
+    transform-origin: bottom;
+    background: #0089ff;
+  }
+  .time-picker > footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    border-top: 1px solid rgba(23, 23, 77, 0.1);
+  }
+  .time-picker > footer button {
+    height: 36px;
+    margin-right: 16px;
+    padding: 0 10px;
+    border-radius: 4px;
+    appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: rgba(23, 23, 77, 0.6);
+    font: 600 16px/21px 'Work Sans', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .time-picker > footer button:last-child {
+    color: #0089ff;
+  }
+  .time-picker > footer button:hover, .time-picker > footer button:active {
+    background: rgba(23, 23, 77, 0.1);
+  }
+  .time-picker * {
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+  }
+  

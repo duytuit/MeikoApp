@@ -64,11 +64,6 @@
         <i class="fas fa-retweet"></i>
       </a>
     </ul>
-    <ul class="ulbutton">
-      <a class="abutton" title="xuất tệp" role="button">
-        <i class="fas fa-file-export"></i>
-      </a>
-    </ul>
   </div>
   <div class="col-md-6">
    
@@ -91,7 +86,9 @@
               </thead>
             <tbody>
               <tr *ngFor="let item of Fgetgroup | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds;let i=index"  class="row">
-                  <td class="col-sm-8" style="font-weight:bold;text-align: center;">{{item.Groupid}}</td>
+                  <td class="col-sm-8" style="font-weight:bold;text-align: center;">
+                    {{item.Groupid | slice:0:6}}-{{item.Groupid | slice:6:12}}
+                  </td>
                   <td class="col-sm-4" style="text-align: center;">
                       <a class="btn text-danger" style="margin-left: 15px;" (click)="openDeleteGroup(item)">
                           <i class="far fa-trash-alt"></i>

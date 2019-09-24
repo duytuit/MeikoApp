@@ -16,4 +16,6 @@ export class thongke{
     Thutu :string
     Groupid :string
     Nhomky :string
+    Hoanthanh:string
+    Tongnhomky:string
 }

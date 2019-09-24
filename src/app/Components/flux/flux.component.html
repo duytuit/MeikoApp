@@ -108,6 +108,11 @@
             <i class="fas fa-flag"></i>
         </a>
       </ul>
+          <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
+            <option value="">All</option>
+            <option value="true">Đã ký</option>
+            <option value="false">Chưa ký</option>
+          </select>
   </div>
   <div class="col-md-6">
     <!-- <div class="col-sm-1" style="display:inline-table">
@@ -123,35 +128,40 @@
   </div>
 </div>
 <div class="content-center">
-  <div class="content-left" style="float: left;width: 10%;border:1px solid #adabab8a;height:88vh;">
+  <div class="content-left" style="float: left;width:15%;border:1px solid #adabab8a;height:88vh;">
     <table class="table table-sm table-hover">
-      <thead>
-            <div class="content-left-header">
+      <thead style="background-color: #dbdbdb80">
+          <tr class="row">
+              <th class="col-sm-7">
                 <label for="danhsachflux" class="inp">
                   <input type="text" id="danhsachflux" placeholder="&nbsp;" [(ngModel)]="listFilter" >
                   <span class="label">Mã Yêu Cầu</span>
                   <span class="border"></span>
                 </label>
-              </div>
-              <div style="width:30%;height: 80px;background-color:#dbdbdb80; border-bottom:1px solid #adabab8a;padding:50px 0 0;float: right;">
-                <select style="width:100%;background-color:#dbdbdb80;" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
-                  <option value="">All</option>
-                  <option value="true">Đã ký</option>
-                  <option value="false">Chưa ký</option>
-                </select>
-              </div>
+              </th>
+              <th class="col-sm-5" style="padding-top:15px">Hoàn thành</th>
+            </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of Fgetquytrinh | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds ;let i = index" [ngStyle]="{'color' : getColor(i)}">
-            <div class="row" style="height: 39px;padding: 10px;" (click)="onGroup(item.Groupid)">
-              {{item.Groupid}}
-              <i *ngIf="item.Daky" class="fas fa-flag" style="margin-left: 5px;"></i>
+        <tr *ngFor="let item of Fgetquytrinh | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds ;let i = index" [ngStyle]="{'font-weight' : getColor(i)}">
+            <div class="row" id="{{i}}">
+                <div class="col-sm-7" style="height: 39px;padding: 10px;" (click)="onGroup(item.Groupid,i)">
+                    {{item.Groupid | slice:0:6}}-{{item.Groupid | slice:6:12}}
+                    <i *ngIf="item.Daky" class="fas fa-flag" style="margin-left: 5px;"></i>
+                  </div>
+                  <div class="col-sm-5" style="padding-top: 8px" (click)="onGroup(item.Groupid,i)">
+                      <div class="progress">
+                          <div class="bar" [ngStyle]="{'width': item.Hoanthanh}">
+                            <p class="percent">{{item.Tongnhomky}}</p>
+                          </div>
+                        </div>
+                  </div>
             </div>
-        </tr>
+          </tr>
       </tbody>
     </table>
     </div>
-    <table class="table table-sm table-hover table-bordered test" style="float: right;width:89.8%;">
+    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;">
       <thead>
         <div class="row" style="background-color:#dbdbdb80;">
           <div class="STT">STT</div>

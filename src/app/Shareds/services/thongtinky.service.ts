@@ -11,15 +11,15 @@ export class ThongtinkyService {
 
   constructor(private http: HttpClient) { }
 
-  GetQuytrinhByIdNhomky(nhomkyid:string):Observable<quytrinh[]>{
-    const url = `${this.Api+"/GetQuytrinh"}/${nhomkyid}`;
+  GetQuytrinhByIdTrinhky(trinhkyid:string):Observable<quytrinh[]>{
+    const url = `${this.Api+"/GetQuytrinh"}/${trinhkyid}`;
     return this.http.get<quytrinh[]>(url);
   }
   UpdateQuytrinh(quytrinh: quytrinh): Observable<quytrinh> {
     return this.http.put<quytrinh>(this.Api,quytrinh);
   }
-  GetQuytrinhByKieuNhom(kieunhom:number):Observable<quytrinh[]>{
-    const url = `${this.Api+"/GetQuytrinhKieunhom"}/${kieunhom}`;
+  GetQuytrinhByKieuTrinhKy(kieutrinhky:number):Observable<quytrinh[]>{
+    const url = `${this.Api+"/GetQuyTrinhByKieuTrinhKy"}/${kieutrinhky}`;
     return this.http.get<quytrinh[]>(url);
   }
   GetQuytrinhByGroupFlux(groupflux:string):Observable<quytrinh[]>{

@@ -18,4 +18,8 @@ export class GroupService {
     const url=`${this.Api}/${id}`;
     return this.http.delete(url);
   }
+  UpdateGroup(group:group):Observable<group>
+  {
+    return this.http.put<group>(this.Api,group);
+  }
 }

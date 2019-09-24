@@ -5,6 +5,8 @@ import { flux } from 'src/app/Shareds/models/flux';
 import * as XLSX from 'xlsx';
 import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
+import { GroupService } from 'src/app/Shareds/services/group.service';
+import { group } from 'src/app/Shareds/models/group';
 @Component({
   selector: 'app-ql',
   templateUrl: './ql.component.html',
@@ -37,24 +39,24 @@ export class QlComponent implements OnInit {
 
   opendelete: boolean = false;
   chucnang: boolean = true;
-
+  getGroup:group[];
   pageIndexds: number;
   pageSizeds: number;
   ghichunoidung:string;
 
-  constructor(private serviceflux: FluxService, private servicequytrinh: ThongtinkyService) {
+  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
     this.pageSizeds = 19;
   }
   getAllflux() {
-    let strnhomky_id: string = sessionStorage.getItem('Nhomky_id');
-    this.servicequytrinh.GetQuytrinhByIdNhomky(strnhomky_id).subscribe(data => {
+    let strtrinhky_id: string = sessionStorage.getItem('Trinhkyid');
+    this.servicequytrinh.GetQuytrinhByIdTrinhky(strtrinhky_id).subscribe(data => {
       if (data.length > 0) {
-        if (data[0].Kieunhom - 1 >= 0)
+        if (data[0].Kieutrinhky - 1 >= 0)
         {
-          this.servicequytrinh.GetQuytrinhByKieuNhom(data[0].Kieunhom - 1).subscribe(data1=>{
+          this.servicequytrinh.GetQuytrinhByKieuTrinhKy(data[0].Kieutrinhky - 1).subscribe(data1=>{
             if(data1.length>0)
             {
               data1 = data1.filter(x => x.Daky == true);
@@ -91,6 +93,26 @@ export class QlComponent implements OnInit {
                   }
                 }); 
               }
+              let GroupRow:group;
+              let dodai:string;
+              let tyle:string;
+               for(let i=0;i<this.Fgetquytrinh.length;i++)
+               {
+                 GroupRow = this.getGroup.find(x=>x.Groupid==this.Fgetquytrinh[i].Groupid)
+                 if(GroupRow!=null){
+                   dodai=(GroupRow.Hoanthanh/GroupRow.Tongnhomky*100).toString();
+                   tyle=GroupRow.Hoanthanh+'/'+GroupRow.Tongnhomky;
+                   this.Fgetquytrinh[i].Hoanthanh=dodai+'%';
+                   if(GroupRow.Hoanthanh!=0)
+                   {
+                     this.Fgetquytrinh[i].Tongnhomky=tyle;
+                   }else
+                   {
+                     this.Fgetquytrinh[i].Tongnhomky=null;
+                   }
+                  
+                 } 
+               }
             }
           })
         }
@@ -101,12 +123,18 @@ export class QlComponent implements OnInit {
       }
     });
   }
+  getAllgroup() {
+    this.serviceGroup.GetGroup().subscribe(data => {
+      this.getGroup = data;
+    });
+  }
   getColor(z): string {
     if (this.tam === z) {
-      return 'red';
+      return 'bold';
     }
   }
   ngOnInit() {
+    this.getAllgroup();
     this.getAllflux();
   }
   _listFilter: string;
@@ -182,7 +210,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     }
     reader.readAsBinaryString(file);
   }
-  onGroup(group: string) {
+  onGroup(group: string,z) {
     if (group != null) {
       this.serviceflux.GetGroupFlux(group).subscribe(data => {
         this.getflux = data;
@@ -190,11 +218,11 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
         this.count = this.Fgetflux.length;
       });
     }
-    for (let i = 0; i < this.getquytrinh.length; i++) {
-      if (this.getquytrinh[i].Groupid === group) {
-        this.tam = i;
-        this.daky = this.getquytrinh[i].Daky;
-        this.quytrinh = this.getquytrinh[i];
+    this.tam = z;
+    for (let i = 0; i < this.Fgetquytrinh.length; i++) {
+      if (this.Fgetquytrinh[i].Groupid === group) {
+        this.daky = this.Fgetquytrinh[i].Daky;
+        this.quytrinh = this.Fgetquytrinh[i];
         if (this.daky == true) {
           this.chucnang = false
         } else
@@ -229,6 +257,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
          }
   }
   lammoi() {
+    this.getAllgroup();
     this.getAllflux();
   }
   modalopen(flux: flux, z: number) {
@@ -290,10 +319,26 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     }
     if (checkxacnhanpq == true) {
       if (quytrinh.Daky == false) {
+        let arr = [
+          {
+            "Groupid":quytrinh.Groupid,
+            "Namegroup":null,
+            "Thutu":null,
+            "Hoanthanh":quytrinh.Kieutrinhky,
+            "Tongnhomky":null
+          }
+         ];
+        let Tongnhom = this.getGroup.find(x=>x.Groupid==quytrinh.Groupid).Tongnhomky
+        let dodai=(quytrinh.Kieutrinhky/Tongnhom*100).toString();
+        let  tyle=quytrinh.Kieutrinhky+'/'+Tongnhom;
+        quytrinh.Hoanthanh=dodai+'%';
+        quytrinh.Tongnhomky=tyle;
         quytrinh.Daky = true;
         quytrinh.Ghichu=this.ghichunoidung;
-        quytrinh.User_id = sessionStorage.getItem('Username');
+        quytrinh.User_id = sessionStorage.getItem('Userid');
+        quytrinh.Username = sessionStorage.getItem('Username');
         quytrinh.Ngayky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+        this.serviceGroup.UpdateGroup(arr[0]).subscribe();
         this.servicequytrinh.UpdateQuytrinh(quytrinh).subscribe()
         let element: HTMLElement = document.getElementById('modalNoidungHide') as HTMLElement;
         element.click();
@@ -302,29 +347,6 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
       }
       else {
         console.log('Bạn không thể hủy ký!')
-        //#region dfhsjkdfh
-        // this.servicequytrinh.GetQuytrinhByGroupFlux(quytrinh.GroupFlux).subscribe(data=>{
-        //   for(let i =0;i<data.length;i++)
-        //   {
-        //     if(quytrinh.Kieunhom==data[i].Kieunhom)
-        //     {
-        //      if(i+1<data.length)
-        //      {
-        //        if(data[i+1].Daky==false)
-        //        {
-        //         quytrinh.Daky=false;
-        //         quytrinh.Ngayky=null;
-        //         this.daky=false;
-        //         this.chucnang=true;
-        //         this.servicequytrinh.UpdateQuytrinh(quytrinh).subscribe()
-        //        }else
-        //        console.log('Danh sách của bạn đang được xử lý!')
-        //      }
-        //     }
-        //   }
-        //   });
-
-        //#endregion
       }
     } else {
       console.log('Bạn chưa xử lý dữ liệu!')
@@ -332,6 +354,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
    }
   }
   OpenUpdateQuytrinh(){
+    this.getAllgroup();
     let element: HTMLElement = document.getElementById('modalNoidung') as HTMLElement;
     element.click();
   }

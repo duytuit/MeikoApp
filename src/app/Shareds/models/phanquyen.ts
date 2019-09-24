@@ -1,6 +1,7 @@
 export class phanquyen{
       Quyenid :string
       Menuid :string
+      Danhmucid:string
       Idcha:string
       Tenmenu:string
       Capdo:number

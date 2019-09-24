@@ -20,6 +20,6 @@ export class SidebarComponent implements OnInit {
   }
   LogOut(){
    this.LogOutClicked.emit();
-   this.router.navigate(['MeikoApp']);
+   this.router.navigate(['']);
   }
 }

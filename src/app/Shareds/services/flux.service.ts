@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { flux } from '../models/flux';
 import data from 'src/assets/path.json';
 @Injectable({
@@ -25,8 +25,17 @@ export class FluxService {
     const url=`${this.Api}/${id}`;
     return this.http.delete(url);
   }
-  AddFlux(flux:any[]):Observable<any[]>{
-    return this.http.post<any[]>(this.Api,flux);
+  AddFlux(flux:any[],danhmucid:string):Observable<any[]>{
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    //   'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy'
+    // });
+    const params = new HttpParams()
+      .set('danhmucid', danhmucid)
+    const options = {
+      params
+    };
+    return this.http.post<any[]>(this.Api,flux,options);
   }
   UpdateFlux(flux: flux): Observable<flux> {
     return this.http.put<flux>(this.Api,flux);

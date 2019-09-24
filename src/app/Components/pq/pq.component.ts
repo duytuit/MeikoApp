@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FluxService } from 'src/app/Shareds/services/flux.service';
 import { formatDate } from '@angular/common';
 import { flux } from 'src/app/Shareds/models/flux';
 import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
+import { GroupService } from 'src/app/Shareds/services/group.service';
+import { group } from 'src/app/Shareds/models/group';
 @Component({
   selector: 'app-pq',
   templateUrl: './pq.component.html',
@@ -35,21 +37,21 @@ export class PqComponent implements OnInit {
 
   pageIndexds: number;
   pageSizeds: number;
+  getGroup:group[];
 
-
-  constructor(private serviceflux: FluxService, private servicequytrinh: ThongtinkyService) {
+  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
     this.pageSizeds = 19;
   }
   getAllflux() {
-    let strnhomky_id: string = sessionStorage.getItem('Nhomky_id');
-    this.servicequytrinh.GetQuytrinhByIdNhomky(strnhomky_id).subscribe(data => {
+    let strtrinhky_id: string = sessionStorage.getItem('Trinhkyid');
+    this.servicequytrinh.GetQuytrinhByIdTrinhky(strtrinhky_id).subscribe(data => {
       if (data.length > 0) {
-        if (data[0].Kieunhom - 1 >= 0)
+        if (data[0].Kieutrinhky - 1 >= 0)
         {
-          this.servicequytrinh.GetQuytrinhByKieuNhom(data[0].Kieunhom - 1).subscribe(data1=>{
+          this.servicequytrinh.GetQuytrinhByKieuTrinhKy(data[0].Kieutrinhky - 1).subscribe(data1=>{
             if(data1.length>0)
             {
               data1 = data1.filter(x => x.Daky == true);
@@ -86,6 +88,26 @@ export class PqComponent implements OnInit {
                   }
                 }); 
               }
+              let GroupRow:group;
+              let dodai:string;
+              let tyle:string;
+               for(let i=0;i<this.Fgetquytrinh.length;i++)
+               {
+                 GroupRow = this.getGroup.find(x=>x.Groupid==this.Fgetquytrinh[i].Groupid)
+                 if(GroupRow!=null){
+                   dodai=(GroupRow.Hoanthanh/GroupRow.Tongnhomky*100).toString();
+                   tyle=GroupRow.Hoanthanh+'/'+GroupRow.Tongnhomky;
+                   this.Fgetquytrinh[i].Hoanthanh=dodai+'%';
+                   if(GroupRow.Hoanthanh!=0)
+                   {
+                     this.Fgetquytrinh[i].Tongnhomky=tyle;
+                   }else
+                   {
+                     this.Fgetquytrinh[i].Tongnhomky=null;
+                   }
+                  
+                 } 
+               }
             }
           })
         }
@@ -98,10 +120,16 @@ export class PqComponent implements OnInit {
   }
   getColor(z): string {
     if (this.tam === z) {
-      return 'red';
+      return 'bold';
     }
   }
+  getAllgroup() {
+    this.serviceGroup.GetGroup().subscribe(data => {
+      this.getGroup = data;
+    });
+  }
   ngOnInit() {
+    this.getAllgroup();
     this.getAllflux();
   }
   _listFilter: string;
@@ -177,7 +205,7 @@ onSelect(option:string){
           QuyTrinh.Daky==false)
        }
 }
-  onGroup(group: string) {
+  onGroup(group: string,z) {
     if (group != null) {
       this.serviceflux.GetGroupFlux(group).subscribe(data => {
         this.getflux = data;
@@ -185,11 +213,12 @@ onSelect(option:string){
         this.count = this.Fgetflux.length;
       });
     }
-    for (let i = 0; i < this.getquytrinh.length; i++) {
-      if (this.getquytrinh[i].Groupid === group) {
-        this.tam = i;
-        this.daky = this.getquytrinh[i].Daky;
-        this.quytrinh = this.getquytrinh[i];
+    this.tam = z;
+    for (let i = 0; i < this.Fgetquytrinh.length; i++) {
+      if (this.Fgetquytrinh[i].Groupid === group) {
+       
+        this.daky = this.Fgetquytrinh[i].Daky;
+        this.quytrinh = this.Fgetquytrinh[i];
         if (this.daky == true) {
           this.chucnang = false
         } else
@@ -198,6 +227,7 @@ onSelect(option:string){
     }
   }
   lammoi() {
+    this.getAllgroup();
     this.getAllflux();
   }
   modalopen(flux: flux, z: number) {
@@ -242,10 +272,26 @@ onSelect(option:string){
     }
     if (checkxacnhanpq == true) {
       if (quytrinh.Daky == false) {
+        let arr = [
+          {
+            "Groupid":quytrinh.Groupid,
+            "Namegroup":null,
+            "Thutu":null,
+            "Hoanthanh":quytrinh.Kieutrinhky,
+            "Tongnhomky":null
+          }
+         ];
+        let Tongnhom = this.getGroup.find(x=>x.Groupid==quytrinh.Groupid).Tongnhomky
+        let dodai=(quytrinh.Kieutrinhky/Tongnhom*100).toString();
+        let  tyle=quytrinh.Kieutrinhky+'/'+Tongnhom;
+        quytrinh.Hoanthanh=dodai+'%';
+        quytrinh.Tongnhomky=tyle;
         quytrinh.Daky = true;
         quytrinh.Ghichu=this.ghichunoidung;
-        quytrinh.User_id = sessionStorage.getItem('Username');
+        quytrinh.User_id = sessionStorage.getItem('Userid');
+        quytrinh.Username = sessionStorage.getItem('Username');
         quytrinh.Ngayky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+        this.serviceGroup.UpdateGroup(arr[0]).subscribe();
         this.servicequytrinh.UpdateQuytrinh(quytrinh).subscribe()
         let element: HTMLElement = document.getElementById('modalNoidungHide') as HTMLElement;
         element.click();
@@ -264,6 +310,7 @@ onSelect(option:string){
 
   }
   OpenUpdateQuytrinh(){
+    this.getAllgroup();
     let element: HTMLElement = document.getElementById('modalNoidung') as HTMLElement;
     element.click();
   }

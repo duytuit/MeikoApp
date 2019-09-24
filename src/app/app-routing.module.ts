@@ -11,6 +11,10 @@ import { PhanquyenComponent } from './Components/phanquyen/phanquyen.component';
 import { NhomkyComponent } from './Components/nhomky/nhomky.component';
 import { ThongtinComponent } from './Shareds/views/thongtin/thongtin.component';
 import { ThongkeComponent } from './Components/thongke/thongke.component';
+import { TrinhkyComponent } from './Components/trinhky/trinhky.component';
+import { Congdoan1Component } from './Components/ThongkeloiMA5/congdoan1/congdoan1.component';
+import { Congdoan2Component } from './Components/ThongkeloiMA5/congdoan2/congdoan2.component';
+import { ThongkeMA5Component } from './Components/ThongkeloiMA5/thongke-ma5/thongke-ma5.component';
 
 const routes: Routes = [
   {
@@ -54,6 +58,22 @@ const routes: Routes = [
         component: ThongtinComponent
       },
       {
+        path: 'trinhky',
+        component: TrinhkyComponent
+      },
+      {
+        path: 'congdoan1',
+        component: Congdoan1Component
+      },
+      {
+        path: 'congdoan2',
+        component: Congdoan2Component
+      },
+      {
+        path: 'thongkema5',
+        component: ThongkeMA5Component
+      },
+      {
         path: 'thongke',
         component: ThongkeComponent
       }
@@ -62,6 +82,10 @@ const routes: Routes = [
   {
     path: 'administratordanhmuc',
     component: DanhmucComponent
+  },
+  {
+    path: 'administratortrinhky',
+    component: TrinhkyComponent
   },
   {
     path: 'administratormenu',
@@ -78,6 +102,14 @@ const routes: Routes = [
   {
     path: 'administratornhomky',
     component: NhomkyComponent
+  },
+  {
+    path: 'administratorcongdoan1',
+    component: Congdoan1Component
+  },
+  {
+    path: 'thongtin12',
+    component: ThongtinComponent
   },
   {
     path: 'administratorusernhomky',

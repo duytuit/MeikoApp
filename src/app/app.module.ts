@@ -33,6 +33,13 @@ import { PagdingUserComponent } from './Components/pagding-user/pagding-user.com
 import { ThongkeComponent } from './Components/thongke/thongke.component';
 import { DetailDirective } from './Shareds/Direc/detail.directive';
 import { DialogDetailComponent } from './Shareds/views/dialog-detail/dialog-detail.component';
+import { TrinhkyComponent } from './Components/trinhky/trinhky.component';
+import { Congdoan1Component } from './Components/ThongkeloiMA5/congdoan1/congdoan1.component';
+import { Congdoan2Component } from './Components/ThongkeloiMA5/congdoan2/congdoan2.component';
+import { ThongkeMA5Component } from './Components/ThongkeloiMA5/thongke-ma5/thongke-ma5.component';
+import { TimepickerComponent } from './Components/timepicker/timepicker.component';
+import { DialogThongkeloiComponent } from './Shareds/views/dialog-thongkeloi/dialog-thongkeloi.component';
+import { DialogChangeComponent } from './Shareds/views/dialog-change/dialog-change.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +69,14 @@ import { DialogDetailComponent } from './Shareds/views/dialog-detail/dialog-deta
     PagdingUserComponent,
     ThongkeComponent,
     DetailDirective,
-    DialogDetailComponent
+    DialogDetailComponent,
+    TrinhkyComponent,
+    Congdoan1Component,
+    Congdoan2Component,
+    ThongkeMA5Component,
+    TimepickerComponent,
+    DialogThongkeloiComponent,
+    DialogChangeComponent
   ],
   imports: [
     BrowserModule,

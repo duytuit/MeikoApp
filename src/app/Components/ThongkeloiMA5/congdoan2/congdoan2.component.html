@@ -1,0 +1,194 @@
+<div class="rightcontent">
+  <h2>Danh sách ngoại quan lỗi - Công đoạn 2</h2>
+</div>
+<app-modal #modalnoidung [modalTitle]="'Nội dung !'" [width]="500" [zIndex]="zIndex">
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <input type="text" class="form-control form-control-sm" [(ngModel)]="ghichunoidung"/>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" (click)="updatequytrinh(quytrinh)" style="width: 75px;" class="btn btn-info btn-sm">
+      <i class="far fa-save tu"></i>
+      Lưu</button>
+    <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalnoidung.hide()">
+      <i class="far fa-times-circle"></i>
+      Thoát</button>
+  </ng-container>
+</app-modal>
+
+<input type="hidden" (click)="modalnoidung.show()" id="modalNoidung">
+<input type="hidden" (click)="modalnoidung.hide()" id="modalNoidungHide">
+<div class="content-header">
+  <div class="col-md-6">
+    <ul class="ulbutton" (click)="lammoi()">
+      <a class="abutton" title="làm mới" role="button">
+        <i class="fas fa-retweet"></i>
+      </a>
+    </ul>
+    <ul class="ulbutton">
+        <a class="abutton" (click)="OpenUpdateQuytrinh()" title="Ký duyệt">
+            <i class="fas fa-flag"></i>
+        </a>
+      </ul>
+      <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
+        <option value="">All</option>
+        <option value="true">Đã ký</option>
+        <option value="false">Chưa ký</option>
+      </select>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+<div class="content-center">
+  <div class="content-left" style="float: left;width:15%;height:88vh;">
+    <table class="table table-sm table-hover">
+      <thead style="background-color: #dbdbdb80">
+        <tr class="row">
+          <th class="col-sm-7">
+              <label for="magroup" class="inp">
+                <input type="text" id="magroup" placeholder="&nbsp;" [(ngModel)]="listFilter">
+                <span class="label">Mã yêu cầu</span>
+                <span class="border"></span>
+              </label>
+            </th>
+            <th class="col-sm-5" style="padding-top: 15px">Hoàn thành</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of Fgetquytrinh | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds ;let i = index" [ngStyle]="{'font-weight' : getColor(i)}">
+          <div class="row" id="{{i}}">
+              <div class="col-sm-7" style="height: 39px;padding: 10px;" (click)="onGroup(item.Groupid,i)">
+                  {{item.Groupid | slice:0:6}}-{{item.Groupid | slice:6:12}}
+                  <i *ngIf="item.Daky" class="fas fa-flag" style="margin-left: 5px;"></i>
+                </div>
+                <div class="col-sm-5" style="padding-top: 8px" (click)="onGroup(item.Groupid,i)">
+                    <div class="progress">
+                        <div class="bar" [ngStyle]="{'width': item.Hoanthanh}">
+                          <p class="percent">{{item.Tongnhomky}}</p>
+                        </div>
+                      </div>
+                </div>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;">
+      <thead>
+        <div class="row" style="background-color:#dbdbdb80;">
+          <div class="STT">STT</div>
+          <div class="content">
+            <div style=" display:inline-block;width:60%;">
+                <div class="columnleft">
+                    Ca làm việc
+                </div>
+                <div class="columnleft1">
+                      Bàn số
+                  </div>
+                  <div class="columnleft">
+                      Máy kiểm tra
+                    </div>
+                    <div class="xacnhanleft1">
+                        <div class="kq">Thời gian</div>
+                        <div class="columnright">Bắt đầu</div>
+                        <div class="columnright">Kết thúc</div>
+                   </div>
+            </div>
+                 <div class="xacnhanleft">
+                    <label for="mahang" class="inp">
+                      <input type="text" id="mahang" placeholder="&nbsp;" [(ngModel)]="listFilterMahang">
+                      <span class="label">Mã hàng</span>
+                      <span class="border"></span>
+                    </label>
+                  </div>
+                  <div class="xacnhanleft">
+                    <label for="malot" class="inp">
+                      <input type="text" id="malot" placeholder="&nbsp;" [(ngModel)]="listFilterMalot">
+                      <span class="label">Mã Lot</span>
+                      <span class="border"></span>
+                    </label>
+                  </div>
+          </div>
+          <div class="content1">
+            <div class="xacnhan">
+              <div class="kq">Kết quả sau khi VRS</div>
+              <div class="columnright1">VERIFY</div>
+              <div class="columnright1">OK</div>
+              <div class="columnright1">NG</div>
+            </div>
+            <div class="xn">
+              <div class="cleft">Ghi chú</div>
+              <div class="cleft">Chức Năng</div>
+            </div>
+          </div>
+        </div>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of Fgetthongkeloi | slice:pageIndex*pageSize:(pageIndex+1)*pageSize;let i = index;">
+          <div class="row">
+              <div class="STT1">{{i+1}}</div>
+              <div class="contenttable">
+                <div style=" display:inline-block;width:60%;">
+                    <div class="columnlefttable">
+                        <span>{{item.Ca}}</span>
+                    </div>
+                    <div class="columnlefttable1">
+                        <span>{{item.Banso}}</span>
+                      </div>
+                      <div class="columnlefttable">
+                          <span >{{item.Maykiemtra}}</span>
+                        </div>
+                        <div class="xacnhanleft1">
+                            <div class="columnright">
+                                <span >{{item.Thoigianbatdau}}</span>
+                            </div>
+                            <div class="columnright">
+                                <span >{{item.Thoigianketthuc}}</span>
+                            </div>
+                       </div>
+                </div>
+                     <div class="xacnhanleft">
+                        <span>{{item.Mahang}}</span>
+                      </div>
+                      <div class="xacnhanleft">
+                          <span >{{item.Malot}}</span>
+                      </div>
+              </div>
+              <div class="contenttable1">
+                <div class="xacnhan">
+                  <div class="columnrighttable1">
+                      <span >{{item.Loiphathien}}</span>
+                  </div>
+                  <div class="columnrighttable1">
+                      <span >{{item.OK}}</span>
+                  </div>
+                  <div class="columnrighttable1">
+                      <span >{{item.NG}}</span>
+                  </div>
+                </div>
+                <div class="xntable">
+                  <div class="clefttable">
+                      <span >{{item.Ghichu}}</span>
+                  </div>
+                  <div class="clefttable">
+                     
+                  </div>
+                </div>
+              </div>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div class="fixed-bottom">
+  <div style="float: left;" (click)="ClearSelected()">
+      <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
+      <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+  </div>
+ <div style="float: right;">
+    <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
+    <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+ </div>
+</div>
+

@@ -37,15 +37,30 @@
                     </ul>
                 </div>
                 <div class="col-md-6 right-user">
+                        <div class="ShowUser">
+                               {{NameLogIn}}
+                        </div>
                     <ul class="ul-right" (click)="opendropdown()">
                         <li class="li-right">
                             <a class="a-right"><img width="30" height="30" src="assets/user-icon.png"></a>
                         </li>
                     </ul>
-                    <div class="divdropdown" *ngIf="showDropDown">
-                        <a class="a-dropdown" (click)="showDialog = !showDialog;showDropDown=!showDropDown">Đăng
-                            nhập</a>
-                        <a class="a-dropdown" (click)="CallMainClose();showDropDown=!showDropDown">Đăng Xuất</a>
+           
+                    <div class="divdropdown">
+                        <div *ngIf="showLogIn">
+                                <a class="a-dropdown" (click)="showDialog = !showDialog;showLogIn=false">
+                                        <img width="20" height="20" src="assets/Login-icon.png">
+                                    Đăng Nhập</a>
+                        </div>
+                      <div *ngIf="showLogOut">
+                            <a class="a-dropdown" (click)="OpenChangePassword();showLogOut=false">
+                                    <img width="20" height="20" src="assets/secrecy-icon.png" >
+                                Đổi Mật Khẩu</a>
+                            <a class="a-dropdown" (click)="CallMainCloseLogOut();showLogOut=false">
+                                    <img width="20" height="20" src="assets/logout-icon.png">
+                                Đăng Xuất</a>
+                      </div>
+                      
                     </div>
                 </div>
             </div>
@@ -56,7 +71,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-4" *ngFor="let item of MenuCha">
-                        <div class="mblock" (click)="CallMainOpen()">
+                        <div class="mblock" (click)="CallMainOpen(item)">
                             <div class="cblock">
                                 {{item.Tenmenu}}
                                 <i class="fas fa-home fa-3x"></i>
@@ -76,7 +91,27 @@
         <form class="login-form" [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
             <input type="text" autocomplete="off" formControlName="uname" placeholder="tài khoản" />
             <input type="password" autocomplete="off" formControlName="passwd" placeholder="mật khẩu" />
-            <button type="submit" [disabled]="!formdata.valid">Đăng Nhập</button>
+            <button type="submit" class="btn btn-sm" [disabled]="!formdata.valid">Đăng Nhập</button>
         </form>
     </div>
 </app-dialog>
+<app-dialog [(visible)]="showChangePass">
+        <div class="form">
+            <form class="login-form" [formGroup]="formchangepass" (ngSubmit)="onClickSubmitChangePass(formchangepass.value)">
+                <input type="password" autocomplete="off" formControlName="passwdOld" placeholder="Mật khẩu hiện tại" />
+                <input type="password" autocomplete="off" formControlName="passwdNew" placeholder="Mật khẩu mới" />
+                <input type="password" autocomplete="off" formControlName="passwdChange" placeholder="Nhập lại mật khẩu mới" />
+                <div class="form-row">
+                        <div class="form-group col-md-8">
+                                <button type="submit" class="btn btn-sm" [disabled]="!formchangepass.valid">Cập Nhập</button>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <button type="submit" class="btn btn-sm" (click)="showChangePass=false">Thoát</button>
+                        </div>
+                      </div>
+                      <div style="color: red">
+                          {{messageBox}}
+                      </div>
+            </form>
+        </div>
+    </app-dialog>

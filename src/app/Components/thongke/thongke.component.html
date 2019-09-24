@@ -27,24 +27,37 @@
   </div>
 </div>
 <div class="content-center" (mouseenter)="onMouseEnterClose()">
-    <div style="display: inline-table; width:15%;margin-right:2px;">
+    <div style="display: inline-table; width:15%;margin-right:2px;"(mouseenter)="onMouseEnterClose()">
         <table class="table table-sm table-fixed table-hover">
-            <thead >
-                <tr  style="height:77px;background-color:#dbdbdb80;">
-                  <th>
-                    <label for="mayc" class="inp">
-                      <input type="text" id="mayc" placeholder="&nbsp;" [(ngModel)]="listFilterYeuCau">
-                      <span class="label">Mã Yêu Cầu</span>
-                      <span class="border"></span>
-                    </label>
-                  </th>
-                </tr>
-              </thead>
-            <tbody>
-              <tr *ngFor="let item of FgetGroup | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds;let i=index" [ngStyle]="{'background-color' : getColor(i)}">
-                  <td class="row" style="font-weight:bold" (click)="SelectGroupID(item,i)">{{item.Groupid}}</td>
+          <thead style="background-color: #dbdbdb80">
+            <tr class="row">
+                <th class="col-sm-7">
+                  <label for="danhsachflux" class="inp">
+                    <input type="text" id="danhsachflux" placeholder="&nbsp;" [(ngModel)]="listFilterYeuCau" >
+                    <span class="label">Mã Yêu Cầu</span>
+                    <span class="border"></span>
+                  </label>
+                </th>
+                <th class="col-sm-5" style="padding-top:15px">Hoàn thành</th>
               </tr>
-            </tbody>
+        </thead>
+          <tbody>
+            <tr *ngFor="let item of FgetGroup | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds ;let i = index" [ngStyle]="{'background-color' : getColor(i)}">
+              <div class="row" id="{{i}}">
+                  <div class="col-sm-7" style="height: 39px;padding: 10px;" (click)="SelectGroupID(item,i)">
+                      {{item.Groupid | slice:0:6}}-{{item.Groupid | slice:6:12}}
+                      <i *ngIf="item.Daky" class="fas fa-flag" style="margin-left: 5px;"></i>
+                    </div>
+                    <div class="col-sm-5" style="padding-top: 8px" (click)="SelectGroupID(item,i)">
+                        <div class="progress">
+                            <div class="bar" [ngStyle]="{'width': item.Hoanthanh}">
+                              <p class="percent">{{item.Tongnhomky}}</p>
+                            </div>
+                          </div>
+                    </div>
+              </div>
+            </tr>
+          </tbody>
           </table>
     </div>
     <div style="display: inline-table;width:84.8%;float:right;">
@@ -198,7 +211,7 @@
     </tr>
     <tr>
       <td style="width: 50%;">Mã yêu cầu:</td>
-      <td style="width: 50%;color: blue">{{viewthongke.Groupid}}</td>
+      <td style="width: 50%;color: blue">{{viewthongke.Groupid | slice:0:6}}-{{viewthongke.Groupid | slice:6:12}}</td>
     </tr>
     <tr>
       <td style="width: 50%;">Nhóm ký:</td>

@@ -7,6 +7,8 @@ import { formatDate } from '@angular/common';
 import { flux } from 'src/app/Shareds/models/flux';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
 import { quytrinh } from 'src/app/Shareds/models/quytrinh';
+import { group } from 'src/app/Shareds/models/group';
+import { GroupService } from 'src/app/Shareds/services/group.service';
 @Component({
   selector: 'app-flux',
   templateUrl: './flux.component.html',
@@ -36,12 +38,12 @@ export class FluxComponent implements OnInit {
   getquytrinh: quytrinh[];
   Fgetquytrinh: quytrinh[];
   chucnang: boolean = true;
-
+  getGroup:group[];
   pageIndexds: number;
   pageSizeds: number;
   ghichunoidung:string;
-
-  constructor(private fb: FormBuilder, private serviceflux: FluxService, private servicePartNo: PartnoService, private servicequytrinh: ThongtinkyService) {
+  danhmuc_id: string = sessionStorage.getItem('Danhmucid');
+  constructor(private fb: FormBuilder, private serviceflux: FluxService,private serviceGroup:GroupService,  private servicePartNo: PartnoService, private servicequytrinh: ThongtinkyService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
@@ -57,34 +59,8 @@ export class FluxComponent implements OnInit {
     return (this.form.get('credentials') as FormArray).controls;
   }
   getAllflux() {
-    
-    let strnhomky_id: string = sessionStorage.getItem('Nhomky_id');
-    //#region current
-    // this.serviceflux.GetFlux(this.dateflux).subscribe(data => {
-    //   if(data.length>0)
-    //   {
-    //     this.servicequytrinh.GetQuytrinhByIdNhomky(strnhomky_id).subscribe(data1=>{
-    //     this.getquytrinh=data1
-    //     this.getflux = data.filter(x=>x.GroupFlux==this.getquytrinh[0].GroupFlux);
-    //     this.count = this.getflux.length;
-    //     this.tam=0;
-    //     this.daky=this.getquytrinh[0].Daky;
-    //     this.quytrinh=this.getquytrinh[0];
-    //     if(this.daky==true)
-    //     {
-    //      this.chucnang=false
-    //     }else
-    //     this.chucnang=true
-    //     });
-    //   }else
-    //   {
-    //     this.getquytrinh=null;
-    //     this.getflux=null;
-    //     this.count=0;
-    //   }
-    // });
-    //#endregion
-    this.servicequytrinh.GetQuytrinhByIdNhomky(strnhomky_id).subscribe(data => {
+    let strtrinhky_id: string = sessionStorage.getItem('Trinhkyid');
+    this.servicequytrinh.GetQuytrinhByIdTrinhky(strtrinhky_id).subscribe(data => {
       if (data.length > 0) {
         this.getquytrinh = data.filter((thing, i, arr) => {
           return arr.indexOf(arr.find(t => t.Groupid === thing.Groupid)) === i;
@@ -110,6 +86,26 @@ export class FluxComponent implements OnInit {
             this.count = 0;
           }
         });
+        let GroupRow:group;
+        let dodai:string;
+        let tyle:string;
+         for(let i=0;i<this.Fgetquytrinh.length;i++)
+         {
+           GroupRow = this.getGroup.find(x=>x.Groupid==this.Fgetquytrinh[i].Groupid)
+           if(GroupRow!=null){
+             dodai=(GroupRow.Hoanthanh/GroupRow.Tongnhomky*100).toString();
+             tyle=GroupRow.Hoanthanh+'/'+GroupRow.Tongnhomky;
+             this.Fgetquytrinh[i].Hoanthanh=dodai+'%';
+             if(GroupRow.Hoanthanh!=0)
+             {
+               this.Fgetquytrinh[i].Tongnhomky=tyle;
+             }else
+             {
+               this.Fgetquytrinh[i].Tongnhomky=null;
+             }
+            
+           } 
+         }
       } else {
         this.getquytrinh = null;
         this.Fgetquytrinh=this.getquytrinh
@@ -117,9 +113,14 @@ export class FluxComponent implements OnInit {
       }
     });
   }
+  getAllgroup() {
+    this.serviceGroup.GetGroup().subscribe(data => {
+      this.getGroup = data;
+    });
+  }
   getColor(z): string {
     if (this.tam === z) {
-      return 'red';
+      return 'bold';
     }
   }
   _listFilter: string;
@@ -191,6 +192,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     this.servicePartNo.GetAllPartNo().subscribe(data => {
       this.GetAllPartNo = data;
     });
+    this.getAllgroup();
     this.getAllflux();
   }
   onFileChange(ev) {
@@ -246,12 +248,17 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     control.controls[i].get('Malot').setValue(event);
   }
   onSubmit() {
-    var df = JSON.stringify(this.form.value);
-    var json: any[] = JSON.parse(df);
-    this.serviceflux.AddFlux(Object.values(json)[0]).subscribe(data=>{
-      this.getAllflux();
-      this.close();
-    })
+    var control = <FormArray>this.form.get('credentials');
+    if(control.controls[0].get('Mahang').value&&control.controls[0].get('Malot').value)
+    {
+      var df = JSON.stringify(this.form.value);
+      var json: any[] = JSON.parse(df);
+      this.serviceflux.AddFlux(Object.values(json)[0],this.danhmuc_id).subscribe(data=>{
+        this.getAllflux();
+        this.close();
+      })
+    }
+   
   }
   onSelect(option:string){
   this.getflux = null;
@@ -279,7 +286,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
           QuyTrinh.Daky==false)
        }
 }
-  onGroup(group: string) {
+  onGroup(group: string,z) {
     if (group != null) {
       this.serviceflux.GetGroupFlux(group).subscribe(data => {
         this.getflux = data;
@@ -287,11 +294,12 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
         this.count = this.Fgetflux.length;
       });
     }
-    for (let i = 0; i < this.getquytrinh.length; i++) {
-      if (this.getquytrinh[i].Groupid === group) {
-        this.tam = i;
-        this.daky = this.getquytrinh[i].Daky;
-        this.quytrinh = this.getquytrinh[i];
+    this.tam = z;
+    for (let i = 0; i < this.Fgetquytrinh.length; i++) {
+      if (this.Fgetquytrinh[i].Groupid === group) {
+       
+        this.daky = this.Fgetquytrinh[i].Daky;
+        this.quytrinh = this.Fgetquytrinh[i];
         if (this.daky == true) {
           this.chucnang = false
         } else
@@ -300,6 +308,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     }
   }
   lammoi() {
+    this.getAllgroup();
     this.getAllflux();
   }
   modalopen(flux: flux, z: number) {
@@ -383,10 +392,26 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
   }
   updatequytrinh(quytrinh: quytrinh) {
     if (quytrinh.Daky == false) {
+      let arr = [
+        {
+          "Groupid":quytrinh.Groupid,
+          "Namegroup":null,
+          "Thutu":null,
+          "Hoanthanh":quytrinh.Kieutrinhky,
+          "Tongnhomky":null
+        }
+       ];
+      let Tongnhom = this.getGroup.find(x=>x.Groupid==quytrinh.Groupid).Tongnhomky
+      let dodai=(quytrinh.Kieutrinhky/Tongnhom*100).toString();
+      let  tyle=quytrinh.Kieutrinhky+'/'+Tongnhom;
+      quytrinh.Hoanthanh=dodai+'%';
+      quytrinh.Tongnhomky=tyle;
       quytrinh.Daky = true;
       quytrinh.Ghichu=this.ghichunoidung;
-      quytrinh.User_id = sessionStorage.getItem('Username');
+      quytrinh.User_id = sessionStorage.getItem('Userid');
+      quytrinh.Username = sessionStorage.getItem('Username');
       quytrinh.Ngayky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+      this.serviceGroup.UpdateGroup(arr[0]).subscribe();
       this.servicequytrinh.UpdateQuytrinh(quytrinh).subscribe();
       let element: HTMLElement = document.getElementById('modalNoidungHide') as HTMLElement;
       element.click();
@@ -394,32 +419,11 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
       this.chucnang = false;
     } else {
       console.log('Bạn không thể hủy ký!')
-      //#region dfsd
-      // this.servicequytrinh.GetQuytrinhByGroupFlux(quytrinh.GroupFlux).subscribe(data=>{
-      //   for(let i =0;i<data.length;i++)
-      //   {
-      //     if(quytrinh.Kieunhom==data[i].Kieunhom)
-      //     {
-      //      if(i+1<data.length)
-      //      {
-      //        if(data[i+1].Daky==false)
-      //        {
-      //         quytrinh.Daky=false;
-      //         quytrinh.Ngayky=null;
-      //         this.daky=false;
-      //         this.chucnang=true;
-      //         this.servicequytrinh.UpdateQuytrinh(quytrinh).subscribe();
-      //        }else
-      //        console.log('Danh sách của bạn đang được xử lý!')
-      //      }
-      //     }
-      //   }
-      //   });
-      //#endregion
     }
 
   }
   OpenUpdateQuytrinh(){
+    this.getAllgroup();
     let element: HTMLElement = document.getElementById('modalNoidung') as HTMLElement;
     element.click();
   }
