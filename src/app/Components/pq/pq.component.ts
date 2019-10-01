@@ -6,6 +6,8 @@ import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
 import { GroupService } from 'src/app/Shareds/services/group.service';
 import { group } from 'src/app/Shareds/models/group';
+import { FileService } from 'src/app/Shareds/services/file.service';
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-pq',
   templateUrl: './pq.component.html',
@@ -39,7 +41,7 @@ export class PqComponent implements OnInit {
   pageSizeds: number;
   getGroup:group[];
 
-  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService) {
+  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService,private servicefile: FileService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
@@ -122,6 +124,13 @@ export class PqComponent implements OnInit {
     if (this.tam === z) {
       return 'bold';
     }
+  }
+  DownloadFile(tentep){
+    this.servicefile.DownloadFile(tentep).subscribe((result: any) => {  
+          if (result.type != 'text/plain') {  
+            var blob = new Blob([result]);    
+            FileSaver.saveAs(blob, tentep);  
+          }}); 
   }
   getAllgroup() {
     this.serviceGroup.GetGroup().subscribe(data => {

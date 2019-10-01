@@ -71,7 +71,7 @@ export class ThongkeComponent implements OnInit {
   }
   getColor(z): string {
     if (this.indexGroupID === z) {
-      return '#364f6969';
+      return '#4b9bf1bb';
     }
   }
   getAllgroup() {

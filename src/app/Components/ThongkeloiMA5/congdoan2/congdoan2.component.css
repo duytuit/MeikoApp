@@ -1,6 +1,6 @@
 .rightcontent{
     text-align:center;
-    background-color: #364f69;
+    background-color: #2e5075;
     color: #f7f7f8;
     font-family:Arial, Helvetica, sans-serif;
     -moz-border-radius: 2px;
@@ -166,7 +166,7 @@ font-family: Arial, Helvetica, sans-serif;
       opacity: 0;
     }
     .fa-plus,.fa-retweet,.fa-file-export,.fa-bullhorn,.fa-pencil-square-o,.fa-save,.fa-file-signature,.fa-flag,.fa-check-square,.fa-square{
-      color: #364f69;
+      color: #2e5075;
     }
     /* css text box input */
     .inp {

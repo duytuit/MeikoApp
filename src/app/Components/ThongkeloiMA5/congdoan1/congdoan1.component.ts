@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Renderer2, ElementRef } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup,Validators, ValidationErrors, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ValidationErrors, FormControl } from '@angular/forms';
 import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { PartnoService } from 'src/app/Shareds/services/partno.service';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
@@ -87,6 +87,7 @@ export class Congdoan1Component implements OnInit {
        let GroupRow:group;
        let dodai:string;
        let tyle:string;
+       //Xử lý hiển thị tên nhân viên 
         for(let i=0;i<this.Fgetquytrinh.length;i++)
         {
           GroupRow = this.getGroup.find(x=>x.Groupid==this.Fgetquytrinh[i].Groupid)
@@ -186,7 +187,7 @@ ThongkeloiFilterMaLot(filterByMalot:string): thongkeloi[] {
       OK :'',
       NG :'',
       Ghichu :'',
-      Trangthai :''
+      Trangthai :'false'
     }));
   }
   private passwordValidator(control: FormControl): ValidationErrors {

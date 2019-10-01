@@ -9,8 +9,10 @@ export class flux{
       Soluong:string 
       Dodaytruoc :string
       Dodaysau :string
+      Tentep:string
       Xacnhanql:string 
       Xacnhanpq :string
+      Xacnhanpq1 :string
       Ghichu :string
       Trangthai :string
       Thutu :string

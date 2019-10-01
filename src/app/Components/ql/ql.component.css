@@ -1,6 +1,6 @@
 .rightcontent{
     text-align:center;
-    background-color: #364f69;
+    background-color: #2e5075;
     color: #f7f7f8;
     font-family:Arial, Helvetica, sans-serif;
     -moz-border-radius: 2px;
@@ -28,12 +28,7 @@
    width: 25%;
    text-align: center;
    }
-   .columnright{
-    display:inline-block;
-    width: 50%;
-    text-align: center;
    
-    }
    .STT{
     border-top:1px solid rgb(196, 192, 192); 
     border-left:1px solid rgb(196, 192, 192); 
@@ -61,11 +56,16 @@
   margin-right: 0px;
   border-bottom:0.5px solid rgb(196, 192, 192);
    }
-   .content{
-       width: 48%;
+   .content1{
+       width: 42%;
        font-weight:bold;
        font-family: Arial, Helvetica, sans-serif;
    }
+   .content2{
+    width: 54%;
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
     .xacnhan{
     float: left;
     text-align: center;
@@ -73,11 +73,14 @@
     }
     .cleft{
       display: inline-block;
-      height: 55px;
-      width: 33.3%;
+      width: 25%;
       text-align: center;
-      padding-top: 15px;
     }
+    .columnright{
+      display:inline-block;
+      width: 33%;
+      text-align: center;
+      }
     .xn{
       float: right;
       text-align: center;
@@ -86,23 +89,32 @@
     .kq{
       padding: 2px 0;
     }
-    .columnleftrow{
+    .columnleftrow1{
       display:inline-block;
       width: 25%;
       text-align: center;
       padding: 5px;
     }
+    .columnleftrow2{
+      display:inline-block;
+      width: 17%;
+      text-align: center;
+      padding: 5px;
+    }
     .columnrightrow{
       display:inline-block;
-      width: 16%;
+      width: 12%;
       text-align:center;
     }
     .Thongtinrow{
       text-align: center;
       width: 100%;
     }
-    .contentrow{
-      width: 48%;
+    .contentrow1{
+      width: 42%;
+    }
+    .contentrow2{
+      width: 54%;
     }
     .STTrow{
       width: 4%;
@@ -110,7 +122,7 @@
       font-weight:bold;
     }
     .fa-plus,.fa-retweet,.fa-file-export,.fa-bullhorn,.fa-pencil-square-o,.fa-save,.fa-flag{
-      color: #364f69;
+      color: #2e5075;
     }
     /* css text box input */
     .inp {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import data from 'src/assets/path.json';
@@ -12,12 +12,17 @@ export class UserService {
   public Api:string=data['path1']+"Api/AppUser";
   public Api1:string=this.Api+"/GetAppUser";
   public Api2:string=this.Api+"/ChangePassword";
+  public Api3:string=this.Api+"/ResetPassword";
   constructor(private http: HttpClient) { }
   GetUser():Observable<User[]>{
     return this.http.get<User[]>(this.Api1);
   }
   ChangePassword(UserChangePass:ChangePass):Observable<ChangePass>{
     return this.http.post<ChangePass>(this.Api2,UserChangePass);
+  }
+  ResetPassword(userid:string){
+    const url=`${this.Api3}/${userid}`;
+    return this.http.get(url);
   }
   DeleteUser(id:string):Observable<any>{
     const url=`${this.Api}/${id}`;

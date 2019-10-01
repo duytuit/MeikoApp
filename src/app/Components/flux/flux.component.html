@@ -19,8 +19,8 @@
           </div>
           <div class="form-group col-md-2">
             <input type="hidden" formControlName="Malot">
-            <app-filter-dropdown [dataSet]="GetAllLotNo" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
-            </app-filter-dropdown>
+            <app-filter-malot [dataSet]="GetAllLotNo" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
+            </app-filter-malot>
           </div>
           <div class="form-group col-md-2">
             <input class="form-control form-control-sm" formControlName="Doday" placeholder="độ dày">
@@ -128,7 +128,7 @@
   </div>
 </div>
 <div class="content-center">
-  <div class="content-left" style="float: left;width:15%;border:1px solid #adabab8a;height:88vh;">
+  <div class="content-left" style="float: left;width:15%;height:88vh;">
     <table class="table table-sm table-hover">
       <thead style="background-color: #dbdbdb80">
           <tr class="row">
@@ -165,7 +165,7 @@
       <thead>
         <div class="row" style="background-color:#dbdbdb80;">
           <div class="STT">STT</div>
-          <div class="content">
+          <div class="content1">
             <div class="Thongtin"> Thông tin của bộ phận chế tạo </div>
             <div>
               <div class="columnleft">
@@ -186,16 +186,18 @@
               <div class="columnleft">Số lượng</div>
             </div>
           </div>
-          <div class="content">
+          <div class="content2">
             <div class="Thongtin">Thông tin của QA/PQ</div>
             <div class="xacnhan">
               <div class="kq">Kết quả xác nhận mặt cắt</div>
               <div class="columnright">Độ dày trước</div>
               <div class="columnright">Độ dày sau</div>
+              <div class="columnright">Tệp đính kèm</div>
             </div>
             <div class="xn">
               <div class="cleft">Xác nhận QL</div>
               <div class="cleft">Xác nhận PQ</div>
+              <div class="cleft">Xác nhận T.Phòng</div>
               <div class="cleft">Chức Năng</div>
             </div>
           </div>
@@ -205,10 +207,10 @@
         <tr *ngFor="let item of Fgetflux | slice:pageIndex*pageSize:(pageIndex+1)*pageSize;let i = index;">
           <div class="row">
             <div class="STTrow">{{i+1}}</div>
-            <div class="contentrow">
+            <div class="contentrow1">
               <div class="Thongtinrow"></div>
               <div>
-                <div class="columnleftrow" style="text-align:left;">
+                <div class="columnleftrow1" style="text-align:left;">
                     <span *ngIf="!item.edittable">{{item.Mahang}}</span>
                        <div *ngIf="item.edittable" class="tableMahang">
                           <input type="hidden" [(ngModel)]="mahang">
@@ -216,31 +218,37 @@
                             </app-filter-dropdown>
                        </div>
                 </div>
-                <div class="columnleftrow" style="text-align:left;">
+                <div class="columnleftrow1" style="text-align:left;">
                   <span *ngIf="!item.edittable">{{item.Malot}}</span>
                   <div *ngIf="item.edittable" class="tableMahang">
                       <input type="hidden" [(ngModel)]="malot">
-                     <app-filter-dropdown [dataSet]="GetAllLotNo" [searchText]="item.Malot" [maxLen]="6" (typeahead)="getMalot($event)">
-                       </app-filter-dropdown>
+                     <app-filter-malot [dataSet]="GetAllLotNo" [searchText]="item.Malot" [maxLen]="6" (typeahead)="getMalot($event)">
+                       </app-filter-malot>
                   </div>
                 </div>
-                <div class="columnleftrow">
+                <div class="columnleftrow1">
                   <span *ngIf="!item.edittable">{{item.Doday}}</span>
                   <input type="text" class="form-control form-control-sm" [(ngModel)]="doday" *ngIf="item.edittable"/>
                 </div>
-                <div class="columnleftrow">
+                <div class="columnleftrow1">
                   <span *ngIf="!item.edittable">{{item.Soluong}}</span>
                   <input type="text" class="form-control form-control-sm" [(ngModel)]="soluong" *ngIf="item.edittable"/>
                 </div>
               </div>
             </div>
-            <div class="contentrow">
+            <div class="contentrow2">
               <div class="Thongtinrow"></div>
               <div>
-                <div class="columnleftrow">{{item.Dodaytruoc}}</div>
-                <div class="columnleftrow">{{item.Dodaysau}}</div>
+                <div class="columnleftrow2">{{item.Dodaytruoc}}</div>
+                <div class="columnleftrow2">{{item.Dodaysau}}</div>
+                <div class="columnleftrow2">
+                    <a  *ngIf="item.Tentep?.length > 1" (click)="DownloadFile(item.Tentep)" title="{{item.Tentep}}" style="cursor:pointer">
+                      <img width="20" height="20" src="assets/Download-icon.png">
+                    </a>
+                </div>
                 <div class="columnrightrow">{{item.Xacnhanql}}</div>
                 <div class="columnrightrow">{{item.Xacnhanpq}}</div>
+                <div class="columnrightrow">{{item.Xacnhanpq1}}</div>
                 <div class="columnrightrow" *ngIf="chucnang">
                   <a class="btn" (click)="modalopen(item,i)" *ngIf="!item.edittable">
                     <i class="fa fa-pencil-square-o"></i>

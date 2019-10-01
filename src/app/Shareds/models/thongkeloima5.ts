@@ -13,8 +13,12 @@ export class thongkeloi{
       Loiphathien:string 
       OK :string
       NG :string
+      Nguoikiemtra:string
+      Idnguoikiemtra:string
+      Nguoixacnhan:string
+      Idnguoixacnhan:string
       Ghichu :string
-      Trangthai :string
+      Trangthai :boolean
       Thutu :string
       Groupid :string
       edittable:boolean=false

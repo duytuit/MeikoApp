@@ -1,6 +1,6 @@
 .rightcontent{
     text-align:center;
-    background-color: #364f69;
+    background-color: #2e5075;
     color: #f7f7f8;
     font-family:Arial, Helvetica, sans-serif;
     -moz-border-radius: 2px;
@@ -193,7 +193,7 @@ a:hover{
     height: 175px;
     text-align: center;
     margin: 20px;
-    background-color: #9098a9;
+    background-color: #8aabf1;
     border: 0.5px solid #95959583;
     border-radius: 10px;
     position: relative;
@@ -206,7 +206,7 @@ a:hover{
     min-height: 100vh;
   }
   .fa-home{
-    color: #364f69;
+    color: #2e5075;
   }
   .left{
     display: none;
@@ -239,7 +239,7 @@ a:hover{
          margin-top: 60px;
      }
      .navbar-dark{
-         background:#364f69;
+         background:#2e5075;
      }
  }
  

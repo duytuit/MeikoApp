@@ -1,0 +1,63 @@
+<div class="rightcontent">
+  <h2>Xóa danh sách thống kê lỗi MA5</h2>
+</div>
+<div class="content-header">
+  <div class="col-md-6">
+    <ul class="ulbutton" (click)="lammoi()">
+      <a class="abutton" title="làm mới" role="button">
+        <i class="fas fa-retweet"></i>
+      </a>
+    </ul>
+    <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
+      <option value="">All</option>
+      <option value="true">Đã ký</option>
+      <option value="false">Chưa ký</option>
+    </select>
+    <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" (change)="onSelectYear($event.target.value)">
+      <option *ngFor="let item of listYear" value="{{item}}">{{item}}</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+      
+  </div>
+</div>
+<div class="content-center">
+    <table class="table table-sm table-fixed table-hover">
+      <thead style="background-color: #dbdbdb80;">
+        <tr class="row"  style=" border: 0.09rem solid rgb(221, 213, 213);color:  #364f69">
+          <td class="col-sm-8">
+            <label for="magroup" class="inp">
+              <input type="text" id="magroup" placeholder="&nbsp;" [(ngModel)]="listFilter">
+              <span class="label">Ngày</span>
+              <span class="border"></span>
+            </label>
+          </td>
+          <td class="col-sm-4">
+
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of Fgetngay;let i =index" class="row">
+            <td class="col-sm-8" style="font-weight:bold;text-align: center;">
+              {{item.Ngay | slice:0:10}}
+            </td>
+            <td class="col-sm-4" style="text-align: center;">
+                <a class="btn text-danger" style="margin-left: 15px;" (click)="openDeleteNgay(item.Ngay)">
+                    <i class="far fa-trash-alt"></i>
+                  </a>
+            </td>
+            </tr>
+      </tbody>
+    </table>
+</div>
+<div class="fixed-bottom">
+  <div style="float: right;">
+      <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
+      <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+  </div>
+ <!-- <div style="float: right;">
+    <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
+    <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+ </div> -->
+</div>

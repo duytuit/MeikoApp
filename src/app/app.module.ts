@@ -31,7 +31,6 @@ import { TreePhanquyenComponent } from './Components/phanquyen/tree-phanquyen/tr
 import { ThongtinComponent } from './Shareds/views/thongtin/thongtin.component';
 import { PagdingUserComponent } from './Components/pagding-user/pagding-user.component';
 import { ThongkeComponent } from './Components/thongke/thongke.component';
-import { DetailDirective } from './Shareds/Direc/detail.directive';
 import { DialogDetailComponent } from './Shareds/views/dialog-detail/dialog-detail.component';
 import { TrinhkyComponent } from './Components/trinhky/trinhky.component';
 import { Congdoan1Component } from './Components/ThongkeloiMA5/congdoan1/congdoan1.component';
@@ -40,6 +39,15 @@ import { ThongkeMA5Component } from './Components/ThongkeloiMA5/thongke-ma5/thon
 import { TimepickerComponent } from './Components/timepicker/timepicker.component';
 import { DialogThongkeloiComponent } from './Shareds/views/dialog-thongkeloi/dialog-thongkeloi.component';
 import { DialogChangeComponent } from './Shareds/views/dialog-change/dialog-change.component';
+import { ToasterContainerComponent } from './Shareds/views/toaster-container/toaster-container.component';
+import { ToasterComponent } from './Shareds/views/toaster/toaster.component';
+import { Congdoan1V1Component } from './Components/ThongkeloiMA5/congdoan1-v1/congdoan1-v1.component';
+import { Congdoan2V1Component } from './Components/ThongkeloiMA5/congdoan2-v1/congdoan2-v1.component';
+import { ThongkeMa5V1Component } from './Components/ThongkeloiMA5/thongke-ma5-v1/thongke-ma5-v1.component';
+import { MayComponent } from './Components/may/may.component';
+import { FilterMalotComponent } from './Components/filter-malot/filter-malot.component';
+import { Pq1Component } from './Components/pq1/pq1.component';
+import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +76,6 @@ import { DialogChangeComponent } from './Shareds/views/dialog-change/dialog-chan
     ThongtinComponent,
     PagdingUserComponent,
     ThongkeComponent,
-    DetailDirective,
     DialogDetailComponent,
     TrinhkyComponent,
     Congdoan1Component,
@@ -76,7 +83,16 @@ import { DialogChangeComponent } from './Shareds/views/dialog-change/dialog-chan
     ThongkeMA5Component,
     TimepickerComponent,
     DialogThongkeloiComponent,
-    DialogChangeComponent
+    DialogChangeComponent,
+    ToasterContainerComponent,
+    ToasterComponent,
+    Congdoan1V1Component,
+    Congdoan2V1Component,
+    ThongkeMa5V1Component,
+    MayComponent,
+    FilterMalotComponent,
+    Pq1Component,
+    RemoveListMa5Component
   ],
   imports: [
     BrowserModule,

@@ -13,8 +13,13 @@ export class thongke1{
     Loiphathien :string
     OK :string
     NG :string
+    Nguoikiemtra:string
+    Idnguoikiemtra:string
+    Nguoixacnhan:string
+    Idnguoixacnhan:string
     Ghichu :string
-    Trangthai :string
+    Trangthai1 :boolean
+    Trangthai2 :string
     Thutu :string
     Groupid :string
     Nhomky :string

@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   GetTenmenu: string;
   GetDuongdan: string;
   Getmenuid: string;
-
+  checkopen:boolean=true;
   tesst:string;
   trangthaiedit:string;
   idcha:string;
@@ -54,6 +54,7 @@ export class MenuComponent implements OnInit {
     this.idcha=$event.Idcha;
     let element: HTMLElement = document.getElementById('modalEdit') as HTMLElement;
     element.click();
+    
   }
   onSubmitEdit(){
    //Update Menu
@@ -322,6 +323,21 @@ export class MenuComponent implements OnInit {
     this.showDropDown = false;
   }
   openDropDown() {
+    this.checkopen=true;
     this.showDropDown = !this.showDropDown;
+  }
+  @HostListener('document:click', ['$event'])
+  onClickEvent() {
+
+    if(this.checkopen==false)
+    {
+      this.showDropDown = false;
+    }
+  }
+  @HostListener('document:mouseover', ['$event'])
+  mouseover(event) {
+      if(event.target.matches('.editor-div')) {
+        this.checkopen=false;
+      }
   }
 }

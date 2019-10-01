@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { flux } from '../models/flux';
 import data from 'src/assets/path.json';
 @Injectable({
@@ -21,6 +21,7 @@ export class FluxService {
     const url = `${this.Api+"/GetGroupFlux"}/${groupid}`;
     return this.http.get<flux[]>(url);
   }
+
   DeleteFlux(id:string):Observable<any>{
     const url=`${this.Api}/${id}`;
     return this.http.delete(url);

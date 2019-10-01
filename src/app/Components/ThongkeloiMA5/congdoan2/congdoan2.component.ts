@@ -204,7 +204,7 @@ ThongkeloiFilterMaLot(filterByMalot:string): thongkeloi[] {
         this.Fgetquytrinh[i].Selecttable=!this.Fgetquytrinh[i].Selecttable
         if(this.Fgetquytrinh[i].Selecttable==true)
         {
-          this.renderer.setStyle(tbody,'background-color', '#364f6969');
+          this.renderer.setStyle(tbody,'background-color', '#4b9bf1bb');
         }
         else{
           this.renderer.removeStyle(tbody,'background-color');
@@ -251,7 +251,7 @@ ThongkeloiFilterMaLot(filterByMalot:string): thongkeloi[] {
           this.servicethongkeloi.GetGroupThongKeLoi(this.Fgetquytrinh[i].Groupid).subscribe(data=>{
             for (let i = 0; i < data.length; i++) {
               data[i].Thoigianhoanthanh = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
-              data[i].Trangthai = "1";
+              data[i].Trangthai =true;
               this.servicethongkeloi.UpdateThongKeLoi(data[i]).subscribe()
             }
           })

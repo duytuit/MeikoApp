@@ -6,7 +6,9 @@
     (keyup)="onSearch($event)" 
     (keydown)="onSearch($event)" 
     (focus)="showList()"
-    (blur)="hideList()"/>
+    (blur)="hideList()"
+    placeholder="Mã hàng"
+    />
    
   <ul class="filter-list" 
     *ngIf="isVisible && filterSet.length > 0" 

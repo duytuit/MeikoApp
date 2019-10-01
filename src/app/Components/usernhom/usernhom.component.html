@@ -52,18 +52,18 @@
       <form class="emp-form" [formGroup]="addUser" (ngSubmit)="onSubmitAddUser()">
           <div class="form-row">
               <div class="form-group col-md-6">
-                <input class="form-control form-control-sm" autocomplete="off" [attr.disabled]="true" formControlName="Manhanvien">
+                <input class="form-control form-control-sm" autocomplete="off" formControlName="Manhanvien">
               </div>
               <div class="form-group col-md-6">
-                <input class="form-control form-control-sm" autocomplete="off" [attr.disabled]="true" formControlName="Hovaten">
+                <input class="form-control form-control-sm" autocomplete="off"  formControlName="Hovaten">
               </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input class="form-control form-control-sm" autocomplete="off" [attr.disabled]="true" formControlName="Chucvu">
+                  <input class="form-control form-control-sm" autocomplete="off" formControlName="Chucvu">
                 </div>
                 <div class="form-group col-md-6">
-                  <input class="form-control form-control-sm" autocomplete="off" [attr.disabled]="true" formControlName="Capbac">
+                  <input class="form-control form-control-sm" autocomplete="off" formControlName="Capbac">
                 </div>
               </div>
           <div class="form-group">
@@ -125,10 +125,10 @@
        
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input class="form-control form-control-sm" autocomplete="off" formControlName="Password" placeholder="Mật khẩu">
+                <input class="form-control form-control-sm" type="password" [attr.disabled]="true" autocomplete="off" formControlName="Password" placeholder="Mật khẩu">
               </div>
               <div class="form-group col-md-6">
-                  <button type="button" class="btn btn-block btn-secondary">
+                  <button type="button" class="btn btn-block btn-secondary" (click)="ResetPass(IDuser)">
                       <i class="fa fa-repeat"></i> Reset Mật Khẩu</button>
                 </div>
           </div>
@@ -228,7 +228,7 @@
             </thead>
           <tbody>
             <tr *ngFor="let item of FgetthongtinNV | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds;let i=index" [ngStyle]="{'background-color' : getColor(i)}"  class="row">
-                <td class="col-sm-4" style="font-weight:bold;padding: 7px;">{{item.manhansu}}</td>
+                <td class="col-sm-4" style="font-weight:bold;padding: 7px;" (click)="modalopenCreateUser(item,i)">{{item.manhansu}}</td>
                 <td class="col-sm-8" style="text-align: left;padding: 7px;" (click)="modalopenCreateUser(item,i)">{{item.hodem}} {{item.ten}}</td>
             </tr>
           </tbody>

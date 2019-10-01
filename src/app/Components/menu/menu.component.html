@@ -119,8 +119,8 @@
 <app-modal #modalEdit [modalTitle]="'Cập Nhập'" [width]="800" [zIndex]="zIndex" [maximizable]="true">
   <!-- <ng-container class="app-t-header">
         </ng-container> -->
-  <ng-container class="app-modal-body" >
-    <form class="emp-form" *ngIf="Menu" [formGroup]="addmenu" (ngSubmit)="onSubmitEdit()">
+  <ng-container class="app-modal-body editor-div" >
+    <form class="emp-form editor-div" *ngIf="Menu" [formGroup]="addmenu" (ngSubmit)="onSubmitEdit()" > 
       <div class="form-group">
         <input class="form-control form-control-sm" autocomplete="off" [attr.disabled]="true" [(ngModel)]="Menu.Menuid"
           formControlName="Menuid" placeholder="Mã Menu">
@@ -136,13 +136,13 @@
           </select>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" >
         <input type="text" placeholder="Menu cha" readonly="readonly" [(ngModel)]="ParentName" formControlName="Idcha"  (click)="openDropDown()"
-          class="form-control form-control-sm">
-        <div (click)="closeDropDown()">
-          <div *ngIf="showDropDown" class="search-drop-down">
-            <div (click)="selectValue(item)" class="search-results" *ngFor="let item of getmenu">
-              <a>
+          class="form-control form-control-sm editor-div" >
+        <div (click)="closeDropDown()" class="editor-div" >
+          <div *ngIf="showDropDown" class="search-drop-down editor-div">
+            <div (click)="selectValue(item)" class="search-results editor-div" *ngFor="let item of getmenu">
+              <a class="editor-div">
                 {{item.Tenmenu}}
               </a>
             </div>

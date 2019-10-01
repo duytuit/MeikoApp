@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, NgForm, FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import { PartnoService } from 'src/app/Shareds/services/partno.service';
 import * as XLSX from 'xlsx';
 import { FluxService } from 'src/app/Shareds/services/flux.service';
@@ -30,7 +30,6 @@ export class FluxComponent implements OnInit {
   doday: string;
   soluong: string;
   idflux: string;
-
   tam: number;
 
   daky: boolean;
@@ -233,13 +232,21 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     }
     else {
       this.servicePartNo.GetLotNoByPart(event.trim()).subscribe(data => {
-        this.GetAllLotNo = data
+        if(data)
+        {
+          this.GetAllLotNo = data
+        }
+       
       });
       this.servicePartNo.GetThicknessByPart(event).subscribe(data => {
-        let index = data.toString();
-        let t = index.indexOf("um");
-        let z = index.charAt(t - 3) + index.charAt(t - 2) + index.charAt(t - 1);
-        control.controls[i].get('Doday').setValue(z);
+        if(data)
+        {
+          let index = data.toString();
+          let t = index.indexOf("um");
+          let z = index.charAt(t - 3) + index.charAt(t - 2) + index.charAt(t - 1);
+          control.controls[i].get('Doday').setValue(z);
+        }
+      
       });
     }
   }
@@ -256,6 +263,14 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
       this.serviceflux.AddFlux(Object.values(json)[0],this.danhmuc_id).subscribe(data=>{
         this.getAllflux();
         this.close();
+        this.form.reset();
+        for(let i=0;i<control.length;i++)
+        {
+          control.removeAt(i)
+        }
+        for (let i = 0; i < 2; i++) {
+          this.addCreds();
+        }
       })
     }
    

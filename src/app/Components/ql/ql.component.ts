@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FluxService } from 'src/app/Shareds/services/flux.service';
 import { formatDate } from '@angular/common';
 import { flux } from 'src/app/Shareds/models/flux';
@@ -7,6 +7,9 @@ import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
 import { GroupService } from 'src/app/Shareds/services/group.service';
 import { group } from 'src/app/Shareds/models/group';
+import { FileService } from 'src/app/Shareds/services/file.service';
+import { HttpEventType } from '@angular/common/http';
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-ql',
   templateUrl: './ql.component.html',
@@ -29,9 +32,8 @@ export class QlComponent implements OnInit {
   dodaytruoc: string;
   dodaysau: string;
   test: flux;
-
   tam: number;
-
+  tentep:string;
   daky: boolean;
   quytrinh: quytrinh;
   getquytrinh: quytrinh[];
@@ -43,8 +45,8 @@ export class QlComponent implements OnInit {
   pageIndexds: number;
   pageSizeds: number;
   ghichunoidung:string;
-
-  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService) {
+  progress:number;
+  constructor(private serviceflux: FluxService,private serviceGroup:GroupService,  private servicequytrinh: ThongtinkyService,private servicefile: FileService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
@@ -210,6 +212,22 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     }
     reader.readAsBinaryString(file);
   }
+  onFileUpload(ev){
+    const file = ev.target.files[0];
+    this.tentep=ev.target.files[0].name;
+    this.servicefile.UploadFile(file).subscribe((event:any)=>{
+          // if (event.type === HttpEventType.UploadProgress)
+        
+          // this.progress = Math.round(100 * event.loaded / event.total);
+        });
+  }
+  DownloadFile(tentep){
+    this.servicefile.DownloadFile(tentep).subscribe((result: any) => {  
+          if (result.type != 'text/plain') {  
+            var blob = new Blob([result]);    
+            FileSaver.saveAs(blob, tentep);  
+          }}); 
+  }
   onGroup(group: string,z) {
     if (group != null) {
       this.serviceflux.GetGroupFlux(group).subscribe(data => {
@@ -264,7 +282,8 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     this.dodaytruoc = flux.Dodaytruoc;
     this.dodaysau = flux.Dodaysau;
     this.doday = flux.Doday;
-    this.xacnhanql = flux.Xacnhanql
+    this.xacnhanql = flux.Xacnhanql;
+    this.tentep=flux.Tentep;
     for (let i = 0; i < this.getflux.length; i++) {
       if (this.getflux[i].edittable == true) {
         this.getflux[i].edittable = false
@@ -277,6 +296,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     if (flux.edittable == false) {
       flux.Dodaytruoc = this.dodaytruoc;
       flux.Dodaysau = this.dodaysau;
+      flux.Tentep=this.tentep;
       if (parseInt(flux.Dodaysau) >= 0) {
         if (parseInt(this.doday) > parseInt(this.dodaysau)) {
           this.xacnhanql = 'NG';
@@ -287,6 +307,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
         }
       }
     }
+
     this.serviceflux.UpdateFlux(flux).subscribe()
   }
   openDelete(flux: flux) {

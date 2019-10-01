@@ -1,5 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { FormArray,FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-filter-dropdown',
   templateUrl: './filter-dropdown.component.html',
@@ -20,25 +19,23 @@ export class FilterDropdownComponent implements OnInit {
     this.maxLen = this.maxLen || 5;
     this.filterSet = [];
     this.isVisible = false;
-  }
 
+  }
   ngOnInit() {
-    console.log()
   }
-  onSearch(event: any) {          
-    if(this.searchText.length > 0) {
-      this.filterSet = this.dataSet.filter((item) => {        
-          return item
-                .toLowerCase()
-                .indexOf(this.searchText.toLowerCase()) > -1        
-      });
-
-      this.filterSet = this.filterSet.slice(0, this.maxLen);
-      this.showList();
-    } else {
-      this.filterSet = [];
-    }
-    
+  onSearch(event: any) {  
+      if(this.searchText.length > 0) {
+        this.filterSet = this.dataSet.filter((item) => {        
+            return item
+                  .toLowerCase()
+                  .indexOf(this.searchText.toLowerCase()) > -1        
+        });
+  
+        this.filterSet = this.filterSet.slice(0, this.maxLen);
+        this.showList();
+      } else {
+        this.filterSet = [];
+      } 
   }
 
   hideList() {
@@ -48,9 +45,9 @@ export class FilterDropdownComponent implements OnInit {
   }
 
   showList() {
-    if(this.searchText.length > 0){
-      this.isVisible = true;
-    }
+      if(this.searchText.length > 0){
+        this.isVisible = true;
+      }
   }
 
   cursorOverSet() {

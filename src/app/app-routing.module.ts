@@ -15,6 +15,12 @@ import { TrinhkyComponent } from './Components/trinhky/trinhky.component';
 import { Congdoan1Component } from './Components/ThongkeloiMA5/congdoan1/congdoan1.component';
 import { Congdoan2Component } from './Components/ThongkeloiMA5/congdoan2/congdoan2.component';
 import { ThongkeMA5Component } from './Components/ThongkeloiMA5/thongke-ma5/thongke-ma5.component';
+import { Congdoan1V1Component } from './Components/ThongkeloiMA5/congdoan1-v1/congdoan1-v1.component';
+import { Congdoan2V1Component } from './Components/ThongkeloiMA5/congdoan2-v1/congdoan2-v1.component';
+import { ThongkeMa5V1Component } from './Components/ThongkeloiMA5/thongke-ma5-v1/thongke-ma5-v1.component';
+import { MayComponent } from './Components/may/may.component';
+import { Pq1Component } from './Components/pq1/pq1.component';
+import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
 
 const routes: Routes = [
   {
@@ -32,6 +38,10 @@ const routes: Routes = [
       {
         path: 'pq',
         component: PqComponent
+      },
+      {
+        path: 'pq1',
+        component: Pq1Component
       },
       {
         path: 'menu',
@@ -54,6 +64,10 @@ const routes: Routes = [
         component: NhomkyComponent
       },
       {
+        path: 'removeMa5',
+        component: RemoveListMa5Component
+      },
+      {
         path: 'thongtin',
         component: ThongtinComponent
       },
@@ -66,18 +80,38 @@ const routes: Routes = [
         component: Congdoan1Component
       },
       {
+        path: 'congdoan1v1',
+        component: Congdoan1V1Component
+      },
+      {
         path: 'congdoan2',
         component: Congdoan2Component
+      },
+      {
+        path: 'congdoan2v1',
+        component: Congdoan2V1Component
       },
       {
         path: 'thongkema5',
         component: ThongkeMA5Component
       },
       {
+        path: 'thongkema5v1',
+        component: ThongkeMa5V1Component
+      },
+      {
         path: 'thongke',
         component: ThongkeComponent
+      },
+      {
+        path: 'may',
+        component: MayComponent
       }
     ]
+  },
+  {
+    path: 'adminremoveMa5',
+    component: RemoveListMa5Component
   },
   {
     path: 'administratordanhmuc',

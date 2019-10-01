@@ -223,6 +223,7 @@ export class UsernhomComponent implements OnInit {
     });
   }
   modalopenEditUser(item:User){
+    this.IDuser=item.UserID;
     this.addUser.controls['UserID'].reset(item.UserID);
     this.addUser.controls['Manhanvien'].reset(item.Manhanvien);
     this.addUser.controls['Hovaten'].reset(item.Hovaten);
@@ -238,6 +239,9 @@ export class UsernhomComponent implements OnInit {
     this.addUser.controls['Password'].reset(item.Password);
     let element: HTMLElement = document.getElementById('modalEditUserShow') as HTMLElement;
       element.click();
+  }
+  ResetPass(userid){
+    this.serviceUser.ResetPassword(userid).subscribe();
   }
   onSubmit() {
     
