@@ -145,9 +145,12 @@
                   <img width="20" height="20" src="assets/Download-icon.png">
                 </a>
               </div>
-              <div class="columnrightrow">{{item.Xacnhanql}}</div>
-              <div class="columnrightrow">OK</div>
-              <div class="columnrightrow">OK</div>
+              <div class="columnrightrow">
+                <span *ngIf="item.Xacnhanql==='OK'">{{item.Xacnhanql}}</span>
+                <span *ngIf="item.Xacnhanql==='NG'" style="background-color: yellow">{{item.Xacnhanql}}</span>
+              </div>
+              <div class="columnrightrow">{{item.Xacnhanpq}}</div>
+              <div class="columnrightrow">{{item.Xacnhanpq1}}</div>
             </div>
           </div>
         </div>
@@ -203,7 +206,10 @@
     </tr>
     <tr>
       <td style="width: 50%;">Xác nhận QL:</td>
-      <td style="width: 50%;color: blue">{{viewthongke.Xacnhanql}}</td>
+      <td style="width: 50%;color: blue">
+        <span *ngIf="viewthongke.Xacnhanql==='OK'">{{viewthongke.Xacnhanql}}</span>
+        <span *ngIf="viewthongke.Xacnhanql==='NG'" style="background-color: yellow">{{viewthongke.Xacnhanql}}</span>
+      </td>
     </tr>
     <tr>
       <td style="width: 50%;">Xác nhận PQ:</td>

@@ -9,6 +9,8 @@ import { ThongtinkyService } from 'src/app/Shareds/services/thongtinky.service';
 import { quytrinh } from 'src/app/Shareds/models/quytrinh';
 import { group } from 'src/app/Shareds/models/group';
 import { GroupService } from 'src/app/Shareds/services/group.service';
+import { FileService } from 'src/app/Shareds/services/file.service';
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-flux',
   templateUrl: './flux.component.html',
@@ -42,7 +44,7 @@ export class FluxComponent implements OnInit {
   pageSizeds: number;
   ghichunoidung:string;
   danhmuc_id: string = sessionStorage.getItem('Danhmucid');
-  constructor(private fb: FormBuilder, private serviceflux: FluxService,private serviceGroup:GroupService,  private servicePartNo: PartnoService, private servicequytrinh: ThongtinkyService) {
+  constructor(private fb: FormBuilder, private serviceflux: FluxService,private serviceGroup:GroupService,  private servicePartNo: PartnoService, private servicequytrinh: ThongtinkyService,private servicefile: FileService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
@@ -215,6 +217,13 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
       console.log(minlist);
     }
     reader.readAsBinaryString(file);
+  }
+  DownloadFile(tentep){
+    this.servicefile.DownloadFile(tentep).subscribe((result: any) => {  
+          if (result.type != 'text/plain') {  
+            var blob = new Blob([result]);    
+            FileSaver.saveAs(blob, tentep);  
+          }}); 
   }
   getTypeahead(event: string, i: number) {
     var control = <FormArray>this.form.get('credentials');

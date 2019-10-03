@@ -13,9 +13,23 @@ export class ThongtinComponent implements OnInit {
   // progress:number;
   // filename:string;
   // d:boolean=false;
-  constructor(private servicefile: FileService,private toaster: ToasterService) { }
+  name: string;
+  showPopup1: boolean;
+  showPopup2: boolean;
+  constructor(private servicefile: FileService, private toaster: ToasterService ) {
+    this.name = ' Angular!';
+   
+  }
   ngOnInit() {
   }
+  // showPopup(num: number) {
+  //   this["showPopup" + num] = true;
+   
+  // }
+
+  // hidePopup(num: number) {
+  //   this["showPopup" + num] = false;
+  // }
   // change() {
   //   alert(this.someDate);
   // }
@@ -46,13 +60,13 @@ export class ThongtinComponent implements OnInit {
   //       if (this.d==true)
   //       {
   //         this.toaster.show('success', 'Thành Công!', 'Tệp đã tải xong.');
-          
+
   //       }else
   //       {
   //         this.toaster.show('error', 'Thất bại!', 'Không tải được tệp.');
   //       }
   //     });
   //   }
-   
+
   // }
 }

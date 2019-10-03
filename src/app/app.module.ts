@@ -48,6 +48,7 @@ import { MayComponent } from './Components/may/may.component';
 import { FilterMalotComponent } from './Components/filter-malot/filter-malot.component';
 import { Pq1Component } from './Components/pq1/pq1.component';
 import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
+import { ShowPopupComponent } from './Shareds/views/show-popup/show-popup.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-m
     MayComponent,
     FilterMalotComponent,
     Pq1Component,
-    RemoveListMa5Component
+    RemoveListMa5Component,
+    ShowPopupComponent
   ],
   imports: [
     BrowserModule,

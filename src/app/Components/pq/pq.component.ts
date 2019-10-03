@@ -306,11 +306,15 @@ onSelect(option:string){
         element.click();
         this.daky = true;
         this.chucnang = false;
-        for (let i = 0; i < this.getflux.length; i++) {
-          this.getflux[i].Thoigianhoanthanh = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
-          this.getflux[i].Trangthai = "1";
-          this.serviceflux.UpdateFlux(this.getflux[i]).subscribe()
+        if(quytrinh.Kieutrinhky==Tongnhom)
+        {
+          for (let i = 0; i < this.getflux.length; i++) {
+            this.getflux[i].Thoigianhoanthanh = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+            this.getflux[i].Trangthai = "1";
+            this.serviceflux.UpdateFlux(this.getflux[i]).subscribe()
+          }
         }
+       
       } else {
         console.log('Bạn không thể hủy ký!')
       }

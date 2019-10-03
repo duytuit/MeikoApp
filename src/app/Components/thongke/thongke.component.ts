@@ -4,7 +4,8 @@ import { thongke } from 'src/app/Shareds/models/thongke';
 import { ThongkeService } from 'src/app/Shareds/services/thongke.service';
 import { GroupService } from 'src/app/Shareds/services/group.service';
 import { group } from 'src/app/Shareds/models/group';
-
+import * as FileSaver from 'file-saver';
+import { FileService } from 'src/app/Shareds/services/file.service';
 @Component({
   selector: 'app-thongke',
   templateUrl: './thongke.component.html',
@@ -28,7 +29,7 @@ export class ThongkeComponent implements OnInit {
   indexGroupID: string;
   trangthai: string = 'null';
   getallGroup: group[];
-  constructor(private serviceThongke: ThongkeService, private serviceGroup: GroupService, private excelService: ExcelService) {
+  constructor(private serviceThongke: ThongkeService, private serviceGroup: GroupService, private excelService: ExcelService,private servicefile: FileService) {
     this.pageIndex = 0;
     this.pageSize = 19;
     this.pageIndexds = 0;
@@ -78,6 +79,13 @@ export class ThongkeComponent implements OnInit {
     this.serviceGroup.GetGroup().subscribe(data => {
       this.getallGroup = data;
     });
+  }
+  DownloadFile(tentep){
+    this.servicefile.DownloadFile(tentep).subscribe((result: any) => {  
+          if (result.type != 'text/plain') {  
+            var blob = new Blob([result]);    
+            FileSaver.saveAs(blob, tentep);  
+          }}); 
   }
   SelectGroupID(item: thongke, i) {
     this.indexGroupID = i;

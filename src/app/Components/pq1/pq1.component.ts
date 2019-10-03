@@ -227,9 +227,9 @@ onSelect(option:string){
     this.tam = z;
     for (let i = 0; i < this.Fgetquytrinh.length; i++) {
       if (this.Fgetquytrinh[i].Groupid === group) {
+        this.daky=this.Fgetquytrinh[i].Daky;
         if(this.Fgetquytrinh[i].Daky==false)
         {
-          this.daky=this.Fgetquytrinh[i].Daky;
           this.Fgetquytrinh[i].Selecttable=!this.Fgetquytrinh[i].Selecttable
           if(this.Fgetquytrinh[i].Selecttable==true)
           {
