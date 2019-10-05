@@ -9,6 +9,11 @@ import { PhanquyenService } from '../../services/phanquyen.service';
 import { TrinhkyService } from '../../services/trinhky.service';
 import { trinhky } from '../../models/trinhky';
 import { UserService } from '../../services/user.service';
+import { TimerService } from '../../services/timer.service';
+import { timer } from '../../models/timer';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+// library.add(fas);
 
 @Component({
   selector: 'app-home',
@@ -16,6 +21,11 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  intervalId: number = 0;
+  message: string = '';
+  seconds: number;
+  // =========================
   showDropDown: boolean = false;
   showLogIn: boolean = false;
   showLogOut: boolean = false;
@@ -31,13 +41,16 @@ export class HomeComponent implements OnInit {
   NameLogIn: string;
   messageBox: string;
   showChangePass: boolean = false;
+  gettimer: timer;
+  flagTimer: number;
+  badge:boolean=false;
   opendropdown() {
     let dangnhap = sessionStorage.getItem('Userid');
     if (dangnhap == 'null') {
       this.showLogIn = true;
       this.showLogOut = false;
     } else {
-      this.showLogOut = true;
+      this.showLogOut =  !this.showLogOut;
       this.showLogIn = false;
     }
 
@@ -63,9 +76,23 @@ export class HomeComponent implements OnInit {
     passwdChange: new FormControl()
   });
   showDialog: boolean
-  constructor(private servicePhanQuyen: PhanquyenService, private router: Router, private serviceLogin: LoginService, private serviceUserNhom: UsernhomService, private servicetrinhky: TrinhkyService, private serviceUser: UserService) { }
-
+  constructor(private servicePhanQuyen: PhanquyenService, private router: Router, private serviceLogin: LoginService, private serviceUserNhom: UsernhomService, private servicetrinhky: TrinhkyService, private serviceUser: UserService, private serviceTimer: TimerService) {
+    this.countDown();
+    library.add(fas);
+  }
+  getAllTimer() {
+    this.serviceTimer.GetTimer().subscribe(data => {
+      if (data) {
+        this.gettimer = data;
+        this.flagTimer = this.gettimer.Trangthai;
+        if (this.flagTimer == 1) {
+          this.seconds = this.gettimer.Thoigiandangxuat;
+        }
+      }
+    });
+  }
   ngOnInit() {
+    this.getAllTimer();
     this.getAllUserNhom();
     this.getAlltrinhky();
     sessionStorage.setItem('Danhmucid', null);
@@ -74,6 +101,7 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('Trinhkyid', null);
     sessionStorage.setItem('IdApp', null);
     sessionStorage.setItem('Fullname', null);
+    this.router.navigate(['']);
   }
   getAlltrinhky() {
     this.servicetrinhky.GetTrinhKy().subscribe(data => {
@@ -81,6 +109,8 @@ export class HomeComponent implements OnInit {
     });
   }
   onClickSubmit(data) {
+    this.flagTimer=null;
+    this.getAllTimer();
     let dataLogIn = [{
       "Manhanvien": data.uname,
       "password": data.passwd
@@ -104,6 +134,7 @@ export class HomeComponent implements OnInit {
           sessionStorage.setItem('Username', ten);
           sessionStorage.setItem('Userid', userid);
           sessionStorage.setItem('IdApp', data['IdUser']);
+          this.badge=true;
         }
         if (this.flag == 1) {
           this.NameLogIn = 'Xin Chào! Admin';
@@ -155,9 +186,8 @@ export class HomeComponent implements OnInit {
         this.getall.push(children[i])
       }
       sessionStorage.setItem('Danhmucid', this.getall[0].Danhmucid);
-      let gettrinhkyid= this.gettrinhky.find(x => x.Danhmucid == this.getall[0].Danhmucid && x.Nhomky_id == item.Nhomky_id);
-      if(gettrinhkyid)
-      {
+      let gettrinhkyid = this.gettrinhky.find(x => x.Danhmucid == this.getall[0].Danhmucid && x.Nhomky_id == item.Nhomky_id);
+      if (gettrinhkyid) {
         sessionStorage.setItem('Trinhkyid', gettrinhkyid.Trinhky_id);
       }
     }
@@ -173,7 +203,14 @@ export class HomeComponent implements OnInit {
     this.showDropDown = false;
     this.CallMainClose();
   }
+  LogOut1() {
+    this.showLogOut = false;
+    this.showDropDown = false;
+    this.CallMainCloseLogOut();
+  }
   CallMainClose() {
+    this.router.navigate(['']);
+    this.flagTimer=null;
     this.main = true;
     this.getall = [];
     // this.MenuCha = [];
@@ -181,9 +218,13 @@ export class HomeComponent implements OnInit {
     // sessionStorage.setItem('Username',null);
     // sessionStorage.setItem('Userid',null);
     sessionStorage.setItem('Trinhkyid', null);
+    this.getAllTimer();
     this.getAllUserNhom();
   }
   CallMainCloseLogOut() {
+    this.badge=false;
+    this.router.navigate(['']);
+    this.flagTimer=null;
     this.main = true;
     this.getall = [];
     this.MenuCha = [];
@@ -195,6 +236,7 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('IdApp', null);
     this.NameLogIn = null;
     this.getAllUserNhom();
+    this.getAllTimer();
   }
   getAllUserNhom() {
     this.serviceUserNhom.GetUserNhom().subscribe(data => {
@@ -230,5 +272,67 @@ export class HomeComponent implements OnInit {
     } else {
       this.CallMainCloseLogOut()
     }
+  }
+
+  // Event LogOut
+
+  ngOnDestroy() {
+    this.clearTimer();
+  }
+
+  clearTimer(): void {
+    clearInterval(this.intervalId);
+  }
+
+  start(): void { this.countDown(); }
+  stop(): void {
+    this.clearTimer();
+    this.message = `${this.seconds}`;
+  }
+  private countDown(): void {
+    this.clearTimer();
+    this.intervalId = window.setInterval(() => {
+      this.seconds -= 1;
+      if (this.seconds === 0) {
+        // đăng xuất ở đây.
+        this.CallMainCloseLogOut();
+      }
+      //  else {
+      //    if (this.seconds < 0)
+      //     {
+      //       // this.seconds = 20; 
+      //      } // reset
+      //  }
+    }, 1000);
+  }
+  @HostListener('document:mouseup', ['$event'])
+  onMouseUp(event) {
+    if (this.flagTimer == 1) {
+      this.seconds = this.gettimer.Thoigiandangxuat;
+    }
+   // this.showLogOut=false;
+  }
+  @HostListener('document:mouseover', ['$event'])
+  mouseover(event) {
+    if (this.flagTimer == 1) {
+      this.seconds = this.gettimer.Thoigiandangxuat;
+    }
+  }
+  // event keyup
+
+  // @HostListener('window:keyup.w', ['$event']) w(e: KeyboardEvent) {
+  //   this.seconds = 20; 
+  // }
+
+
+  // @HostListener('window:keyup.Shift.w', ['$event']) sw(e: KeyboardEvent) {
+  //   this.seconds = 20; 
+  // }
+
+  @HostListener('window:keyup', ['$event']) keyUp(e: KeyboardEvent) {
+    if (this.flagTimer == 1) {
+      this.seconds = this.gettimer.Thoigiandangxuat;
+    }
+  
   }
 }

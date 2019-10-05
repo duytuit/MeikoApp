@@ -49,6 +49,9 @@ import { FilterMalotComponent } from './Components/filter-malot/filter-malot.com
 import { Pq1Component } from './Components/pq1/pq1.component';
 import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
 import { ShowPopupComponent } from './Shareds/views/show-popup/show-popup.component';
+import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -94,7 +97,8 @@ import { ShowPopupComponent } from './Shareds/views/show-popup/show-popup.compon
     FilterMalotComponent,
     Pq1Component,
     RemoveListMa5Component,
-    ShowPopupComponent
+    ShowPopupComponent,
+    ChatboxComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,8 @@ import { ShowPopupComponent } from './Shareds/views/show-popup/show-popup.compon
     HttpModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ModalModule
+    ModalModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

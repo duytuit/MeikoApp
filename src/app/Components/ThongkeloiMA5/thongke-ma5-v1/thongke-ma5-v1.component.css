@@ -1,5 +1,5 @@
 .rightcontent{
-    text-align:center;
+      /* text-align:center;
     background-color: #2e5075;
     color: #f7f7f8;
     font-family:Arial, Helvetica, sans-serif;
@@ -9,7 +9,8 @@
     -o-border-radius: 2px;
     border-radius: 2px;
     border:2px solid rgb(196, 192, 192);
-    margin-bottom: 5px;
+    margin-bottom: 5px; */
+    height: 64px;
    }
    .abutton:hover{
     background-color:rgb(196, 192, 192);
@@ -125,6 +126,20 @@ font-family: Arial, Helvetica, sans-serif;
       width:35%;
         }
     .cleft{
+      display: inline-table;
+      height: 51px;
+      width: 45%;
+      text-align: center;
+      padding-top: 15px;
+    }
+    .cleft1{
+      display: inline-block;
+      height: 51px;
+      width: 50%;
+      text-align: center;
+      padding-top: 15px;
+    }
+    .cleft2{
       display: inline-block;
       height: 51px;
       width: 50%;
@@ -132,9 +147,19 @@ font-family: Arial, Helvetica, sans-serif;
       padding-top: 15px;
     }
     .cleftkt{
-      display: inline-block;
+      display: inline-table;
       height: 51px;
-      width: 50%;
+      width: 55%;
+      text-align: center;
+    }
+    .clefttable1{
+      display: inline-block;
+      width: 45%;
+      text-align: center;
+    }
+    .clefttable2{
+      display: inline-block;
+      width: 55%;
       text-align: center;
     }
     .clefttable{
@@ -353,6 +378,8 @@ font-family: Arial, Helvetica, sans-serif;
       font-weight:bold;
     }
     @media only screen and (max-width: 768px){
-    
+      .rightcontent{
+        display:none;
+        height: 0;
+      }
     }
-  

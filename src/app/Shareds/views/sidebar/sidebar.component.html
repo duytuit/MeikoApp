@@ -1,12 +1,13 @@
 <nav class="main-menu">
-    <div class="home1">
+    <!-- <div class="home1">
         <div class="home" (click)="LogOut()">
             <i class="fas fa-home"></i>
+            <a><img width="40" height="40" src="assets/Meiko-1.png"></a>
         </div>
         <span class="nav-text" (click)="LogOut()">
             <a><img width="180" height="40" src="assets/meiko.png"></a>
         </span>
-    </div>
+    </div> -->
     <ul>
         <li class="has-subnav" *ngFor="let item of Phanquyen">
             <a routerLink="/{{item.Duongdan}}">

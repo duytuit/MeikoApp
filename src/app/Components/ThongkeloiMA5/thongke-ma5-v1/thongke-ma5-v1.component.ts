@@ -26,6 +26,7 @@ export class ThongkeMa5V1Component implements OnInit {
   @ViewChild('todate') todate: ElementRef;
   trangthai: string = 'null';
   viewthongke: thongke1;
+  user_id: string = sessionStorage.getItem('Userid');
   user_fullname:string=sessionStorage.getItem('Fullname');
   constructor(private servicethongkeloi: Thongkeloima5v1Service, private excelService: ExcelService) {
     this.pageIndex = 0;

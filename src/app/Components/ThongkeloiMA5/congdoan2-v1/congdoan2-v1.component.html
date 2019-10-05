@@ -1,5 +1,5 @@
 <div class="rightcontent">
-  <h2>Danh sách ngoại quan lỗi - Công đoạn 2</h2>
+  
 </div>
 <div class="content-header">
   <div class="col-md-6">
@@ -27,12 +27,12 @@
   </div>
   <div class="col-md-6">
       <div class="fullname">
-          {{user_fullname}}
+        {{user_id}}-{{user_fullname}}
       </div>
   </div>
 </div>
 <div class="content-center">
-  <div class="content-left" style="float: left;width:15%;height:88vh;">
+  <div class="content-left" style="float: left;width:15%;height:86vh;">
     <table class="table table-sm table-hover">
       <thead style="background-color: #dbdbdb80;">
         <tr class="row">
@@ -104,8 +104,11 @@
               <div class="columnright1">NG</div>
             </div>
             <div class="xn">
-              <div class="cleft">Ghi chú</div>
-              <div class="cleft">Người kiểm tra</div>
+              <div class="cleft1">
+                  <div class="cleft">Ghi chú</div>
+                  <div class="cleft">Mã ID</div>
+              </div>
+              <div class="cleft2">Người kiểm tra</div>
             </div>
           </div>
         </div>
@@ -154,10 +157,15 @@
                   </div>
                 </div>
                 <div class="xntable">
-                  <div class="clefttable">
-                      <span >{{item.Ghichu}}</span>
+                  <div class="clefttable1">
+                      <div class="clefttable">
+                          <span title="{{item.Ghichu}}">{{item.Ghichu | slice:0:10}}</span>
+                      </div>
+                      <div class="clefttable">
+                        <span >{{item.Idnguoikiemtra}}</span>
+                      </div>
                   </div>
-                  <div class="clefttable" >
+                  <div class="clefttable2" >
                     <span >{{item.Nguoikiemtra}}</span>
                   </div>
                 </div>

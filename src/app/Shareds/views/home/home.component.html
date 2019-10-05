@@ -1,28 +1,4 @@
-<div class="main-nav" *ngIf="!main">
-    <div class="left">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div><img width="180" height="40" src="assets/meiko.png"></div>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a >Flux</a>
-                <a >QL</a>
-                <a >PQ</a>
-                <a >Nhóm Ký</a>
-                <a >Thông Tin Ký</a>
-            </div>
-        </nav>
-    </div>
-    <div>
-        <app-sidebar [Phanquyen]="getall" (LogOutClicked)="LogOut()"></app-sidebar>
-    </div>
-    <div class="right">
-        <router-outlet></router-outlet>
-    </div>
-</div>
-<div class="content-wrapper" *ngIf="main">
+<div class="content-wrapper">
     <div class="navbar-top">
         <div class="rightcontent">
             <div class="row">
@@ -37,6 +13,16 @@
                     </ul>
                 </div>
                 <div class="col-md-6 right-user">
+                    <div *ngIf="badge" class="notification-badge">
+                            <a class="button-badge" style="cursor: pointer">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="alert">0</span>
+                           </a>
+                           <a class="button-badge" >
+                                <i class="far fa-bell"></i>
+                                <span class="alert">0</span>
+                            </a>
+                    </div>
                         <div class="ShowUser">
                                {{NameLogIn}}
                         </div>
@@ -66,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="content" (click)="closedropdown()">
+    <div class="content" (click)="closedropdown()"  *ngIf="main">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -83,6 +69,31 @@
         </div>
     </div>
 </div>
+<div class="main-nav" *ngIf="!main">
+    <div class="left">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div><img width="180" height="40" src="assets/meiko.png"></div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a >Flux</a>
+                <a >QL</a>
+                <a >PQ</a>
+                <a >Nhóm Ký</a>
+                <a >Thông Tin Ký</a>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <app-sidebar [Phanquyen]="getall" (LogOutClicked)="LogOut()"></app-sidebar>
+    </div>
+    <div class="right">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
 <app-dialog [(visible)]="showDialog">
     <div style="text-align:center;" >
         <img width="300" height="70" src="assets/meiko.png">

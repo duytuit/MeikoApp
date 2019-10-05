@@ -1,5 +1,5 @@
 <div class="rightcontent">
-  <h2>Tìm kiếm danh sách thống kê lỗi</h2>
+ 
 </div>
 
 <div class="content-header">
@@ -24,12 +24,12 @@
   </div>
   <div class="col-md-2" style="display: inline-table">
       <div class="fullname">
-          {{user_fullname}}
+          {{user_id}}-{{user_fullname}}
       </div>
   </div>
 </div>
 <div class="content-center" (mouseenter)="onMouseEnterClose()">
-  <div class="content-left" style="float: left;width:15%;height:88vh;" (mouseenter)="onMouseEnterClose()">
+  <div class="content-left" style="float: left;width:15%;height:86vh;" (mouseenter)="onMouseEnterClose()">
     <table class="table table-sm table-hover">
       <thead style="background-color: #dbdbdb80">
         <tr class="row">
@@ -101,7 +101,10 @@
               <div class="columnright1">NG</div>
             </div>
             <div class="xn">
-              <div class="cleft">Ghi chú</div>
+              <div class="cleft">
+                  <div class="cleft1">Ghi chú</div>
+                  <div class="cleft2">Mã ID</div>
+              </div>
               <div class="cleftkt">
                 <label for="nguoikiemtra" class="inp">
                   <input type="text" id="nguoikiemtra" placeholder="&nbsp;" [(ngModel)]="listFilterNguoiKiemTra">
@@ -157,12 +160,17 @@
                   </div>
                 </div>
                 <div class="xntable">
-                  <div class="clefttable">
-                      <span >{{item.Ghichu}}</span>
-                  </div>
-                  <div class="clefttable">
-                    <span >{{item.Nguoikiemtra}}</span>
-                  </div>
+                    <div class="clefttable1">
+                        <div class="clefttable">
+                            <span title="{{item.Ghichu}}">{{item.Ghichu | slice:0:10}}</span>
+                        </div>
+                        <div class="clefttable">
+                          <span >{{item.Idnguoikiemtra}}</span>
+                        </div>
+                    </div>
+                    <div class="clefttable2" >
+                      <span >{{item.Nguoikiemtra}}</span>
+                    </div>
                 </div>
               </div>
           </div>

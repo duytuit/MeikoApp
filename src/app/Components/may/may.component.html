@@ -1,5 +1,5 @@
 <div class="rightcontent">
-    <h2>Máy</h2>
+   
   </div>
   <app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [zIndex]="zIndex" [maximizable]="true">
     <!-- <ng-container class="app-t-header">
@@ -68,6 +68,8 @@
           <i class="fas fa-retweet"></i>
         </a>
       </ul>
+      <button *ngIf="!gettimer" type="button" class="btn btn-outline-info" style="margin-left: 10px;" (click)="AutoTimerAdd()">Thiết lập đăng xuất</button>
+      <button *ngIf="gettimer" type="button" class="btn btn-outline-info" style="margin-left: 10px;" (click)="AutoTimerUpdate(gettimer)">Thiết lập đăng xuất</button>
     </div>
     <div class="col-md-6">
         <div class="fullname">
@@ -134,3 +136,36 @@
       <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
    </div> -->
   </div>
+  <app-modal #timer [modalTitle]="'Thiết lập thời gian đăng xuất'" [width]="400" [zIndex]="zIndex">
+      <!-- <ng-container class="app-t-header">
+       
+      </ng-container> -->
+      <ng-container class="app-modal-body">
+        <form class="emp-form" [formGroup]="addtimer" (ngSubmit)="onSubmitTimer()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input class="form-control form-control-sm" autocomplete="off" formControlName="Thoigiandangxuat" placeholder="giây">
+                </div>
+                <div class="form-group col-md-6" style="color: blue;">
+                  giây
+                  </div>
+            </div>
+            <div class="form-group">
+              <select class="form-control form-control-sm" [(ngModel)]="trangthaiTimer" [ngModelOptions]="{standalone: true}" (change)="onEventTimer($event.target.value)">
+                <option value="1">Kích hoạt</option>
+                <option value="0">Khóa</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-block btn-info btn-sm">
+                  <i class="fa fa-floppy-o"></i> Lưu</button>
+              </div>
+            </div>
+        </form>
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <input type="hidden" (click)="timer.hide()" id="TimerClose">
+        <input type="hidden" (click)="timer.show()" id="TimerShow">
+      </ng-container>
+    </app-modal>

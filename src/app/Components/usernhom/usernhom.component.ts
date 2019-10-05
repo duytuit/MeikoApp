@@ -202,7 +202,7 @@ export class UsernhomComponent implements OnInit {
       this.addUser.controls['CMTND'].reset(item.cmtnd_so);
       this.addUser.controls['Chucvu'].reset(item.chucvu);
       this.addUser.controls['Capbac'].reset(item.capbac);
-      this.addUser.controls['Password'].reset('meiko');
+      this.addUser.controls['Password'].reset('123456');
       let element: HTMLElement = document.getElementById('modalAddUserShow') as HTMLElement;
         element.click();
     }

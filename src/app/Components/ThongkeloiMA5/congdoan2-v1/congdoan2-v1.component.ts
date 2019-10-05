@@ -175,15 +175,17 @@ PerformFilterSelect(filterBySelect: string): thongkeloi[] {
       {
             if(this.Fgetthongkeloi[i].Ngay==item.Ngay)
             {
-              this.Fgetthongkeloi[i].Thoigianhoanthanh=formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
-              this.Fgetthongkeloi[i].Trangthai=true;
-              this.Fgetthongkeloi[i].Idnguoixacnhan=this.user_id;
-              this.Fgetthongkeloi[i].Nguoixacnhan=this.user_name;
-              this.daky = true;
-              this.servicethongkeloi.UpdateThongKeLoi(this.Fgetthongkeloi[i]).subscribe();
+              if(this.Fgetthongkeloi[i].Trangthai==false)
+              {
+                this.Fgetthongkeloi[i].Thoigianhoanthanh=formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+                this.Fgetthongkeloi[i].Trangthai=true;
+                this.Fgetthongkeloi[i].Idnguoixacnhan=this.user_id;
+                this.Fgetthongkeloi[i].Nguoixacnhan=this.user_name;
+                this.daky = true;
+                this.servicethongkeloi.UpdateThongKeLoi(this.Fgetthongkeloi[i]).subscribe();
+              }
             }
-      }
-      
+        }
     } 
   }
 }

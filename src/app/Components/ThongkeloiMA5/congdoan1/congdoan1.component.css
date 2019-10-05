@@ -1,5 +1,5 @@
 .rightcontent{
-    text-align:center;
+     /* text-align:center;
     background-color: #2e5075;
     color: #f7f7f8;
     font-family:Arial, Helvetica, sans-serif;
@@ -9,7 +9,8 @@
     -o-border-radius: 2px;
     border-radius: 2px;
     border:2px solid rgb(196, 192, 192);
-    margin-bottom: 5px;
+    margin-bottom: 5px; */
+    height: 64px;
    }
    .abutton:hover{
     background-color:rgb(196, 192, 192);
@@ -339,6 +340,9 @@ font-family: Arial, Helvetica, sans-serif;
       color:white;
     }
     @media only screen and (max-width: 768px){
-    
+      .rightcontent{
+        display:none;
+        height: 0;
+      }
     }
   
