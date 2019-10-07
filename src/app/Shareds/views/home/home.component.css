@@ -219,6 +219,32 @@ a:hover{
     display:none;
     height: 0;
   }
+  .left{
+    background-color: blue;
+    float: none;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+.left a{
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.left a:hover {
+    background-color: rgba(221, 221, 221, 0.308);
+}
+.right{
+    float: none;
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 60px;
+}
+.navbar-dark{
+    background:#364f69;
+}
 }
 .button-badge {
   text-decoration: none;

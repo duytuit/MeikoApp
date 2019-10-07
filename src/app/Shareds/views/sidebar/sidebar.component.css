@@ -29,7 +29,7 @@
     }
     .main-menu:hover{
     width:250px;
-    overflow:visible;
+    overflow:auto;
     }
     .main-menu {
     background:#2e5075;

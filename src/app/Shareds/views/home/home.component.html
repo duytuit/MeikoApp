@@ -69,7 +69,7 @@
         </div>
     </div>
 </div>
-<div class="main-nav" *ngIf="!main">
+<div class="main-nav" >
     <div class="left">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -86,7 +86,7 @@
             </div>
         </nav>
     </div>
-    <div>
+    <div *ngIf="!main">
         <app-sidebar [Phanquyen]="getall" (LogOutClicked)="LogOut()"></app-sidebar>
     </div>
     <div class="right">
