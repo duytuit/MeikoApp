@@ -323,6 +323,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
     flux.Dodaytruoc = '';
     flux.Dodaysau = '';
     flux.Xacnhanql = '';
+    flux.Tentep='';
     if (flux.Flux_id != null) {
       this.serviceflux.UpdateFlux(flux).subscribe();
       let element: HTMLElement = document.getElementById('modalDeleteHide') as HTMLElement;

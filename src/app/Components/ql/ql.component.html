@@ -192,7 +192,7 @@
               <span *ngIf="!item.edittable&&item.Xacnhanql==='NG'" style="background-color: yellow">{{item.Xacnhanql}}</span>
               <input type="text" disabled class="form-control form-control-sm" [(ngModel)]="xacnhanql" *ngIf="item.edittable"/>
             </div>
-            <div class="columnrightrow">{{item.Xacnhanpq}} </div>
+            <div class="columnrightrow" title="{{item.Xacnhanpq}}">{{item.Xacnhanpq | slice:0:10}}</div>
             <div class="columnrightrow">{{item.Xacnhanpq1}}</div>
             <div class="columnrightrow" *ngIf="chucnang">
               <a class="btn" (click)="modalopen(item,i)" *ngIf="!item.edittable">

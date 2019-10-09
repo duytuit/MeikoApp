@@ -2,24 +2,24 @@
  
 </div>
 
-<div class="content-header">
+<div class="content-header" style="border: 1px solid black">
   <div class="col-md-10" style="display: inline-block">
     <td style="width:80px;">Từ Ngày :</td>
-    <td><input type="date" name="dateofbirth" id="dateofbirth" #fromdate></td>
+    <td><input type="date" name="dateofbirth" id="dateofbirth" #fromdate style="border: 1px solid black"></td>
     <td style="width:80px;">Đến Ngày :</td>
-    <td><input type="date" name="dateofbirth" id="dateofbirth" #todate></td>
+    <td><input type="date" name="dateofbirth" id="dateofbirth" #todate style="border: 1px solid black"></td>
     <td>
-      <select style="background-color:#dbdbdb80;height:33px;border-radius:5px" (change)="onSeach($event.target.value)">
+      <select style="background-color:#dbdbdb80;height:33px;border-radius:5px;border: 1px solid black" (change)="onSeach($event.target.value)">
       <option value="null">--Trạng Thái--</option>
       <option value="1">Đã hoàn thành</option>
       <option value="0">Chưa hoàn thành</option>
      </select>
   </td>
-    <td><button type="button" class="btn btn-outline-primary" style="margin-left: 10px;"
+    <td><button type="button" class="btn btn-outline-primary" style="margin-left: 10px;border: 1px solid black"
         (click)="GetThongKeMa5Bydate(fromdate.value,todate.value)">Tìm</button></td>
-    <td><button type="button" class="btn btn-outline-info" style="margin-left: 10px;" (click)="refresh()">Làm
+    <td><button type="button" class="btn btn-outline-info" style="margin-left: 10px;border: 1px solid black" (click)="refresh()">Làm
         Mới</button></td>
-    <td><button type="button" class="btn btn-outline-warning" style="margin-left: 10px;" (click)="exportAsXLSX()">Xuất
+    <td><button type="button" class="btn btn-outline-warning" style="margin-left: 10px;border: 1px solid black" (click)="exportAsXLSX()">Xuất
         tệp</button></td>
   </div>
   <div class="col-md-2" style="display: inline-table">
@@ -30,7 +30,7 @@
 </div>
 <div class="content-center" (mouseenter)="onMouseEnterClose()">
   <div class="content-left" style="float: left;width:15%;height:86vh;" (mouseenter)="onMouseEnterClose()">
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover" style="border: 1px solid black">
       <thead style="background-color: #dbdbdb80">
         <tr class="row">
           <th class="col-sm-7">
@@ -57,7 +57,7 @@
       </tbody>
     </table>
     </div>
-    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;">
+    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;border: 1px solid black">
       <thead>
         <div class="row" style="background-color:#dbdbdb80;">
           <div class="STT">STT</div>
@@ -180,12 +180,12 @@
 </div>
 <div class="fixed-bottom">
   <div style="float: left;">
-      <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
-      <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+      <app-pagding-left-ma5 [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-pagding-left-ma5>
+      <button class="btn btn-secondary" disabled style="font-weight:bold;color: black">Tổng: {{countds}}</button>
   </div>
- <div style="float: right;">
-    <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
-    <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+ <div style="float:right;">
+    <app-pagding-rigth-ma5 [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding-rigth-ma5>
+    <button class="btn btn-secondary" disabled style="font-weight:bold;color: black">Tổng: {{count}}</button>
  </div>
 </div>
 <app-dialog-thongkeloi [(visible)]="!showDialog">

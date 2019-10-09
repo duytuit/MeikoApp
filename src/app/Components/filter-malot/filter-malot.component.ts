@@ -78,4 +78,10 @@ export class FilterMalotComponent implements OnInit {
     this.hideList();
     this.typeahead.emit(this.searchText);
   }
+  save(event: any){
+    this.searchText=this.filterSet[0];
+    this.isCursorOverFilterSet = false;
+    this.hideList();
+    this.typeahead.emit(this.searchText);
+  }
 }

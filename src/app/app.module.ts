@@ -51,6 +51,10 @@ import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-m
 import { ShowPopupComponent } from './Shareds/views/show-popup/show-popup.component';
 import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FilterMahangMa5Component } from './Components/filter-mahang-ma5/filter-mahang-ma5.component';
+import { FilterMalotMa5Component } from './Components/filter-malot-ma5/filter-malot-ma5.component';
+import { PagdingRigthMa5Component } from './Components/pagding-rigth-ma5/pagding-rigth-ma5.component';
+import { PagdingLeftMa5Component } from './Components/pagding-left-ma5/pagding-left-ma5.component';
 
 
 @NgModule({
@@ -98,7 +102,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     Pq1Component,
     RemoveListMa5Component,
     ShowPopupComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    FilterMahangMa5Component,
+    FilterMalotMa5Component,
+    PagdingRigthMa5Component,
+    PagdingLeftMa5Component
   ],
   imports: [
     BrowserModule,

@@ -6,17 +6,17 @@
     <div >
         <div style="width: 49.5%;display: inline-table">
             <!-- <input class="form-control form-control-sm" [(ngModel)]="maykiemtra" placeholder="Máy kiểm tra"> -->
-            <select class="form-control form-control-sm" (change)="onEventParentID($event.target.value)">
+            <select class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" (change)="onEventParentID($event.target.value)">
                 <option value="tenmay">--Tên Máy--</option>
                 <option *ngFor="let item of getmay" value="{{item.Tenmay}}">{{item.Tenmay}}</option>
           </select>
         </div>
         <div style="width: 49.5%;display: inline-table;float:right;">
-            <input class="form-control form-control-sm" [(ngModel)]="banso" placeholder="Bàn số">
+            <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" [(ngModel)]="banso" placeholder="Bàn số">
         </div>
-      <button style="margin-top:10px" class="btn btn-block btn-info btn-sm" (click)="addCreds()">
+      <button style="margin-top:10px;font-weight:bold;color: black;border: 1px solid black" class="btn btn-block btn-info btn-sm" (click)="addCreds()">
         <i class="fas fa-plus-circle"></i>
-                   Tạo
+                   Tạo dòng mới
   </button>
   </div>
   </ng-container>
@@ -27,31 +27,31 @@
             
           <div class="form-group col-md-2">
             <input type="hidden" formControlName="Mahang">
-            <app-filter-dropdown [dataSet]="GetAllPartNo" [maxLen]="6" (typeahead)="getTypeahead($event,i)">
-            </app-filter-dropdown>
+            <app-filter-mahang-ma5 [dataSet]="GetAllPartNo" [maxLen]="6" (typeahead)="getTypeahead($event,i)">
+            </app-filter-mahang-ma5>
           </div>
           <div class="form-group col-md-2">
             <input type="hidden" formControlName="Malot">
-            <app-filter-malot [dataSet]="GetAllLotNo" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
-            </app-filter-malot>
+            <app-filter-malot-ma5 [dataSet]="GetAllLotNo" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
+            </app-filter-malot-ma5>
           </div>
           <div class="form-group col-md-1">
-              <input class="form-control form-control-sm" formControlName="Thoigianbatdau" placeholder="bắt đầu">
+              <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="Thoigianbatdau" placeholder="bắt đầu">
             </div>
             <div class="form-group col-md-1">
-                <input class="form-control form-control-sm" formControlName="Thoigianketthuc" placeholder="kết thúc">
+                <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="Thoigianketthuc" placeholder="kết thúc">
               </div>
           <div class="form-group col-md-1">
-            <input class="form-control form-control-sm" formControlName="Loiphathien" placeholder="VERIFY">
+            <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="Loiphathien" placeholder="VERIFY">
           </div>
           <div class="form-group col-md-1">
-            <input class="form-control form-control-sm" formControlName="OK" placeholder="OK">
+            <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="OK" placeholder="OK">
           </div>
           <div class="form-group col-md-1">
-              <input class="form-control form-control-sm" formControlName="NG" placeholder="NG">
+              <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="NG" placeholder="NG">
             </div>
           <div class="form-group col-md-2">
-            <input class="form-control form-control-sm" formControlName="Ghichu" placeholder="ghi chú">
+            <input class="form-control form-control-sm" style="font-weight:bold;border: 1px solid black;color: black" formControlName="Ghichu" placeholder="ghi chú">
           </div>
           <span class="remove" (click)="removeGroup(i)">
             <img width="24" height="24" src="assets/delete-icon.png">
@@ -61,10 +61,10 @@
     </form>
   </ng-container>
   <ng-container class="app-modal-footer">
-    <button type="button" (click)="onSubmit()" class="btn btn-info btn-sm">
-      <i class="far fa-save tu"></i>
+    <button type="button" (click)="onSubmit()" style="font-weight:bold;color: black;border: 1px solid black" class="btn btn-info btn-sm">
+      <i class="far fa-save"></i>
       Lưu</button>
-    <button type="button" class="btn btn-info btn-sm" id="close" style="float: right;" (click)="modalRoot.hide()">
+    <button type="button" class="btn btn-info btn-sm" id="close" style="float: right;font-weight:bold;color: black;border: 1px solid black" (click)="modalRoot.hide()">
       <i class="far fa-times-circle"></i>
       Thoát</button>
   </ng-container>
@@ -108,19 +108,19 @@
 <input type="hidden" (click)="modalnoidung.show()" id="modalNoidung">
 <input type="hidden" (click)="modalnoidung.hide()" id="modalNoidungHide">
 
-<div class="content-header">
+<div class="content-header" style="border: 1px solid black">
   <div class="col-md-6">
-    <ul class="ulbutton" (click)="modalRoot.show()">
-      <a class="abutton" title="Thêm" role="button">
+    <ul class="ulbutton" (click)="modalRoot.show()" >
+      <a class="abutton" title="Thêm" role="button" style="border: 1px solid black">
         <i class="fas fa-plus"></i>
       </a>
     </ul>
-    <ul class="ulbutton" (click)="lammoi()">
-      <a class="abutton" title="làm mới" role="button">
+    <ul class="ulbutton" (click)="lammoi()" >
+      <a class="abutton" title="làm mới" role="button" style="border: 1px solid black">
         <i class="fas fa-retweet"></i>
       </a>
     </ul>
-      <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
+      <select style="border: 1px solid black;margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;color:#364f69" [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
         <option value="">All</option>
         <option value="true">Đã ký</option>
         <option value="false">Chưa ký</option>
@@ -134,7 +134,7 @@
 </div>
 <div class="content-center">
   <div class="content-left" style="float: left;width:15%;height:86vh;">
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover" style="border: 1px solid black">
       <thead style="background-color: #dbdbdb80;">
         <tr class="row">
           <th class="col-sm-7">
@@ -161,7 +161,7 @@
       </tbody>
     </table>
     </div>
-    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;">
+    <table class="table table-sm table-hover table-bordered test" style="float: right;width:84.8%;border: 1px solid black">
       <thead>
         <div class="row" style="background-color:#dbdbdb80;">
           <div class="STT">STT</div>
@@ -222,22 +222,22 @@
                     </div>
                     <div class="columnlefttable1">
                         <span *ngIf="!item.edittable">{{item.Banso}}</span>
-                                <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.Banso" *ngIf="item.edittable"/>
+                                <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.Banso" *ngIf="item.edittable"/>
                       </div>
                       <div class="columnlefttable">
                           <span *ngIf="!item.edittable">{{item.Maykiemtra}}</span>
-                          <select class="form-control form-control-sm"  *ngIf="item.edittable" [(ngModel)]="maykiemtra" (change)="onEventParentID($event.target.value)">
+                          <select class="form-control form-control-sm" style="border: 1px solid black" *ngIf="item.edittable" [(ngModel)]="maykiemtra" (change)="onEventParentID($event.target.value)">
                             <option *ngFor="let item of getmay" value="{{item.Tenmay}}">{{item.Tenmay}}</option>
                       </select>
                         </div>
                         <div class="xacnhanleft1">
                             <div class="columnright">
                                 <span *ngIf="!item.edittable">{{item.Thoigianbatdau}}</span>
-                                <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.Thoigianbatdau" *ngIf="item.edittable"/>
+                                <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.Thoigianbatdau" *ngIf="item.edittable"/>
                             </div>
                             <div class="columnright">
                                 <span *ngIf="!item.edittable">{{item.Thoigianketthuc}}</span>
-                                <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.Thoigianketthuc" *ngIf="item.edittable"/>
+                                <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.Thoigianketthuc" *ngIf="item.edittable"/>
                             </div>
                        </div>
                 </div>
@@ -245,16 +245,16 @@
                         <span *ngIf="!item.edittable">{{item.Mahang}}</span>
                        <div *ngIf="item.edittable" class="tableMahang">
                           <input type="hidden" [(ngModel)]="mahang">
-                          <app-filter-dropdown [dataSet]="GetAllPartNo" [searchText]="item.Mahang" [maxLen]="6" (typeahead)="getMahang($event,item)">
-                            </app-filter-dropdown>
+                          <app-filter-mahang-ma5 [dataSet]="GetAllPartNo" [searchText]="item.Mahang" [maxLen]="6" (typeahead)="getMahang($event,item)">
+                            </app-filter-mahang-ma5>
                        </div>
                       </div>
                       <div class="xacnhanleft">
                           <span *ngIf="!item.edittable">{{item.Malot}}</span>
                           <div *ngIf="item.edittable" class="tableMahang">
                               <input type="hidden" [(ngModel)]="malot">
-                             <app-filter-malot [dataSet]="GetAllLotNo" [searchText]="item.Malot" [maxLen]="6" (typeahead)="getMalot($event)">
-                               </app-filter-malot>
+                             <app-filter-malot-ma5 [dataSet]="GetAllLotNo" [searchText]="item.Malot" [maxLen]="6" (typeahead)="getMalot($event)">
+                               </app-filter-malot-ma5>
                           </div>
                       </div>
               </div>
@@ -262,32 +262,32 @@
                 <div class="xacnhan">
                   <div class="columnrighttable1">
                       <span *ngIf="!item.edittable">{{item.Loiphathien}}</span>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.Loiphathien" *ngIf="item.edittable"/>
+                      <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.Loiphathien" *ngIf="item.edittable"/>
                   </div>
                   <div class="columnrighttable1">
                       <span *ngIf="!item.edittable">{{item.OK}}</span>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.OK" *ngIf="item.edittable"/>
+                      <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.OK" *ngIf="item.edittable"/>
                   </div>
                   <div class="columnrighttable1">
                       <span *ngIf="!item.edittable">{{item.NG}}</span>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.NG" *ngIf="item.edittable"/>
+                      <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.NG" *ngIf="item.edittable"/>
                   </div>
                 </div>
                 <div class="xntable">
                   <div class="clefttable">
                       <span *ngIf="!item.edittable">{{item.Ghichu}}</span>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="getthongkeloiRow.Ghichu" *ngIf="item.edittable"/>
+                      <input type="text" class="form-control form-control-sm" style="border: 1px solid black" [(ngModel)]="getthongkeloiRow.Ghichu" *ngIf="item.edittable"/>
                   </div>
                   <div class="clefttable" *ngIf="!item.Trangthai">
-                      <a class="btn" (click)="modalopen(item,i)" *ngIf="!item.edittable">
+                      <a class="btn" (click)="modalopen(item,i)" *ngIf="!item.edittable" style="border: 1px solid black">
                           <i class="fa fa-pencil-square-o"></i>
                         </a>
                         <span *ngIf="item.edittable">
-                            <a class="btn" (click)="modalclose(item,i)">
+                            <a class="btn" (click)="modalclose(item,i)" style="border: 1px solid black">
                                 <i class="fas fa-save"></i>
                            </a>
                         </span>
-                        <a class="btn text-danger" (click)="openDelete(item)">
+                        <a class="btn text-danger" (click)="openDelete(item)" style="border: 1px solid black">
                           <i class="far fa-trash-alt"></i>
                         </a>
                         <input type="hidden" (click)="modalDelete.show()" id="modalDelete">
@@ -302,12 +302,12 @@
 </div>
 <div class="fixed-bottom">
   <div style="float: left;">
-      <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
-      <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+      <app-pagding-left-ma5 [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-pagding-left-ma5>
+      <button class="btn btn-secondary" disabled style="font-weight:bold;color: black">Tổng: {{countds}}</button>
   </div>
  <div style="float: right;">
-    <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
-    <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+    <app-pagding-rigth-ma5 [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding-rigth-ma5>
+    <button class="btn btn-secondary" disabled style="font-weight:bold;color: black">Tổng: {{count}}</button>
  </div>
 </div>
 

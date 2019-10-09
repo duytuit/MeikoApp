@@ -1,10 +1,12 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 @Component({
-  selector: 'app-filter-dropdown',
-  templateUrl: './filter-dropdown.component.html',
-  styleUrls: ['./filter-dropdown.component.css']
+  selector: 'app-filter-malot-ma5',
+  templateUrl: './filter-malot-ma5.component.html',
+  styleUrls: ['./filter-malot-ma5.component.css']
 })
-export class FilterDropdownComponent implements OnInit {
+export class FilterMalotMa5Component implements OnInit {
+
   @Input() dataSet: any;
   @Input() searchText: string;  
   @Input() maxLen: number;

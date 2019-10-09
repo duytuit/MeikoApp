@@ -21,6 +21,7 @@ import { ThongkeMa5V1Component } from './Components/ThongkeloiMA5/thongke-ma5-v1
 import { MayComponent } from './Components/may/may.component';
 import { Pq1Component } from './Components/pq1/pq1.component';
 import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
+import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
 
 const routes: Routes = [
   {
@@ -148,6 +149,10 @@ const routes: Routes = [
   {
     path: 'administratorusernhomky',
     component: UsernhomComponent
+  },
+  {
+    path: 'adminichatbox',
+    component: ChatboxComponent
   }
 ];
 
