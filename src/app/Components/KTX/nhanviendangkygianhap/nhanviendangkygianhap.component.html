@@ -1,0 +1,936 @@
+<div class="rightcontent">
+
+</div>
+<app-modal #modalRoot [width]="800" 
+                      [backgroundcolor]="'#2e5075'" 
+                      [keydownesc]="true" 
+                      [closemodal]="false" 
+                      [maximizable]="true" 
+                      [maximized]="false" 
+                      [south]="false" 
+                      [east]="false" 
+                      [southEast]="false" 
+                      [zIndex]="zIndex">
+  <ng-container class="app-modal-body">
+    <div>
+      <h4>Phiếu Đăng Ký Gia Nhập KTX</h4>
+      <p style="font-weight:lighter">
+          Chú ý: Nộp đơn cho BP Hành chính vào các ngày trong tuần và làm thủ tục bàn giao phòng KTX tại phòng ban quản lý KTX lúc 17:00  thứ 2 hàng tuần.
+      </p>
+    </div>
+    <div class="form">
+        <p style="font-weight:bold;">1.Thông Tin Cá Nhân:</p>
+        <form #selectNVdangkyForm="ngForm">
+        <table class="table table-sm table-bordered" >
+          <tbody style=" color: #2b28ef;">
+              <tr>
+                  <td style="width: 12.5%; font-weight:bold;">Họ và tên:</td>
+                  <td >
+                    <!-- <input type="text" class="text-input-form" name="Hotenkhaisinh" #Hotenkhaisinh="ngModel" [(ngModel)]="selectNVdangky.Hotenkhaisinh"> -->
+                    <label>{{selectNVdangky.Hotenkhaisinh}}</label>
+                  </td>
+                  <td style="width: 10%; font-weight:bold;">Giới tính:</td>
+                  <td>
+                    <!-- <input type="text" class="text-input-form" name="Gioitinh" #Gioitinh="ngModel" [(ngModel)]="selectNVdangky.Gioitinh"> -->
+                    <label>{{selectNVdangky.Gioitinh==1?'Nam':'Nữ'}}</label>
+                  </td>
+                  <td style="width: 10%; font-weight:bold;">Mã ID:</td>
+                  <td>
+                    <!-- <input type="text" class="text-input-form" name="Manhanvien" #Manhanvien="ngModel" [(ngModel)]="selectNVdangky.Manhanvien"> -->
+                    <label>{{selectNVdangky.Manhanvien}}</label>
+                  </td>
+              </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Đối tượng:</td>
+                  <td colspan="2">
+                    <!-- <input type="text" class="text-input-form" name="Doituong" #Doituong="ngModel" [(ngModel)]="selectNVdangky.Doituong"> -->
+                    <label>{{selectNVdangky.Doituong>=4?'Nhân viên':'Công nhân'}}</label>
+                  </td>
+                  <td colspan="1" style=" font-weight:bold;">Gia nhập lần:</td>
+                  <td colspan="2">
+                      <label>{{selectNVdangky.Solan_gianhap}}</label>
+                  </td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Phòng:</td>
+                  <td colspan="2">
+                    <!-- <input type="text" class="text-input-form" name="Phong" #Phong="ngModel" [(ngModel)]="selectNVdangky.Phong"> -->
+                    <label>{{selectNVdangky.Phong}}</label>
+                  </td>
+                  <td colspan="1" style=" font-weight:bold;">Bộ phận:</td>
+                  <td colspan="2"><input type="text" class="text-input-form" name="Phong" #Phong="ngModel" [(ngModel)]="selectNVdangky.Phong"></td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Ban:</td>
+                  <td colspan="2"><input type="text" class="text-input-form" name="Ban" #Ban="ngModel" [(ngModel)]="selectNVdangky.Ban"></td>
+                  <td colspan="1" style=" font-weight:bold;">Công đoạn:</td>
+                  <td colspan="2"><input type="text" class="text-input-form" name="Congdoan" #Congdoan="ngModel" [(ngModel)]="selectNVdangky.Congdoan"></td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;height: 145px;">Lý do đăng ký:</td>
+                  <td colspan="5" >
+                      <textarea rows="10" style="max-height: 130px;color:#2b28ef ;" class="text-input-form1 col-md-12" name="Lydodangky" #Lydodangky="ngModel" [(ngModel)]="selectNVdangky.Lydodangky"></textarea>
+                  </td>
+               </tr>
+               <tr>
+                  <td style=" font-weight:bold;">Điên thoại liên lạc:</td>
+                  <td style=" font-weight:bold;">Số máy lẻ:</td>
+                  <td>
+                    <input type="text" style="width: 60px;" class="text-input-form" name="Somayle" #Somayle="ngModel" [(ngModel)]="selectNVdangky.Somayle">
+                  </td>
+                  <td style=" font-weight:bold;">Di động:</td>
+                  <td colspan="2">
+                    <!-- <input type="text" class="text-input-form" name="Sodidong" #Sodidong="ngModel" [(ngModel)]="selectNVdangky.Sodidong"> -->
+                    <label>**********</label>
+                  </td>
+               </tr>
+          </tbody>
+    </table>
+   
+  </form>
+</div>
+</ng-container>
+    <!-- <p style="font-weight:bold">2.Tiêu Chuẩn Cấp Phát Cá Nhân:</p>
+    <table class="table table-sm table-bordered" >
+        <thead style=" color: #2b28ef;">
+            <tr>
+                <td colspan="2" >
+                    <div style="display: inline-block; font-weight:bold;">Tên Đồ Dùng</div> 
+                <td colspan="2" >
+                    <div style="display: inline-block; font-weight:bold;">Mã Đồ Dùng</div> 
+                 </td>
+                <td colspan="2">
+                    <div style="display: inline-block; font-weight:bold;">Số Lượng</div> 
+               </td>
+               <td colspan="2">
+                  <div style="display: inline-block; font-weight:bold;">Ghi Chú</div>
+             </td>
+               <td colspan="2">
+                  <div style="display: inline-block; font-weight:bold;">Trạng Thái</div>
+             </td>
+             <td colspan="2">
+                <div style="font-weight:bold;"><ul class="ulbutton" (click)="childModal.show()">
+                    <a class="abutton" title="Thêm" role="button">
+                      <i class="fas fa-plus" style="color: #ff6313"></i>
+                    </a>
+                  </ul></div>
+           </td>
+            </tr>
+        </thead>
+        <tbody>
+             <tr>
+                <td colspan="2">P.101</td>
+                <td colspan="2">Mã phòng ABC</td>
+                <td colspan="2">1</td>
+                <td colspan="2">Chưa có gì để ghi</td>
+                <td colspan="2">Đã cấp phát</td>
+                <td colspan="2"><div style="font-weight:bold;">
+                  <ul class="ulbutton" >
+                    <a class="abutton" title="Xóa" role="button" >
+                      <i class="far fa-trash-alt" style="color: black"></i>
+                    </a>
+                  </ul>
+                </div></td>
+             </tr>
+        </tbody>
+  </table>
+  <p style="font-weight:bold;">3. Bổi Thường Đồ Dùng Cá Nhân Khi Làm Mất:</p>
+  <table class="table table-sm table-bordered" >
+      <thead style=" color: #2b28ef;">
+          <tr>
+              <td colspan="9" >
+                  <div style="display: inline-block; font-weight:bold;">Lý Do Bồi Thường</div> 
+              <td colspan="3" >
+                  <div style="display: inline-block; font-weight:bold;">Thành Tiền</div> 
+               </td>
+          </tr>
+      </thead>
+      <tbody>
+           <tr>
+              <td colspan="9">Vỏ gối (20.000VND)</td>
+              <td colspan="3">20.000VND</td>
+           </tr>
+      </tbody>
+</table>
+  
+    <app-modal #childModal
+                   [modalTitle]="'Modal 2'"
+                   [width]="550"
+                   [zIndex]="zIndex+2"
+                   [backgroundcolor]="'#2e5075'" 
+                   [keydownesc]="true" 
+                   [closemodal]="false" 
+                   [maximizable]="false" 
+                   [maximized]="false" 
+                   [south]="false" 
+                   [east]="false" 
+                   [southEast]="false"> 
+          <ng-container class="app-modal-body">
+            <h3>MODAL DIALOG</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+           
+          </ng-container>
+          <ng-container class="app-modal-footer">
+            <button type="button" class="button" (click)="childModal.hide()">Thoát</button>
+          </ng-container>
+        </app-modal> -->
+
+  <ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" type="button" (click)="onSubmit(selectNVdangky)">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" (click)="modalRoot.hide()">Thoát</button>
+
+   </div>
+   <input type="hidden" (click)="modalRoot.hide()" id="modalRootClose">
+   <input type="hidden" (click)="modalRoot.show()" id="modalRootShow">
+  </ng-container>
+</app-modal>
+
+<!-- ------------------------------------////////////////////////////////////////////////////////////////////////////////////////////////////--------- -->
+
+<app-modal #modalXacNhan [width]="800" 
+                      [backgroundcolor]="'#2e5075'" 
+                      [keydownesc]="true" 
+                      [closemodal]="false" 
+                      [maximizable]="true" 
+                      [maximized]="false" 
+                      [south]="false" 
+                      [east]="false" 
+                      [southEast]="false" 
+                      [zIndex]="zIndex">
+  <ng-container class="app-modal-body">
+    <div>
+      <h4>Phiếu Đăng Ký Gia Nhập KTX</h4>
+      <p style="font-weight:lighter">
+          Chú ý: Nộp đơn cho BP Hành chính vào các ngày trong tuần và làm thủ tục bàn giao phòng KTX tại phòng ban quản lý KTX lúc 17:00  thứ 2 hàng tuần.
+      </p>
+    </div>
+    <div class="form">
+        <p style="font-weight:bold;">1.Thông Tin Cá Nhân:</p>
+        <form #selectNVdangkyForm="ngForm">
+        <table class="table table-sm table-bordered" >
+          <tbody style=" color: #2b28ef;">
+              <tr>
+                  <td style="width: 12.5%; font-weight:bold;">Họ và tên:</td>
+                  <td >
+                    <label>{{selectNVdangky.Hotenkhaisinh}}</label>
+                  </td>
+                  <td style="width: 10%; font-weight:bold;">Giới tính:</td>
+                  <td>
+                    <label>{{selectNVdangky.Gioitinh==1?'Nam':'Nữ'}}</label>
+                  </td>
+                  <td style="width: 10%; font-weight:bold;">Mã ID:</td>
+                  <td>
+                    <label>{{selectNVdangky.Manhanvien}}</label>
+                  </td>
+              </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Đối tượng:</td>
+                  <td colspan="2">
+                    <label>{{selectNVdangky.Doituong>=4?'Nhân viên':'Công nhân'}}</label>
+                  </td>
+                  <td colspan="1" style=" font-weight:bold;">Gia nhập lần:</td>
+                  <td colspan="2">
+                      <label>{{selectNVdangky.Solan_gianhap}}</label>
+                  </td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Phòng:</td>
+                  <td colspan="2">
+                    <label>{{selectNVdangky.Phong}}</label>
+                  </td>
+                  <td colspan="1" style=" font-weight:bold;">Bộ phận:</td>
+                  <td colspan="2">{{selectNVdangky.Phong}}</td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;">Ban:</td>
+                  <td colspan="2">
+                    {{selectNVdangky.Ban}}
+                  </td>
+                  <td colspan="1" style=" font-weight:bold;">Công đoạn:</td>
+                  <td colspan="2">{{selectNVdangky.Congdoan}}</td>
+               </tr>
+               <tr>
+                  <td colspan="1" style=" font-weight:bold;height: 145px;">Lý do đăng ký:</td>
+                  <td colspan="5">{{selectNVdangky.Lydodangky}}</td>
+               </tr>
+               <tr>
+                  <td style=" font-weight:bold;">Điên thoại liên lạc:</td>
+                  <td style=" font-weight:bold;">Số máy lẻ:</td>
+                  <td>{{selectNVdangky.Somayle}}</td>
+                  <td style=" font-weight:bold;">Di động:</td>
+                  <td colspan="2">{{selectNVdangky.Sodidong}}</td>
+               </tr>
+          </tbody>
+    </table>
+   
+  </form>
+</div>
+    <p style="font-weight:bold">2.Tiêu Chuẩn Cấp Phát Cá Nhân:</p>
+    <table class="table table-sm table-bordered" >
+        <thead style=" color: #2b28ef;">
+            <tr>
+                <td colspan="2" >
+                    <div style="display: inline-block; font-weight:bold;">Tên Đồ Dùng</div> 
+                <td colspan="2" >
+                    <div style="display: inline-block; font-weight:bold;">Mã Đồ Dùng</div> 
+                 </td>
+                <td colspan="2">
+                    <div style="display: inline-block; font-weight:bold;">Số Lượng</div> 
+               </td>
+               <td colspan="2">
+                  <div style="display: inline-block; font-weight:bold;">Ghi Chú</div>
+             </td>
+               <td colspan="2">
+                  <div style="display: inline-block; font-weight:bold;">Trạng Thái</div>
+             </td>
+             <td colspan="2">
+                <div style="font-weight:bold;"><ul class="ulbutton" (click)="childModal.show()">
+                    <a class="abutton" title="Thêm" role="button">
+                      <i class="fas fa-plus" style="color: #ff6313"></i>
+                    </a>
+                  </ul></div>
+           </td>
+            </tr>
+        </thead>
+        <tbody>
+             <tr>
+                <td colspan="2">P.101</td>
+                <td colspan="2">Mã phòng ABC</td>
+                <td colspan="2">1</td>
+                <td colspan="2">Chưa có gì để ghi</td>
+                <td colspan="2">Đã cấp phát</td>
+                <td colspan="2"><div style="font-weight:bold;">
+                  <ul class="ulbutton" >
+                    <a class="abutton" title="Xóa" role="button" >
+                      <i class="far fa-trash-alt" style="color: black"></i>
+                    </a>
+                  </ul>
+                </div></td>
+             </tr>
+        </tbody>
+  </table>
+  <p style="font-weight:bold;">3. Bổi Thường Đồ Dùng Cá Nhân Khi Làm Mất:</p>
+  <table class="table table-sm table-bordered" >
+      <thead style=" color: #2b28ef;">
+          <tr>
+              <td colspan="9" >
+                  <div style="display: inline-block; font-weight:bold;">Lý Do Bồi Thường</div> 
+              </td>
+              <td colspan="3" >
+                  <div style="display: inline-block; font-weight:bold;">Thành Tiền</div> 
+               </td>
+          </tr>
+      </thead>
+      <tbody>
+           <tr>
+              <td colspan="9">Vỏ gối (20.000VND)</td>
+              <td colspan="3">20.000VND</td>
+           </tr>
+      </tbody>
+</table>
+<p style="font-weight:bold;">4. Thông Tin Ký Nhận:</p>
+<table class="table table-sm table-bordered" >
+    <thead style=" color: #2b28ef;">
+        <tr>
+            <td colspan="2" >
+                <div style="display: inline-block; font-weight:bold;">Ngày Ký</div> 
+            </td>
+            <td colspan="3" >
+                <div style="display: inline-block; font-weight:bold;">Người Ký</div> 
+             </td>
+             <td colspan="3" >
+                <div style="display: inline-block; font-weight:bold;">Lý Do Ký</div> 
+             </td>
+             <td colspan="2" >
+                <div style="display: inline-block; font-weight:bold;">Tình Trạng</div> 
+             </td>
+             <td colspan="2" >
+                <div style="display: inline-block; font-weight:bold;">Xác Nhận</div> 
+             </td>
+        </tr>
+    </thead>
+    <tbody>
+         <tr>
+            <td colspan="2">13:24 21-11-19</td>
+            <td colspan="3" >Khuất Anh Quyết</td>
+             <td colspan="3" style="width: 250px;">
+                <input *ngIf="!selectNVdangky.edittable" (click)="OpenEditNVDK(selectNVdangky)" class="text-input-form" value="{{selectNVdangky.Ghichu}}"/>
+                <input *ngIf="selectNVdangky.edittable" type="text" class="text-input-form"  name="Ghichu" #Ghichu="ngModel" [(ngModel)]="selectNVdangky.Ghichu" />
+            </td>
+             <td colspan="2">Vào</td>
+             <td colspan="2">Đã Ký</td>
+         </tr>
+    </tbody>
+</table>
+
+    <app-modal #childModal
+                   [modalTitle]="'Modal 2'"
+                   [width]="550"
+                   [zIndex]="zIndex+2"
+                   [backgroundcolor]="'#2e5075'" 
+                   [keydownesc]="true" 
+                   [closemodal]="false" 
+                   [maximizable]="false" 
+                   [maximized]="false" 
+                   [south]="false" 
+                   [east]="false" 
+                   [southEast]="false"> 
+          <ng-container class="app-modal-body">
+            <h3>MODAL DIALOG</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
+           
+          </ng-container>
+          <ng-container class="app-modal-footer">
+            <button type="button" class="button" (click)="childModal.hide()">Thoát</button>
+          </ng-container>
+        </app-modal>
+      </ng-container>
+  <ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" type="button" (click)="onSubmitXacNhan(selectNVdangky)">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" (click)="modalXacNhan.hide()">Thoát</button>
+   </div>
+   <input type="hidden" (click)="modalXacNhan.hide()" id="modalXacNhanClose">
+   <input type="hidden" (click)="modalXacNhan.show()" id="modalXacNhanShow">
+  </ng-container>
+</app-modal>
+
+
+<!-- ----------//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////----------------- -->
+<app-modal #khainhankhau [width]="800" 
+                         [backgroundcolor]="'#2e5075'" 
+                         [keydownesc]="true" 
+                         [closemodal]="false" 
+                         [maximizable]="true" 
+                         [maximized]="false" 
+                         [south]="false" 
+                         [east]="false" 
+                         [southEast]="false" 
+                         [zIndex]="zIndex">
+  <ng-container class="app-modal-body">
+ <div>
+  <h4 style="font-weight:bold;">Phiếu Khai Nhân Khẩu</h4>
+</div>
+<div class="form">
+<table class="table table-sm table-bordered">
+          <tbody style=" color: #2b28ef;">
+              <tr>
+                  <td colspan="3" style="font-weight:bold;">Họ và tên khai sinh:</td>
+                  <td colspan="3"><label>{{selectNVdangky.Hotenkhaisinh}}</label></td>
+                  <td colspan="3" style=" font-weight:bold;">Giới tính:</td>
+                  <td colspan="3">
+                      <label>{{selectNVdangky.Gioitinh==1?'Nam':'Nữ'}}</label>
+                  </td>
+              </tr>
+             <tr>
+                  <td colspan="3" style="font-weight:bold;">Họ tên khác (nếu có):</td>
+                  <td colspan="9"><input type="text" class="text-input-form" name="Hotenkhac" #Hotenkhac="ngModel" [(ngModel)]="selectNVdangky.Hotenkhac"></td>
+             </tr>
+              
+               <tr>
+                  <td colspan="3" style=" font-weight:bold;">Sinh ngày:</td>
+                  <td colspan="3"> <label>{{selectNVdangky.Ngaysinh}}</label></td>
+                  <td colspan="3" style=" font-weight:bold;">Nơi sinh:</td>
+                  <td colspan="3"><label>{{selectNVdangky.Noisinh}}</label></td>
+               </tr>
+               <tr>
+                  <td colspan="3" style="font-weight:bold;">Quê quán:</td>
+                  <td colspan="9"><label>{{selectNVdangky.Quequan}}</label></td>
+             </tr>
+             <tr>
+                <td colspan="3" style=" font-weight:bold;">Dân tộc:</td>
+                <td colspan="3"><input type="text" class="text-input-form" name="Dantoc" #Dantoc="ngModel" [(ngModel)]="selectNVdangky.Dantoc"></td>
+                <td colspan="3" style=" font-weight:bold;">Tôn giáo:</td>
+                <td colspan="3"><input type="text" class="text-input-form" name="Tongiao" #Tongiao="ngModel" [(ngModel)]="selectNVdangky.Tongiao"></td>
+             </tr>
+             <tr>
+                <td colspan="2" style="font-weight:bold;">CMND/Hộ chiếu số:</td>
+                <td colspan="2"><label>{{selectNVdangky.Cmt}}</label></td>
+                <td colspan="2" style="font-weight:bold;">Cấp ngày:</td>
+                <td colspan="2"><label>{{selectNVdangky.ngaycap_cmt}}</label></td>
+                <td colspan="2" style="font-weight:bold;">Nơi cấp:</td>
+                <td colspan="2"><label>{{selectNVdangky.noicap_cmt}}</label></td>
+             </tr>
+             <tr>
+                <td colspan="3" style="font-weight:bold;">Nơi thường trú:</td>
+                <td colspan="9"><label>{{selectNVdangky.Noithuongtru}}</label></td>
+           </tr>
+           <tr>
+              <td colspan="3" style="font-weight:bold;">Chỗ ở hiện nay:</td>
+              <td colspan="9"><input type="text" class="text-input-form" name="Choohiennay" #Choohiennay="ngModel" [(ngModel)]="selectNVdangky.Choohiennay"></td>
+         </tr>
+         <tr>
+            <td colspan="3" style=" font-weight:bold;">Trình độ học vấn:</td>
+                <td colspan="3"><input type="text" class="text-input-form" name="Trinhdohocvan" #Trinhdohocvan="ngModel" [(ngModel)]="selectNVdangky.Trinhdohocvan"></td>
+                <td colspan="3" style=" font-weight:bold;">Trình độ chuyên môn:</td>
+                <td colspan="3"><input type="text" class="text-input-form" name="Trinhdochuyenmon" #Trinhdochuyenmon="ngModel" [(ngModel)]="selectNVdangky.Trinhdochuyenmon"></td>
+         </tr>
+         <tr>
+            <td colspan="4" style=" font-weight:bold;">Biết tiếng dân tộc ít người:</td>
+                <td colspan="2"><input type="text" class="text-input-form" name="Biettiengdantocitnguoi" #Biettiengdantocitnguoi="ngModel" [(ngModel)]="selectNVdangky.Biettiengdantocitnguoi"></td>
+                <td colspan="3" style=" font-weight:bold;">Biết ngoại ngữ :</td>
+                <td colspan="3"><input type="text" class="text-input-form" name="Bietngoaingu" #Bietngoaingu="ngModel" [(ngModel)]="selectNVdangky.Bietngoaingu"></td>
+         </tr>
+         <tr>
+            <td colspan="5" style="font-weight:bold;">Nghề nghiệp, chức vụ, nơi làm việc hiện nay:</td>
+            <td colspan="7"><input type="text" class="text-input-form" name="Nghenghiepchucvu" #Nghenghiepchucvu="ngModel" [(ngModel)]="selectNVdangky.Nghenghiepchucvu"></td>
+       </tr>
+          </tbody>
+</table>
+  <p style="font-weight:bold">2.Từ Đủ 14 Tuổi Trở Lên Đến Nay Làm Gì, Ở Đâu:</p>
+<table class="table table-sm table-bordered" >
+      <thead style=" color: #2b28ef;">
+          <tr>
+              <td colspan="3" >
+                  <div style="display: inline-block;">Từ tháng-năm</div> 
+                  <div style="display: inline-block;">Đến tháng-năm</div>
+              <td colspan="4" >
+                <div style="width:320px;text-align: center;">
+                  <div style="display: inline-block;">CHỖ Ở</div> 
+               <div style="display: inline-block;">( Ghi rõ số nhà, đường phố, xóm, ấp, bản, xã/ phường/ thị trấn; 
+                  quận/ huyện; tỉnh/ thành phố. Nếu ở nước ngoài thì ghi rõ tên nước)</div>
+                </div>
+               </td>
+              <td colspan="4">
+                  <div>Nghề nghiệp, Nơi làm việc</div> 
+             </td>
+             <td colspan="1">
+                <div style="font-weight:bold;"><ul class="ulbutton" (click)="childModal2.show()">
+                    <a class="abutton" title="Thêm" role="button" >
+                      <i class="fas fa-plus" style="color: #ff6313"></i>
+                    </a>
+                  </ul></div>
+           </td>
+          </tr>
+      </thead>
+        <tbody style=" color: #2b28ef;">
+            <tr *ngFor="let item of GetAllTSNV;let i = index">
+                <td colspan="3">
+                  <input *ngIf="!item.edittable" (click)="OpenEditTSnv(item)" class="text-input-form" value="{{item.Tuthangnamdenthangnam}}"/>
+                  <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Tuthangnamdenthangnam" #Tuthangnamdenthangnam="ngModel" [(ngModel)]="selectTSNV.Tuthangnamdenthangnam" />
+                </td>
+                <td colspan="4">
+                  <input *ngIf="!item.edittable" (click)="OpenEditTSnv(item)" class="text-input-form" value="{{item.Choo}}"/>
+                  <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Choo" #Choo="ngModel" [(ngModel)]="selectTSNV.Choo" />
+                </td>
+                <td colspan="4">
+                  <input *ngIf="!item.edittable" (click)="OpenEditTSnv(item)" class="text-input-form" value="{{item.Nghenghiepnoilamviec}}"/>
+                  <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Nghenghiepnoilamviec" #Nghenghiepnoilamviec="ngModel" [(ngModel)]="selectTSNV.Nghenghiepnoilamviec" />
+                </td>
+                <td colspan="1">
+                      <div style="font-weight:bold"><ul class="ulbutton" >
+                          <a class="abutton" title="Xóa" role="button" (click)="openDelTSNV(item)">
+                            <i class="far fa-trash-alt" style="color: black"></i>
+                          </a>
+                        </ul></div>
+                </td>
+            </tr>
+        </tbody>
+</table>
+<p style="font-weight:bold;display: inline-block;">3.Quan Hệ Thành Phần Gia Đình:</p>
+<table class="table table-sm table-bordered" >
+    <thead style=" color: #2b28ef;">
+        <tr>
+            <td colspan="1" >STT</td>
+            <td colspan="3" >Họ và tên</td>
+            <td colspan="1" >Sinh năm</td>
+            <td colspan="1" >Quan hệ</td>
+            <td colspan="2" >Nghề nghiệp</td>
+            <td colspan="3" >
+                <div>Chỗ ở hiện nay</div>
+            </td>
+            <td colspan="1">
+                <div style="font-weight:bold;"><ul class="ulbutton" (click)="childModal3.show()">
+                    <a class="abutton" title="Thêm" role="button">
+                      <i class="fas fa-plus" style="color: #ff6313"></i>
+                    </a>
+                  </ul></div>
+           </td>
+        </tr>
+    </thead>
+      <tbody style=" color: #2b28ef;">
+          <tr *ngFor="let item of GetAllGDNV;let i = index">
+            <td colspan="1" >{{i+1}}</td>
+            <td colspan="3" >
+              <input *ngIf="!item.edittable" (click)="OpenEditGDnv(item)" class="text-input-form" value="{{item.Hoten}}"/>
+              <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Hoten" #Hoten="ngModel" [(ngModel)]="selectGDNV.Hoten" />
+            </td>
+            <td colspan="1" >
+              <input *ngIf="!item.edittable" (click)="OpenEditGDnv(item)" class="text-input-form" value="{{item.Namsinh}}"/>
+              <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Namsinh" #Namsinh="ngModel" [(ngModel)]="selectGDNV.Namsinh" />
+            </td>
+            <td colspan="1" >
+              <input *ngIf="!item.edittable" (click)="OpenEditGDnv(item)" class="text-input-form" value="{{item.Quan_he}}"/>
+              <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Quan_he" #Quan_he="ngModel" [(ngModel)]="selectGDNV.Quan_he" />
+            </td>
+            <td colspan="2" >
+              <input *ngIf="!item.edittable" (click)="OpenEditGDnv(item)" class="text-input-form" value="{{item.Nghe_nghiep}}"/>
+              <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Nghe_nghiep" #Nghe_nghiep="ngModel" [(ngModel)]="selectGDNV.Nghe_nghiep" />
+            </td>
+            <td colspan="3" >
+              <input *ngIf="!item.edittable" (click)="OpenEditGDnv(item)" class="text-input-form" value="{{item.Choohiennay}}"/>
+              <input *ngIf="item.edittable" type="text" class="text-input-form"  name="Choohiennay" #Choohiennay="ngModel" [(ngModel)]="selectGDNV.Choohiennay" />
+            </td>
+            <td colspan="1" > <div style="font-weight:bold;"><ul class="ulbutton" >
+                <a class="abutton" title="Xóa" role="button" (click)="openDelGDNV(item)">
+                  <i class="far fa-trash-alt" style="color: black"></i>
+                </a>
+              </ul></div></td>
+          </tr>
+      </tbody>
+</table>
+<p style="font-weight:bold;">4.Tiền án:(Tội danh, hình phạt, theo bản án số, ngày của tòa án)</p>
+<table class="table table-sm table-bordered">
+    <tbody style=" color: #2b28ef;">
+        <tr>
+            <td>
+                <textarea rows="10" style="max-height: 130px;color: #2b28ef;" class="text-input-form1 col-md-12" name="Tienantiensu" #Tienantiensu="ngModel" [(ngModel)]="selectNVdangky.Tienantiensu"></textarea>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<app-modal #childModal2
+    [modalTitle]="'2.Từ Đủ 14 Tuổi Trở Lên Đến Nay Làm Gì, Ở Đâu:'"
+    [width]="800"
+    [zIndex]="zIndex+2"
+    [backgroundcolor]="'#2e5075'" 
+    [keydownesc]="true" 
+    [closemodal]="false" 
+    [maximizable]="true" 
+    [maximized]="false" 
+    [south]="false" 
+    [east]="false" 
+    [southEast]="false"> 
+    <ng-container class="app-t-header">
+        <div>
+          <button class="btn btn-block btn-info btn-sm" (click)="addCreds()">
+            <i class="fas fa-plus-circle"></i>
+            Tạo</button></div>
+      </ng-container>
+<ng-container class="app-modal-body">
+    <form [formGroup]="form" >
+        <div formArrayName="credentials">
+            <table class="table table-sm table-bordered" >
+              <tbody>
+          <tr  *ngFor="let creds of getArrayControls(); let i = index" [formGroupName]="i">
+            <td colspan="3">
+              <input class="text-input-form" formControlName="Tuthangnamdenthangnam" placeholder="tháng/năm -> tháng/năm">
+            </td>
+            <td colspan="4">
+              <input class="text-input-form" formControlName="Choo" placeholder="Chỗ Ở">
+            </td>
+            <td colspan="4">
+              <input class="text-input-form" formControlName="Nghenghiepnoilamviec" placeholder="Nghề nghiệp">
+            </td>
+            <td colspan="1">
+                <span class="remove" (click)="removeGroup(i)">
+                    <img width="24" height="24" src="assets/delete-icon.png">
+                  </span>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      </form>
+</ng-container>
+<ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+        <button type="button" class="btn btn-primary btn-luu" (click)="AddTSnhanvien()">Lưu</button>
+        <button type="button" class="btn btn-default btn-xoa" (click)="childModal2.hide()">Thoát</button>
+     </div>
+     <input type="hidden" (click)="childModal2.hide()" id="childModal2Close">
+     <input type="hidden" (click)="childModal2.show()" id="childModal2Show">
+</ng-container>
+</app-modal> 
+<app-modal #childModal3
+[modalTitle]="'3.Quan Hệ Thành Phần Gia Đình:'"
+[width]="800"
+[zIndex]="zIndex+2"
+[backgroundcolor]="'#2e5075'" 
+[keydownesc]="true" 
+[closemodal]="false" 
+[maximizable]="true" 
+[maximized]="false" 
+[south]="false" 
+[east]="false" 
+[southEast]="false"> 
+<ng-container class="app-t-header">
+    <div>
+      <button class="btn btn-block btn-info btn-sm" (click)="addCreds1()">
+        <i class="fas fa-plus-circle"></i>
+        Tạo</button></div>
+  </ng-container>
+  <ng-container class="app-modal-body">
+      <form [formGroup]="form1" >
+          <div formArrayName="credentials1">
+              <table class="table table-sm table-bordered" >
+                <tbody>
+            <tr  *ngFor="let creds of getArrayControls1(); let i = index" [formGroupName]="i">
+              <td colspan="3">
+                <input class="text-input-form" formControlName="Hoten" placeholder="Họ tên">
+              </td>
+              <td colspan="1">
+                <input class="text-input-form" formControlName="Namsinh" placeholder="Ngày sinh">
+              </td>
+              <td colspan="1">
+                <input class="text-input-form" formControlName="Quan_he" placeholder="Quan hệ">
+              </td>
+              <td colspan="3">
+                  <input class="text-input-form" formControlName="Nghe_nghiep" placeholder="Nghề nghiệp">
+                </td>
+                <td colspan="3">
+                    <input class="text-input-form" formControlName="Choohiennay" placeholder="Chỗ ở hiện nay">
+                  </td>
+              <td colspan="1">
+                  <span class="remove" (click)="removeGroup1(i)">
+                      <img width="24" height="24" src="assets/delete-icon.png">
+                    </span>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          </div>
+        </form>
+  </ng-container>
+<ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+        <button type="button" class="btn btn-primary btn-luu" (click)="AddGDnhanvien()">Lưu</button>
+        <button type="button" class="btn btn-default btn-xoa" (click)="childModal3.hide()">Thoát</button>
+     </div>
+     <input type="hidden" (click)="childModal3.hide()" id="childModal3Close">
+     <input type="hidden" (click)="childModal3.show()" id="childModal3Show">
+</ng-container>
+</app-modal> 
+<app-modal #childModal4 [modalTitle]="'Bạn có muốn xóa không !'" [width]="300" 
+[zIndex]="zIndex+2"
+[backgroundcolor]="'#2e5075'" 
+[keydownesc]="true" 
+[closemodal]="false" 
+[maximizable]="false" 
+[maximized]="false" 
+[south]="false" 
+[east]="false" 
+[southEast]="false">
+  <ng-container class="app-t-header">
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">{{selectTSNV.Tuthangnamdenthangnam}}</div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" (click)="onDelTSNV(selectTSNV)" style="width: 75px;" class="btn btn-info btn-sm">
+      <i class="far fa-save tu"></i>
+      Xóa</button>
+    <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="childModal4.hide()">
+      <i class="far fa-times-circle"></i>
+      Thoát</button>
+      <input type="hidden" (click)="childModal4.show()" id="childModal4Show">
+      <input type="hidden" (click)="childModal4.hide()" id="childModal4Hide">
+  </ng-container>
+</app-modal>
+<app-modal #childModal5 [modalTitle]="'Bạn có muốn xóa không !'" [width]="300" 
+[zIndex]="zIndex+2"
+[backgroundcolor]="'#2e5075'" 
+[keydownesc]="true" 
+[closemodal]="false" 
+[maximizable]="false" 
+[maximized]="false" 
+[south]="false" 
+[east]="false" 
+[southEast]="false">
+  <ng-container class="app-t-header">
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-12">{{selectGDNV.Hoten}}-{{selectGDNV.Namsinh}}-{{selectGDNV.Quan_he}}</div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" (click)="onDelGDNV(selectGDNV)" style="width: 75px;" class="btn btn-info btn-sm">
+      <i class="far fa-save tu"></i>
+      Xóa</button>
+    <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="childModal5.hide()">
+      <i class="far fa-times-circle"></i>
+      Thoát</button>
+      <input type="hidden" (click)="childModal5.show()" id="childModal5Show">
+      <input type="hidden" (click)="childModal5.hide()" id="childModal5Hide">
+  </ng-container>
+</app-modal>
+
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+      <button type="button" class="btn btn-primary btn-luu" (click)="onEditKhainhankhau(selectNVdangky)">Lưu</button>
+      <!-- <button type="button" class="btn btn-default btn-xoa" (click)="onHidekhainhankhau(selectNVdangky)">Thoát</button> -->
+   </div>
+   <input type="hidden" (click)="khainhankhau.hide()" id="khainhankhauClose">
+   <input type="hidden" (click)="khainhankhau.show()" id="khainhankhauShow">
+  </ng-container>
+</app-modal>
+<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex"
+[backgroundcolor]="'#2e5075'" 
+[keydownesc]="true" 
+[closemodal]="false" 
+[maximizable]="false" 
+[maximized]="false" 
+[south]="false" 
+[east]="false" 
+[southEast]="false">
+  <ng-container class="app-t-header">
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">Mã ID:{{selectNVdangky.Manhanvien}}</div>
+      <div class="form-group col-md-6">Tên:{{selectNVdangky.Hotenkhaisinh}}</div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" (click)="onDeleteDK(selectNVdangky)" style="width: 75px;" class="btn btn-info btn-sm">
+      <i class="far fa-save tu"></i>
+      Xóa</button>
+    <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="onThoatDK()">
+      <i class="far fa-times-circle"></i>
+      Thoát</button>
+      <input type="hidden" (click)="modalDelete.show()" id="modalDelete">
+      <input type="hidden" (click)="modalDelete.hide()" id="modalDeleteHide">
+  </ng-container>
+</app-modal>
+<app-modal #GetEmp [modalTitle]="'Nhập Mã Nhân Viên'" 
+                   [width]="400" 
+                   [zIndex]="zIndex" 
+                   [backgroundcolor]="'#2e5075'" 
+                   [keydownesc]="true" 
+                   [closemodal]="false" 
+                   [maximizable]="false" 
+                   [maximized]="false" 
+                   [south]="false" 
+                   [east]="false" 
+                   [southEast]="false">
+  <!-- <ng-container class="app-t-header">
+   
+  </ng-container> -->
+  <ng-container class="app-modal-body">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+              <input type="text" class="form-control form-control-sm" #MaIDNV />
+          </div>
+        </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <div style="text-align: right;">
+                  <button type="button" class="btn btn-primary btn-luu" style="width: 25%;" (click)="GetTTNV(MaIDNV.value)">Xác Nhận</button>
+                  <button type="button" class="btn btn-default btn-xoa" style="width: 25%;" (click)="GetEmp.hide()">Thoát</button>
+               </div>
+          </div>
+        </div>
+        <input type="hidden" (click)="GetEmp.hide()" id="GetEmpClose">
+        <input type="hidden" (click)="GetEmp.show()" id="GetEmpShow">
+    </ng-container>
+</app-modal>
+<div class="content-header">
+  <div class="col-md-6">
+      <ul class="ulbutton"  (click)="GetEmp.show()">
+          <a class="abutton" title="làm mới" role="button">
+            <i class="fas fa-plus"></i>
+          </a>
+        </ul>
+    <ul class="ulbutton" (click)="lammoi()">
+      <a class="abutton" title="làm mới" role="button">
+        <i class="fas fa-retweet"></i>
+      </a>
+    </ul>
+  </div>
+  <div class="col-md-6">
+   
+  </div>
+</div>
+<div class="content-center">
+  <table class="table table-sm table-fixed table-hover">
+    <thead style="background-color: #dbdbdb80;">
+      <tr class="row" style=" border: 0.09rem solid rgb(221, 213, 213);color:  #364f69">
+        <th class="col-sm-1">Ngày tạo</th>
+        <th class="col-sm-1">Mã ID</th>
+        <th class="col-sm-2">Tên NV</th>
+        <th class="col-sm-1">Giới tính</th>
+        <th class="col-sm-1">Đối Tượng</th>
+        <th class="col-sm-1">Số lần gia nhập</th>
+        <th class="col-sm-1">Khai nhân khẩu</th>
+        <th class="col-sm-1">Tình trạng</th>
+        <th class="col-sm-1">Xác nhận</th>
+        <th class="col-sm-1">Ghi chú</th>
+        <th class="col-sm-1">Chức năng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of GetAllNVdangky" class="row" >
+            <td class="col-sm-1">
+                <span >{{item.Thoigiantao | date:'HH:mm dd-MM-yy'}}</span>
+            </td>
+            <td class="col-sm-1" >
+              <span >{{item.Manhanvien}}</span>
+            </td>
+            <td class="col-sm-2" style="text-align: left;">
+              <span >{{item.Hotenkhaisinh}}</span>
+            </td>
+            <td class="col-sm-1">
+                <span >{{item.Gioitinh==1?'Nam':'Nữ'}}</span>
+              </td>
+              <td class="col-sm-1">
+                  <span > {{item.Doituong>=4?'Nhân viên':'Công nhân'}}</span>
+              </td>
+              <td class="col-sm-1">
+                  <span >{{item.Solan_gianhap}}</span>
+                </td>
+                <td class="col-sm-1">
+                <!-- khai nhan khau -->
+                <div class="progress" (click)="openKhainhankhau(item)">
+                    <div class="bar" [ngStyle]="{'width': item.Hoanthanh*100/3+'%'}">
+                      <p class="percent">{{item.Hoanthanh*100/3 | number :'2.0-0'}}%</p>
+                    </div>
+                  </div>
+                </td>
+            <td class="col-sm-1">
+                <span >{{item.Tinhtrang}}</span>
+            <!-- tình trạng -->
+            </td>
+            <td class="col-sm-1">
+              <!-- xác nhận -->
+              <span *ngIf="!item.Xacnhan" style="cursor: pointer;" title="{{item.Xacnhan}}" (click)="openXacnhan(item)">{{item.Xacnhan}}</span>
+              <span *ngIf="item.Xacnhan">{{item.Xacnhan}}</span>
+              </td>
+              <td class="col-sm-1" title="{{item.Ghichu}}">
+                 <!-- ghi chú -->
+                 <span >{{item.Ghichu | slice:0:16}}</span>
+                </td>
+            <td class="col-sm-1">
+              <div *ngIf="!item.Trangthai">
+                  <a class="btn"  (click)="openEdit(item)">
+                      <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a class="btn text-danger" style="margin-left: 15px;" (click)="openDelete(item)">
+                      <i class="far fa-trash-alt"></i>
+                    </a>
+              </div>
+            </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-toaster-container #ShowToast></app-toaster-container>
+<div class="fixed-bottom">
+  <!-- <div style="float: left;">
+        <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
+        <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+    </div>
+   <div style="float: right;">
+      <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
+      <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+   </div> -->
+</div>

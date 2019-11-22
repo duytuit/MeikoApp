@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chatbox',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatboxComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(private _serviceChat :ChatService) { 
+      // Let's wire up to the signalr observables        
+     
+
+  }
 
   ngOnInit() {
+
   }
 
 }

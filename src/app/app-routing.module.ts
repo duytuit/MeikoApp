@@ -22,6 +22,9 @@ import { MayComponent } from './Components/may/may.component';
 import { Pq1Component } from './Components/pq1/pq1.component';
 import { RemoveListMa5Component } from './Components/ThongkeloiMA5/remove-list-ma5/remove-list-ma5.component';
 import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
+import { PhongKtxComponent } from './Components/KTX/phong-ktx/phong-ktx.component';
+import { TaisanKtxComponent } from './Components/KTX/taisan-ktx/taisan-ktx.component';
+import { NhanviendangkygianhapComponent } from './Components/KTX/nhanviendangkygianhap/nhanviendangkygianhap.component';
 
 const routes: Routes = [
   {
@@ -107,6 +110,18 @@ const routes: Routes = [
       {
         path: 'may',
         component: MayComponent
+      },
+      {
+        path: 'phongktx',
+        component: PhongKtxComponent
+      },
+      {
+        path: 'taisanktx',
+        component: TaisanKtxComponent
+      },
+      {
+        path: 'nvdangkyktx',
+        component: NhanviendangkygianhapComponent
       }
     ]
   },
@@ -153,7 +168,19 @@ const routes: Routes = [
   {
     path: 'adminichatbox',
     component: ChatboxComponent
-  }
+  },
+  {
+    path: 'adminphongktx',
+    component: PhongKtxComponent
+  },
+  {
+    path: 'adminnvdangkyktx',
+    component: NhanviendangkygianhapComponent
+  },
+  {
+    path: 'may12',
+    component: MayComponent
+  },
 ];
 
 @NgModule({

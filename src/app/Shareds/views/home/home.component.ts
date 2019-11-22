@@ -192,8 +192,11 @@ export class HomeComponent implements OnInit {
       }
     }
     if (this.flag == 1) {
-      this.getall = this.getphanquyen;
-      this.MenuCha = this.getphanquyen.filter(x => x.Idcha == null);
+      this.getall.push(item);
+      let children = item.ListPhanquyen
+      for (let i = 0; i < children.length; i++) {
+        this.getall.push(children[i])
+      }
     }
     this.main = false;
     this.router.navigate(['thongtin']);
@@ -267,7 +270,7 @@ export class HomeComponent implements OnInit {
       this.MenuCha.push(this.getphanquyen.find(x => x.quyenXem == true && x.Idcha == null));
     }
     else if (this.flag == 1) {
-      this.getall = this.getphanquyen;
+      //this.getall = this.getphanquyen;
       this.MenuCha = this.getphanquyen.filter(x => x.Idcha == null);
     } else {
       this.CallMainCloseLogOut()
@@ -332,6 +335,7 @@ export class HomeComponent implements OnInit {
   @HostListener('window:keyup', ['$event']) keyUp(e: KeyboardEvent) {
     if (this.flagTimer == 1) {
       this.seconds = this.gettimer.Thoigiandangxuat;
+  
     }
   
   }

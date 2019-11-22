@@ -1,7 +1,7 @@
 <div class="rightcontent">
   
   </div>
-  <app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="700" [zIndex]="zIndex">
+  <app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="700" [zIndex]="zIndex" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
     <ng-container class="app-t-header">
     </ng-container>
     <ng-container class="app-modal-body">
@@ -48,7 +48,7 @@
      
     </div>
   </div>
-  <app-modal #modalnoidung [modalTitle]="'Nội dung !'" [width]="500" [zIndex]="zIndex">
+  <app-modal #modalnoidung [modalTitle]="'Nội dung !'" [width]="500" [zIndex]="zIndex" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
     <ng-container class="app-modal-body">
       <div class="form-row">
         <input type="text" class="form-control form-control-sm" [(ngModel)]="ghichunoidung"/>

@@ -1,7 +1,7 @@
 <div class="rightcontent">
  
 </div>
-<app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [zIndex]="zIndex" [maximizable]="true">
+<app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [zIndex]="zIndex" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
   <!-- <ng-container class="app-t-header">
    
   </ng-container> -->
@@ -116,7 +116,7 @@
     <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
  </div> -->
 </div>
-<app-modal #modalEdit [modalTitle]="'Cập Nhập'" [width]="800" [zIndex]="zIndex" [maximizable]="true">
+<app-modal #modalEdit [modalTitle]="'Cập Nhập'" [width]="800" [zIndex]="zIndex" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
   <!-- <ng-container class="app-t-header">
         </ng-container> -->
   <ng-container class="app-modal-body editor-div" >
@@ -200,7 +200,7 @@
 <input type="hidden" (click)="modalDelete.hide()" id="modalDeleteHide">
 
 
-<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex">
+<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
     <ng-container class="app-t-header">
     </ng-container>
     <ng-container class="app-modal-body">

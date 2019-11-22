@@ -14,6 +14,7 @@ export class FilterMalotComponent implements OnInit {
   isVisible: boolean;
   isCursorOverFilterSet: boolean;
   isArryDataSet: boolean; 
+  ChkValue:boolean=false;
   constructor() { 
     this.dataSet = this.dataSet || [];
     this.searchText = this.searchText || '';
@@ -24,29 +25,23 @@ export class FilterMalotComponent implements OnInit {
   }
   ngOnInit() {
   }
-  onSearch(event: any) {
+  onSearch(event: any) {  
     if(this.searchText)
     {
       if(this.searchText.length > 0) {
-        this.filterSet = this.dataSet.filter((item) => { 
-          if(item)
-          {
+        this.filterSet = this.dataSet.filter((item) => {        
             return item
-            .toLowerCase()
-            .indexOf(this.searchText.toLowerCase()) > -1      
-          }    
+                  .toLowerCase()
+                  .indexOf(this.searchText.toLowerCase()) > -1        
         });
-       if(this.filterSet)
-       {
+  
         this.filterSet = this.filterSet.slice(0, this.maxLen);
         this.showList();
-       }
-       
+        this.ChkValue=true;
       } else {
         this.filterSet = [];
       } 
-    }  
-     
+    }
   }
 
   hideList() {
@@ -56,17 +51,13 @@ export class FilterMalotComponent implements OnInit {
   }
 
   showList() {
-    if(this.searchText)
-    {
       if(this.searchText.length > 0){
         this.isVisible = true;
       }
-    }
-     
   }
 
   cursorOverSet() {
-    this.showList();
+   // this.showList();
     this.isCursorOverFilterSet = true;
   }
 
@@ -80,8 +71,16 @@ export class FilterMalotComponent implements OnInit {
   }
   save(event: any){
     this.searchText=this.filterSet[0];
+    this.filterSet = [];
+    // this.isVisible = false;
     this.isCursorOverFilterSet = false;
-    this.hideList();
     this.typeahead.emit(this.searchText);
+  }
+  ClearText(){
+    if(this.ChkValue==true){
+      this.searchText=null
+      this.typeahead.emit(null);
+      this.ChkValue=false;
+    }
   }
 }

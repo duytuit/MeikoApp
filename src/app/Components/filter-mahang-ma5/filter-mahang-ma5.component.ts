@@ -55,7 +55,6 @@ export class FilterMahangMa5Component implements OnInit {
     this.showList();
     this.isCursorOverFilterSet = true;
   }
-
   setValue(value: any) {
     this.searchText = value;
     this.filterSet = [];    

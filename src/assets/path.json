@@ -1,5 +1,7 @@
 {
     "path1":"http://localhost:50209/",
     "path2": "http://192.84.100.207/AsoftAPI/E00003/GetByStatus/1/100000/1",
-    "path3": "notfound"
+    "path3-GetCodeEmp":"http://192.84.100.207/AsoftAPI/E00003/GetByCode/",
+    "path4-GetCodeDept":"http://192.84.100.207/AsoftAPI/EC0002/",
+    "path5": "notfound"
 }

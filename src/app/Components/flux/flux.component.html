@@ -1,54 +1,53 @@
 <div class="rightcontent">
   
 </div>
-<app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [zIndex]="zIndex" [maximizable]="true">
-  <ng-container class="app-t-header">
-    <div>
-      <button class="btn btn-block btn-info btn-sm" (click)="addCreds()">
-        <i class="fas fa-plus-circle"></i>
-        Tạo</button></div>
-  </ng-container>
-  <ng-container class="app-modal-body">
-    <form [formGroup]="form">
-      <div formArrayName="credentials">
-        <div class="form-row" *ngFor="let creds of getArrayControls(); let i = index" [formGroupName]="i">
-          <div class="form-group col-md-2">
-            <input type="hidden" formControlName="Mahang">
-            <app-filter-dropdown [dataSet]="GetAllPartNo" [maxLen]="6" (typeahead)="getTypeahead($event,i)">
-            </app-filter-dropdown>
+  <app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="true" [maximized]="false" [south]="false" [east]="false" [southEast]="false" [zIndex]="zIndex">
+    <ng-container class="app-t-header">
+      <div>
+        <button class="btn btn-block btn-info btn-sm" (click)="addCreds()">
+          <i class="fas fa-plus-circle"></i>
+          Tạo</button></div>
+    </ng-container>
+    <ng-container class="app-modal-body">
+      <form [formGroup]="form">
+        <div formArrayName="credentials">
+          <div class="form-row" *ngFor="let creds of getArrayControls(); let i = index" [formGroupName]="i">
+            <div class="form-group col-md-2">
+              <input type="hidden" formControlName="Mahang">
+              <app-filter-dropdown [dataSet]="GetAllPartNo" [placeholderText]="'mã hàng'" [maxLen]="6" (typeahead)="getTypeahead($event,i)">
+              </app-filter-dropdown>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="hidden" formControlName="Malot">
+              <app-filter-dropdown [dataSet]="GetAllLotNo" [placeholderText]="'mã lot'" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
+              </app-filter-dropdown>
+            </div>
+            <div class="form-group col-md-2">
+              <input class="form-control form-control-sm" formControlName="Doday" placeholder="độ dày">
+            </div>
+            <div class="form-group col-md-2">
+              <input class="form-control form-control-sm" formControlName="Soluong" placeholder="số lượng">
+            </div>
+            <div class="form-group col-md-2">
+              <input class="form-control form-control-sm" formControlName="Ghichu" placeholder="ghi chú">
+            </div>
+            <span class="remove" (click)="removeGroup(i)">
+              <img width="24" height="24" src="assets/delete-icon.png">
+            </span>
           </div>
-          <div class="form-group col-md-2">
-            <input type="hidden" formControlName="Malot">
-            <app-filter-malot [dataSet]="GetAllLotNo" [maxLen]="6" (typeahead)="getTypeahead1($event,i)">
-            </app-filter-malot>
-          </div>
-          <div class="form-group col-md-2">
-            <input class="form-control form-control-sm" formControlName="Doday" placeholder="độ dày">
-          </div>
-          <div class="form-group col-md-2">
-            <input class="form-control form-control-sm" formControlName="Soluong" placeholder="số lượng">
-          </div>
-          <div class="form-group col-md-2">
-            <input class="form-control form-control-sm" formControlName="Ghichu" placeholder="ghi chú">
-          </div>
-          <span class="remove" (click)="removeGroup(i)">
-            <img width="24" height="24" src="assets/delete-icon.png">
-          </span>
         </div>
-      </div>
-    </form>
-  </ng-container>
-  <ng-container class="app-modal-footer">
-    <button type="button" (click)="onSubmit()" class="btn btn-info btn-sm">
-      <i class="far fa-save tu"></i>
-      Lưu</button>
-    <button type="button" class="btn btn-info btn-sm" id="close" style="float: right;" (click)="modalRoot.hide()">
-      <i class="far fa-times-circle"></i>
-      Thoát</button>
-  </ng-container>
-</app-modal>
-
-<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="800" [zIndex]="zIndex">
+      </form>
+    </ng-container>
+    <ng-container class="app-modal-footer">
+      <button type="button" (click)="onSubmit()" class="btn btn-info btn-sm">
+        <i class="far fa-save tu"></i>
+        Lưu</button>
+      <button type="button" class="btn btn-info btn-sm" id="close" style="float: right;" (click)="modalRoot.hide()">
+        <i class="far fa-times-circle"></i>
+        Thoát</button>
+    </ng-container>
+  </app-modal>
+<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false" [width]="800" [zIndex]="zIndex">
   <ng-container class="app-t-header">
   </ng-container>
   <ng-container class="app-modal-body">
@@ -69,7 +68,7 @@
   </ng-container>
 </app-modal>
 
-<app-modal #modalnoidung [modalTitle]="'Nội dung !'" [width]="500" [zIndex]="zIndex">
+<app-modal #modalnoidung [modalTitle]="'Nội dung !'" [width]="500" [backgroundcolor]="'#2e5075'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false" [zIndex]="zIndex">
   <ng-container class="app-modal-body">
     <div class="form-row">
       <input type="text" class="form-control form-control-sm" [(ngModel)]="ghichunoidung"/>

@@ -47,6 +47,7 @@
   }
   .btn{
     padding: 1px 1px;
+    cursor: pointer;
 }
 .fixed-bottom{
   padding-left:4%;

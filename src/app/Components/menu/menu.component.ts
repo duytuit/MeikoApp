@@ -225,6 +225,7 @@ export class MenuComponent implements OnInit {
     const td5: HTMLParagraphElement = this.renderer.createElement('td');
     this.renderer.addClass(td5, 'col-sm-1');
     //td5.innerHTML="click";
+  
     const aedit: HTMLParagraphElement = this.renderer.createElement('a');
     this.renderer.addClass(aedit, 'btn');
     const adelete: HTMLParagraphElement = this.renderer.createElement('a');

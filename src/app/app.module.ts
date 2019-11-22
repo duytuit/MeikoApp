@@ -55,6 +55,18 @@ import { FilterMahangMa5Component } from './Components/filter-mahang-ma5/filter-
 import { FilterMalotMa5Component } from './Components/filter-malot-ma5/filter-malot-ma5.component';
 import { PagdingRigthMa5Component } from './Components/pagding-rigth-ma5/pagding-rigth-ma5.component';
 import { PagdingLeftMa5Component } from './Components/pagding-left-ma5/pagding-left-ma5.component';
+import { ChatService } from './Shareds/services/chat.service';
+import { TaisanKtxComponent } from './Components/KTX/taisan-ktx/taisan-ktx.component';
+import { DodungcanhanComponent } from './Components/KTX/dodungcanhan/dodungcanhan.component';
+import { PhongKtxComponent } from './Components/KTX/phong-ktx/phong-ktx.component';
+import { NhanvienNhanphongComponent } from './Components/KTX/nhanvien-nhanphong/nhanvien-nhanphong.component';
+import { NhanviendangkygianhapComponent } from './Components/KTX/nhanviendangkygianhap/nhanviendangkygianhap.component';
+import { KhainhankhauComponent } from './Components/KTX/khainhankhau/khainhankhau.component';
+import { ThanhphangiadinhnhanvienComponent } from './Components/KTX/thanhphangiadinhnhanvien/thanhphangiadinhnhanvien.component';
+import { TieusunhanvienComponent } from './Components/KTX/tieusunhanvien/tieusunhanvien.component';
+import { NhanvientraphongComponent } from './Components/KTX/nhanvientraphong/nhanvientraphong.component';
+import { DialogKtxComponent } from './Shareds/views/dialog-ktx/dialog-ktx.component';
+import { DialogKnkComponent } from './Shareds/views/dialog-knk/dialog-knk.component';
 
 
 @NgModule({
@@ -106,7 +118,18 @@ import { PagdingLeftMa5Component } from './Components/pagding-left-ma5/pagding-l
     FilterMahangMa5Component,
     FilterMalotMa5Component,
     PagdingRigthMa5Component,
-    PagdingLeftMa5Component
+    PagdingLeftMa5Component,
+    TaisanKtxComponent,
+    DodungcanhanComponent,
+    PhongKtxComponent,
+    NhanvienNhanphongComponent,
+    NhanviendangkygianhapComponent,
+    KhainhankhauComponent,
+    ThanhphangiadinhnhanvienComponent,
+    TieusunhanvienComponent,
+    NhanvientraphongComponent,
+    DialogKtxComponent,
+    DialogKnkComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +142,7 @@ import { PagdingLeftMa5Component } from './Components/pagding-left-ma5/pagding-l
     ModalModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

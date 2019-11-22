@@ -1,0 +1,755 @@
+<div class="rightcontent">
+
+</div>
+<div class="content-header">
+  <div class="col-md-12">
+    <ul class="ulbutton" (click)="lammoi()">
+      <a class="abutton" title="làm mới" role="button">
+        <i class="fas fa-retweet"></i>
+      </a>
+    </ul>
+    <select class="selectKTX"
+      style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:darkcyan"
+      [(ngModel)]="listFilterSelect" (change)="onSelect($event.target.value)">
+      <option value="true">KTX Nữ</option>
+      <option value="false">KTX Nam</option>
+    </select>
+    <button type="button" class="darkcyan" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:darkcyan;">NV Đăng ký (1)</button>
+    <!-- <button type="button" class="blueviolet" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:blueviolet">NV Trả phòng (1)</button> -->
+    <button type="button" class="brown" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:brown">NV Chưa xếp phòng (1)</button>
+    <button type="button" class="darkgreen" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:darkgreen">Giường còn trống (1)</button>
+    <button type="button" class="blue" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:blue">Giường đang sử dụng (1)</button>
+    <button type="button" class="coral" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:coral">Phòng còn trống (1)</button>
+    <button type="button" class="crimson" style=" margin-left: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:crimson">Phòng đang ở (1)</button>
+  </div>
+</div>
+<div class="content-center">
+  <div class="content-left" style="float: left;width:8%;height:86vh">
+    <table class="table table-sm table-hover setcolor">
+      <thead style="background-color: #dbdbdb80;height: 55px;">
+        <tr class="row">
+          <div class="col-sm" style="height: 55px;padding: 0;">
+              <label for="magroup" class="inp">
+                  <input type="text" id="magroup" placeholder="&nbsp;" [(ngModel)]="listFilter">
+                  <span class="label">Tầng</span>
+                  <span class="border"></span>
+                </label>
+          </div>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let item of Fgetngay ;let i = index" [ngStyle]="{'font-weight' : getColor(i)}">
+          <div class="row" id="{{i}}">
+              <div class="col-sm-7" style="height: 39px;padding: 10px;">
+                 
+                </div>
+                <div class="col-sm-5" style="padding-top: 8px;text-align: center" >
+                  
+                </div>
+          </div>
+        </tr> -->
+        <tr class="row" style="padding: 10px;font-weight:bold">
+          <div class="col-sm" style="text-align: center;">
+            Tầng 1
+          </div>
+        </tr>
+        <tr class="row" style="padding: 10px;font-weight:bold">
+            <div class="col-sm" style="text-align: center;">
+              Tầng 2
+            </div>
+          </tr>
+          <tr class="row" style="padding: 10px;font-weight:bold">
+              <div class="col-sm" style="text-align: center;">
+                Tầng 3
+              </div>
+            </tr>
+            <tr class="row" style="padding: 10px;font-weight:bold">
+                <div class="col-sm" style="text-align: center;">
+                  Tầng 4
+                </div>
+              </tr>
+              <tr class="row" style="padding: 10px;font-weight:bold">
+                  <div class="col-sm" style="text-align: center;">
+                    Tầng 5
+                  </div>
+                </tr>
+                <tr class="row" style="padding: 10px;font-weight:bold">
+                    <div class="col-sm" style="text-align: center;">
+                      Tầng 6
+                    </div>
+                  </tr>
+                  <tr class="row" style="padding: 10px;font-weight:bold">
+                      <div class="col-sm" style="text-align: center;">
+                        Tầng 7
+                      </div>
+                    </tr>
+      </tbody>
+    </table>
+  </div>
+  <table class="table table-sm table-hover table-bordered test" style="float: right;width:91.8%;">
+    <thead>
+      <div class="row" style="background-color:#dbdbdb80;">
+        <div style="height: 55px;padding-top: 15px;font-weight:bold;">
+          <p>Danh Sách Phòng</p>
+        </div>
+      </div>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let item of Fgetthongkeloi ;let i = index;">
+          <div class="row">
+            
+          </div>
+        </tr> -->
+      <div class="mblock">
+        <div class="cblock">
+          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+        </div>
+        <div class="phong-ktx">
+          <div class="chi-tiet-phong">
+            P.101
+          </div>
+          <div class="doi-tuong">
+            Phòng : Công nhân
+          </div>
+          <div class="tinh-trang">
+            Còn trống : 1
+          </div>
+        </div>
+      </div>
+      <div class="mblock">
+          <div class="cblock">
+            <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+          </div>
+          <div class="phong-ktx">
+            <div class="chi-tiet-phong">
+              P.101
+            </div>
+            <div class="doi-tuong">
+              Phòng : Công nhân
+            </div>
+            <div class="tinh-trang">
+              Còn trống : 1
+            </div>
+          </div>
+        </div>
+        <div class="mblock">
+            <div class="cblock">
+              <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+            </div>
+            <div class="phong-ktx">
+              <div class="chi-tiet-phong">
+                P.101
+              </div>
+              <div class="doi-tuong">
+                Phòng : Công nhân
+              </div>
+              <div class="tinh-trang">
+                Còn trống : 1
+              </div>
+            </div>
+          </div>
+          <div class="mblock">
+              <div class="cblock">
+                <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+              </div>
+              <div class="phong-ktx">
+                <div class="chi-tiet-phong">
+                  P.101
+                </div>
+                <div class="doi-tuong">
+                  Phòng : Công nhân
+                </div>
+                <div class="tinh-trang">
+                  Còn trống : 1
+                </div>
+              </div>
+            </div>
+            <div class="mblock">
+                <div class="cblock">
+                  <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                </div>
+                <div class="phong-ktx">
+                  <div class="chi-tiet-phong">
+                    P.101
+                  </div>
+                  <div class="doi-tuong">
+                    Phòng : Công nhân
+                  </div>
+                  <div class="tinh-trang">
+                    Còn trống : 1
+                  </div>
+                </div>
+              </div>
+              <div class="mblock">
+                  <div class="cblock">
+                    <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                  </div>
+                  <div class="phong-ktx">
+                    <div class="chi-tiet-phong">
+                      P.101
+                    </div>
+                    <div class="doi-tuong">
+                      Phòng : Công nhân
+                    </div>
+                    <div class="tinh-trang">
+                      Còn trống : 1
+                    </div>
+                  </div>
+                </div>
+                <div class="mblock">
+                    <div class="cblock">
+                      <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                    </div>
+                    <div class="phong-ktx">
+                      <div class="chi-tiet-phong">
+                        P.101
+                      </div>
+                      <div class="doi-tuong">
+                        Phòng : Công nhân
+                      </div>
+                      <div class="tinh-trang">
+                        Còn trống : 1
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mblock">
+                      <div class="cblock">
+                        <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                      </div>
+                      <div class="phong-ktx">
+                        <div class="chi-tiet-phong">
+                          P.101
+                        </div>
+                        <div class="doi-tuong">
+                          Phòng : Công nhân
+                        </div>
+                        <div class="tinh-trang">
+                          Còn trống : 1
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mblock">
+                        <div class="cblock">
+                          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                        </div>
+                        <div class="phong-ktx">
+                          <div class="chi-tiet-phong">
+                            P.101
+                          </div>
+                          <div class="doi-tuong">
+                            Phòng : Công nhân
+                          </div>
+                          <div class="tinh-trang">
+                            Còn trống : 1
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mblock">
+                          <div class="cblock">
+                            <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                          </div>
+                          <div class="phong-ktx">
+                            <div class="chi-tiet-phong">
+                              P.101
+                            </div>
+                            <div class="doi-tuong">
+                              Phòng : Công nhân
+                            </div>
+                            <div class="tinh-trang">
+                              Còn trống : 1
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mblock">
+                            <div class="cblock">
+                              <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                            </div>
+                            <div class="phong-ktx">
+                              <div class="chi-tiet-phong">
+                                P.101
+                              </div>
+                              <div class="doi-tuong">
+                                Phòng : Công nhân
+                              </div>
+                              <div class="tinh-trang">
+                                Còn trống : 1
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mblock">
+                              <div class="cblock">
+                                <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                              </div>
+                              <div class="phong-ktx">
+                                <div class="chi-tiet-phong">
+                                  P.101
+                                </div>
+                                <div class="doi-tuong">
+                                  Phòng : Công nhân
+                                </div>
+                                <div class="tinh-trang">
+                                  Còn trống : 1
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mblock">
+                                <div class="cblock">
+                                  <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                </div>
+                                <div class="phong-ktx">
+                                  <div class="chi-tiet-phong">
+                                    P.101
+                                  </div>
+                                  <div class="doi-tuong">
+                                    Phòng : Công nhân
+                                  </div>
+                                  <div class="tinh-trang">
+                                    Còn trống : 1
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mblock">
+                                  <div class="cblock">
+                                    <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                  </div>
+                                  <div class="phong-ktx">
+                                    <div class="chi-tiet-phong">
+                                      P.101
+                                    </div>
+                                    <div class="doi-tuong">
+                                      Phòng : Công nhân
+                                    </div>
+                                    <div class="tinh-trang">
+                                      Còn trống : 1
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="mblock">
+                                    <div class="cblock">
+                                      <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                    </div>
+                                    <div class="phong-ktx">
+                                      <div class="chi-tiet-phong">
+                                        P.101
+                                      </div>
+                                      <div class="doi-tuong">
+                                        Phòng : Công nhân
+                                      </div>
+                                      <div class="tinh-trang">
+                                        Còn trống : 1
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="mblock">
+                                      <div class="cblock">
+                                        <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                      </div>
+                                      <div class="phong-ktx">
+                                        <div class="chi-tiet-phong">
+                                          P.101
+                                        </div>
+                                        <div class="doi-tuong">
+                                          Phòng : Công nhân
+                                        </div>
+                                        <div class="tinh-trang">
+                                          Còn trống : 1
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="mblock">
+                                        <div class="cblock">
+                                          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                        </div>
+                                        <div class="phong-ktx">
+                                          <div class="chi-tiet-phong">
+                                            P.101
+                                          </div>
+                                          <div class="doi-tuong">
+                                            Phòng : Công nhân
+                                          </div>
+                                          <div class="tinh-trang">
+                                            Còn trống : 1
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="mblock">
+                                          <div class="cblock">
+                                            <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                          </div>
+                                          <div class="phong-ktx">
+                                            <div class="chi-tiet-phong">
+                                              P.101
+                                            </div>
+                                            <div class="doi-tuong">
+                                              Phòng : Công nhân
+                                            </div>
+                                            <div class="tinh-trang">
+                                              Còn trống : 1
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="mblock">
+                                            <div class="cblock">
+                                              <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                            </div>
+                                            <div class="phong-ktx">
+                                              <div class="chi-tiet-phong">
+                                                P.101
+                                              </div>
+                                              <div class="doi-tuong">
+                                                Phòng : Công nhân
+                                              </div>
+                                              <div class="tinh-trang">
+                                                Còn trống : 1
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="mblock">
+                                              <div class="cblock">
+                                                <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                              </div>
+                                              <div class="phong-ktx">
+                                                <div class="chi-tiet-phong">
+                                                  P.101
+                                                </div>
+                                                <div class="doi-tuong">
+                                                  Phòng : Công nhân
+                                                </div>
+                                                <div class="tinh-trang">
+                                                  Còn trống : 1
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="mblock">
+                                                <div class="cblock">
+                                                  <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                </div>
+                                                <div class="phong-ktx">
+                                                  <div class="chi-tiet-phong">
+                                                    P.101
+                                                  </div>
+                                                  <div class="doi-tuong">
+                                                    Phòng : Công nhân
+                                                  </div>
+                                                  <div class="tinh-trang">
+                                                    Còn trống : 1
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="mblock">
+                                                  <div class="cblock">
+                                                    <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                  </div>
+                                                  <div class="phong-ktx">
+                                                    <div class="chi-tiet-phong">
+                                                      P.101
+                                                    </div>
+                                                    <div class="doi-tuong">
+                                                      Phòng : Công nhân
+                                                    </div>
+                                                    <div class="tinh-trang">
+                                                      Còn trống : 1
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="mblock">
+                                                    <div class="cblock">
+                                                      <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                    </div>
+                                                    <div class="phong-ktx">
+                                                      <div class="chi-tiet-phong">
+                                                        P.101
+                                                      </div>
+                                                      <div class="doi-tuong">
+                                                        Phòng : Công nhân
+                                                      </div>
+                                                      <div class="tinh-trang">
+                                                        Còn trống : 1
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="mblock">
+                                                      <div class="cblock">
+                                                        <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                      </div>
+                                                      <div class="phong-ktx">
+                                                        <div class="chi-tiet-phong">
+                                                          P.101
+                                                        </div>
+                                                        <div class="doi-tuong">
+                                                          Phòng : Công nhân
+                                                        </div>
+                                                        <div class="tinh-trang">
+                                                          Còn trống : 1
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="mblock">
+                                                        <div class="cblock">
+                                                          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                        </div>
+                                                        <div class="phong-ktx">
+                                                          <div class="chi-tiet-phong">
+                                                            P.101
+                                                          </div>
+                                                          <div class="doi-tuong">
+                                                            Phòng : Công nhân
+                                                          </div>
+                                                          <div class="tinh-trang">
+                                                            Còn trống : 1
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="mblock">
+                                                          <div class="cblock">
+                                                            <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                          </div>
+                                                          <div class="phong-ktx">
+                                                            <div class="chi-tiet-phong">
+                                                              P.101
+                                                            </div>
+                                                            <div class="doi-tuong">
+                                                              Phòng : Công nhân
+                                                            </div>
+                                                            <div class="tinh-trang">
+                                                              Còn trống : 1
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="mblock">
+                                                            <div class="cblock">
+                                                              <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                            </div>
+                                                            <div class="phong-ktx">
+                                                              <div class="chi-tiet-phong">
+                                                                P.101
+                                                              </div>
+                                                              <div class="doi-tuong">
+                                                                Phòng : Công nhân
+                                                              </div>
+                                                              <div class="tinh-trang">
+                                                                Còn trống : 1
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mblock">
+                                                              <div class="cblock">
+                                                                <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                              </div>
+                                                              <div class="phong-ktx">
+                                                                <div class="chi-tiet-phong">
+                                                                  P.101
+                                                                </div>
+                                                                <div class="doi-tuong">
+                                                                  Phòng : Công nhân
+                                                                </div>
+                                                                <div class="tinh-trang">
+                                                                  Còn trống : 1
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="mblock">
+                                                                <div class="cblock">
+                                                                  <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                </div>
+                                                                <div class="phong-ktx">
+                                                                  <div class="chi-tiet-phong">
+                                                                    P.101
+                                                                  </div>
+                                                                  <div class="doi-tuong">
+                                                                    Phòng : Công nhân
+                                                                  </div>
+                                                                  <div class="tinh-trang">
+                                                                    Còn trống : 1
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="mblock">
+                                                                  <div class="cblock">
+                                                                    <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                  </div>
+                                                                  <div class="phong-ktx">
+                                                                    <div class="chi-tiet-phong">
+                                                                      P.101
+                                                                    </div>
+                                                                    <div class="doi-tuong">
+                                                                      Phòng : Công nhân
+                                                                    </div>
+                                                                    <div class="tinh-trang">
+                                                                      Còn trống : 1
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="mblock">
+                                                                    <div class="cblock">
+                                                                      <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                    </div>
+                                                                    <div class="phong-ktx">
+                                                                      <div class="chi-tiet-phong">
+                                                                        P.101
+                                                                      </div>
+                                                                      <div class="doi-tuong">
+                                                                        Phòng : Công nhân
+                                                                      </div>
+                                                                      <div class="tinh-trang">
+                                                                        Còn trống : 1
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="mblock">
+                                                                      <div class="cblock">
+                                                                        <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                      </div>
+                                                                      <div class="phong-ktx">
+                                                                        <div class="chi-tiet-phong">
+                                                                          P.101
+                                                                        </div>
+                                                                        <div class="doi-tuong">
+                                                                          Phòng : Công nhân
+                                                                        </div>
+                                                                        <div class="tinh-trang">
+                                                                          Còn trống : 1
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="mblock">
+                                                                        <div class="cblock">
+                                                                          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                        </div>
+                                                                        <div class="phong-ktx">
+                                                                          <div class="chi-tiet-phong">
+                                                                            P.101
+                                                                          </div>
+                                                                          <div class="doi-tuong">
+                                                                            Phòng : Công nhân
+                                                                          </div>
+                                                                          <div class="tinh-trang">
+                                                                            Còn trống : 1
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                      <div class="mblock">
+                                                                          <div class="cblock">
+                                                                            <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                          </div>
+                                                                          <div class="phong-ktx">
+                                                                            <div class="chi-tiet-phong">
+                                                                              P.101
+                                                                            </div>
+                                                                            <div class="doi-tuong">
+                                                                              Phòng : Công nhân
+                                                                            </div>
+                                                                            <div class="tinh-trang">
+                                                                              Còn trống : 1
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="mblock">
+                                                                            <div class="cblock">
+                                                                              <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                            </div>
+                                                                            <div class="phong-ktx">
+                                                                              <div class="chi-tiet-phong">
+                                                                                P.101
+                                                                              </div>
+                                                                              <div class="doi-tuong">
+                                                                                Phòng : Công nhân
+                                                                              </div>
+                                                                              <div class="tinh-trang">
+                                                                                Còn trống : 1
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="mblock">
+                                                                              <div class="cblock">
+                                                                                <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                              </div>
+                                                                              <div class="phong-ktx">
+                                                                                <div class="chi-tiet-phong">
+                                                                                  P.101
+                                                                                </div>
+                                                                                <div class="doi-tuong">
+                                                                                  Phòng : Công nhân
+                                                                                </div>
+                                                                                <div class="tinh-trang">
+                                                                                  Còn trống : 1
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                            <div class="mblock">
+                                                                                <div class="cblock">
+                                                                                  <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                                </div>
+                                                                                <div class="phong-ktx">
+                                                                                  <div class="chi-tiet-phong">
+                                                                                    P.101
+                                                                                  </div>
+                                                                                  <div class="doi-tuong">
+                                                                                    Phòng : Công nhân
+                                                                                  </div>
+                                                                                  <div class="tinh-trang">
+                                                                                    Còn trống : 1
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="mblock">
+                                                                                  <div class="cblock">
+                                                                                    <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                                  </div>
+                                                                                  <div class="phong-ktx">
+                                                                                    <div class="chi-tiet-phong">
+                                                                                      P.101
+                                                                                    </div>
+                                                                                    <div class="doi-tuong">
+                                                                                      Phòng : Công nhân
+                                                                                    </div>
+                                                                                    <div class="tinh-trang">
+                                                                                      Còn trống : 1
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+                                                                                <div class="mblock">
+                                                                                    <div class="cblock">
+                                                                                      <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                                    </div>
+                                                                                    <div class="phong-ktx">
+                                                                                      <div class="chi-tiet-phong">
+                                                                                        P.101
+                                                                                      </div>
+                                                                                      <div class="doi-tuong">
+                                                                                        Phòng : Công nhân
+                                                                                      </div>
+                                                                                      <div class="tinh-trang">
+                                                                                        Còn trống : 1
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </div>
+                                                                                  <div class="mblock">
+                                                                                      <div class="cblock">
+                                                                                        <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+                                                                                      </div>
+                                                                                      <div class="phong-ktx">
+                                                                                        <div class="chi-tiet-phong">
+                                                                                          P.101
+                                                                                        </div>
+                                                                                        <div class="doi-tuong">
+                                                                                          Phòng : Công nhân
+                                                                                        </div>
+                                                                                        <div class="tinh-trang">
+                                                                                          Còn trống : 1
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+    </tbody>
+  </table>
+</div>
+<!-- <div class="fixed-bottom">
+  <div style="float: left;">
+      <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
+      <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
+  </div>
+ <div style="float: right;">
+    <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
+    <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
+ </div>
+</div> -->

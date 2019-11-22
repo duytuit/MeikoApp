@@ -4,15 +4,17 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './filter-dropdown.component.html',
   styleUrls: ['./filter-dropdown.component.css']
 })
-export class FilterDropdownComponent implements OnInit {
+export class FilterDropdownComponent implements OnInit  {
   @Input() dataSet: any;
   @Input() searchText: string;  
+  @Input() placeholderText: string;  
   @Input() maxLen: number;
   @Output() typeahead: EventEmitter<any> = new EventEmitter();
   filterSet: any;
   isVisible: boolean;
   isCursorOverFilterSet: boolean;
   isArryDataSet: boolean; 
+  ChkValue:boolean=false;
   constructor() { 
     this.dataSet = this.dataSet || [];
     this.searchText = this.searchText || '';
@@ -21,23 +23,29 @@ export class FilterDropdownComponent implements OnInit {
     this.isVisible = false;
 
   }
+  
   ngOnInit() {
   }
   onSearch(event: any) {  
+    if(this.searchText)
+    {
       if(this.searchText.length > 0) {
         this.filterSet = this.dataSet.filter((item) => {        
             return item
                   .toLowerCase()
                   .indexOf(this.searchText.toLowerCase()) > -1        
         });
-  
-        this.filterSet = this.filterSet.slice(0, this.maxLen);
+    if( this.filterSet)
+    {
+      this.filterSet = this.filterSet.slice(0, this.maxLen);
+    }
         this.showList();
+        this.ChkValue=true;
       } else {
         this.filterSet = [];
       } 
+    }
   }
-
   hideList() {
     if(this.isCursorOverFilterSet != true) {
       this.isVisible = false;
@@ -51,7 +59,7 @@ export class FilterDropdownComponent implements OnInit {
   }
 
   cursorOverSet() {
-    this.showList();
+   // this.showList();
     this.isCursorOverFilterSet = true;
   }
 
@@ -65,8 +73,16 @@ export class FilterDropdownComponent implements OnInit {
   }
   save(event: any){
     this.searchText=this.filterSet[0];
+    this.filterSet = [];
+   // this.isVisible = false;
     this.isCursorOverFilterSet = false;
-    this.hideList();
     this.typeahead.emit(this.searchText);
+  }
+  ClearText(){
+    if(this.ChkValue==true){
+      this.searchText=null
+      this.typeahead.emit(null);
+      this.ChkValue=false;
+    }
   }
 }

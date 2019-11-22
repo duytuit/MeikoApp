@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ToasterService } from '../../services/toaster.service';
 import { Toast } from '../../models/toast.interface';
 
@@ -15,14 +15,13 @@ export class ToasterContainerComponent implements OnInit {
 
   ngOnInit() {
     this.toaster.toast$
-      .subscribe(toast => {
-        this.toasts = [toast, ...this.toasts];
-        setTimeout(() => this.toasts.pop(), toast.delay || 6000);
-      });
+  .subscribe(toast => {
+    this.toasts = [toast,...this.toasts];
+    setTimeout(() => this.toasts.pop(), toast.delay || 6000);
+  });
   }
-
   remove(index: number) {
-    this.toasts = this.toasts.filter((v, i) => i !== index);
-    //this.toasts.splice(index, 1);
+   this.toasts = this.toasts.filter((v, i) => i !== index);
+   // this.toasts.splice(index, 1);
   }
 }

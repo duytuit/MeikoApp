@@ -6,21 +6,21 @@
 <div class="ui-modal" tabindex="-1" role="dialog"
      #modalRoot
      appResizable
-     [south]="true"
-     [east]="true"
-     [southEast]="true"
+     [south]="south"
+     [east]="east"
+     [southEast]="southEast"
      [minWidth]="minWidth"
      [minHeight]="minHeight"
      (resize)="onResize($event)"
+     [ngStyle]="{'display': visible ? 'block' : 'none'}"
      appDraggable
      [dragEventTarget]="dragEventTarget"
-     [ngStyle]="{'display': visible ? 'block' : 'none'}"
      [style.width.px]="width"
      [style.minWidth.px]="minWidth"
      [style.zIndex]="contentzIndex"
      (mousedown)="moveOnTop()"
      (touchstart)="moveOnTop()">
-    <div class="ui-modal-header" #modalHeader
+    <div class="ui-modal-header" [style.background-color]="backgroundcolor" #modalHeader
          (mousedown)="initDrag($event)"
          (touchstart)="initDrag($event)">
       <div class="ui-titlebar">
@@ -36,7 +36,7 @@
                 <path fill="currentColor" d="M27.9 3.75h-18.8c-0.4 0-0.75 0.35-0.75 0.75v4.3c0 0.1 0 0.2 0.050 0.3h-4.2c-0.55 0-1 0.45-1 1v17.4c0 0.55 0.45 1 1 1h17.65c0.55 0 1-0.45 1-1v-3.7c0.050 0 0.1 0.050 0.2 0.050h4.9c0.4 0 0.75-0.35 0.75-0.75v-18.6c-0.050-0.4-0.4-0.75-0.8-0.75zM5.2 26.5v-12.95c0.050 0 0.1 0 0.15 0h15.4c0.050 0 0.1 0 0.15 0v12.95h-15.7zM27.15 22.35h-4.15c-0.050 0-0.15 0-0.2 0.050v-12.3c0-0.55-0.45-1-1-1h-12c0.050-0.1 0.050-0.2 0.050-0.3v-3.55h17.3v17.1z"></path>
               </svg>
           </span>
-          <span (click)="hide()"
+          <span *ngIf="closemodal" (click)="hide()"
                 (mousedown)="onCloseIcon($event)"
                 (touchstart)="onCloseIcon($event)">
             <svg class="ui-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 28 32">

@@ -235,7 +235,7 @@ PerformFilterSelect(filterBySelect: string): thongkeloi[] {
         if (control.controls[0].get('Mahang').value && control.controls[0].get('Malot').value) {
           let hour = formatDate(Date.now(), 'HH', 'en-US');
           let ca;
-          if (0 < parseInt(hour) && parseInt(hour) < 20) {
+          if (8 <= parseInt(hour) && parseInt(hour) < 20) {
             ca = 'Ngày'
           } else {
             ca = 'Đêm'
@@ -252,11 +252,11 @@ PerformFilterSelect(filterBySelect: string): thongkeloi[] {
           this.servicethongkeloi.AddThongKeLoi(Object.values(json)[0], this.danhmuc_id).subscribe(data => {
             this.getAllthongkeloi();
             this.form.reset();
-            for(let i=0;i<control.length;i++)
+            for(let i=control.length;0<=i;i--)
             {
               control.removeAt(i)
             }
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 3; i++) {
               this.addCreds();
             }
           })

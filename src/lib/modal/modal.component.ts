@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, ViewChild, Input, Output, OnInit, AfterViewChecked,
-  HostListener, HostBinding, EventEmitter
+  HostListener, HostBinding, EventEmitter, Renderer2
 } from '@angular/core';
 import {ResizableEvent} from '../resizable';
 
@@ -18,7 +18,14 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   @Input() minHeight: number = 200;
   @Input() scrollTop: boolean = true;
   @Input() maximizable: boolean;
+  @Input() closemodal: boolean=true;
   @Input() backdrop: boolean = true;
+  @Input() south: boolean = true;
+  @Input() east: boolean=true;
+  @Input() southEast: boolean = true;
+  @Input() backgroundcolor:string;
+  @Input() maximized:boolean;
+  @Input() keydownesc:boolean=true;
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
@@ -33,7 +40,6 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   visible: boolean;
   contentzIndex: number;
   executePostDisplayActions: boolean;
-  maximized: boolean;
   preMaximizeRootWidth: number;
   preMaximizeRootHeight: number;
   preMaximizeBodyHeight: number;
@@ -41,8 +47,9 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   preMaximizePageY: number;
   dragEventTarget: MouseEvent | TouchEvent;
 
-  constructor(private element: ElementRef) {}
-
+  constructor(private element: ElementRef) {
+   
+  }
   ngOnInit() {
     if (!this.zIndex) {
       this.zIndex = this.getMaxModalIndex() + 1;
@@ -57,12 +64,14 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       this.executePostDisplayActions = false;
     }
   }
-
   @HostListener('keydown.esc', ['$event'])
   onKeyDown(event): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.hide();
+    if(this.keydownesc==true)
+    {
+      event.preventDefault();
+      event.stopPropagation();
+      this.hide();
+    }
   }
 
   @HostListener('window:resize')
@@ -121,7 +130,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   calcBodyHeight() {
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight;
+    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+50;
     const contentHeight = this.modalRoot.nativeElement.offsetHeight - diffHeight;
     this.modalBody.nativeElement.style.height = contentHeight + 'px';
     this.modalBody.nativeElement.style.maxHeight = 'none';
@@ -176,7 +185,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
     this.modalRoot.nativeElement.style.left = '0px';
     this.modalRoot.nativeElement.style.width = '100vw';
     this.modalRoot.nativeElement.style.height = '100vh';
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+70;
+    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+50;
     this.modalBody.nativeElement.style.height = 'calc(100vh - ' + diffHeight + 'px)';
     this.modalBody.nativeElement.style.maxHeight = 'none';
 
