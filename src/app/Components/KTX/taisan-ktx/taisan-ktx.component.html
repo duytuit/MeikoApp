@@ -1,116 +1,445 @@
 <div class="rightcontent">
 
-  </div>
-  <app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [zIndex]="zIndex">
-    <!-- <ng-container class="app-t-header">
+</div>
+<app-modal #modalRoot [modalTitle]="'Thêm mới'" [width]="800" [backgroundcolor]="'#4267b2'" [keydownesc]="true"
+  [closemodal]="false" [maximizable]="true" [maximized]="false" [south]="false" [east]="false" [southEast]="false"
+  [zIndex]="zIndex">
+  <!-- <ng-container class="app-t-header">
      
     </ng-container> -->
-    <ng-container class="app-modal-body">
-    
-    </ng-container>
-    <ng-container class="app-modal-footer">
-    
-    </ng-container>
-  </app-modal>
-  
-  <app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex">
-    <ng-container class="app-t-header">
-    </ng-container>
-    <ng-container class="app-modal-body">
-      <div class="form-row">
-        <div class="form-group col-md-6">Mã:{{madanhmuc}}</div>
-        <div class="form-group col-md-6">Tên:{{tendanhmuc}}</div>
-      </div>
-    </ng-container>
-    <ng-container class="app-modal-footer">
-      <button type="button" (click)="onDeleteDanhmuc(iddanhmuc)" style="width: 75px;" class="btn btn-info btn-sm">
-        <i class="far fa-save tu"></i>
-        Xóa</button>
-      <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalDelete.hide()">
-        <i class="far fa-times-circle"></i>
-        Thoát</button>
-    </ng-container>
-  </app-modal>
-  
-  
-  
-  
-  
-  <div class="content-header">
-    <div class="col-md-6">
-      <ul class="ulbutton" (click)="modalRoot.show()">
-        <a class="abutton" title="Thêm" role="button">
-          <i class="fas fa-plus"></i>
-        </a>
-      </ul>
-      <ul class="ulbutton" (click)="lammoi()">
-        <a class="abutton" title="làm mới" role="button">
-          <i class="fas fa-retweet"></i>
-        </a>
-      </ul>
-    </div>
-    <div class="col-md-6">
-  
-    </div>
-  </div>
-  <div class="content-center">
-    <table class="table table-sm table-fixed table-hover">
-      <thead style="background-color: #dbdbdb80;">
-        <tr class="row" style=" border: 0.09rem solid rgb(221, 213, 213);color:  #364f69">
-          <th class="col-sm-1">Ngày</th>
-          <th class="col-sm-1">Mã tài sản</th>
-          <th class="col-sm-2">Tên tài sản</th>
-          <th class="col-sm-1">Trị giá</th>
-          <th class="col-sm-1">Số lượng tổng</th>
-          <th class="col-sm-1">Số lượng đã dùng</th>
-          <th class="col-sm-1">Số lượng chưa dùng</th>
-          <th class="col-sm-1">Nơi cấp phát</th>
-          <th class="col-sm-1">Trạng thái</th>
-          <th class="col-sm-1">Ghi chú</th>
-          <th class="col-sm-1">Chức năng</th>
+  <ng-container class="app-modal-body">
+    <p style="font-weight:bold;margin-bottom: 0;">1.Tài sản:</p>
+    <form class="emp-form" [formGroup]="addtaisan">
+      <table class="table table-sm table-bordered">
+        <tr>
+          <td colspan="6">
+            <input #MaNVL class="form-control form-control-sm" style="font-weight:bold" formControlName="MaNVL"
+              placeholder="Mã NVL">
+          </td>
+          <td colspan="6">
+            <select #taisan class="form-control form-control-sm" style="font-weight:bold;" [(ngModel)]="PLtaisan"
+              [ngModelOptions]="{standalone: true}" (change)="onEventPLtaisan($event.target.value)">
+              <option value="true">Tài Sản Cố Định</option>
+              <option value="false">Tài Sản Tiêu Hao</option>
+            </select>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of getdanhmuc" class="row">
-          <td class="col-sm-1" style="font-weight:bold;">{{item.Thutu}}</td>
-          <td class="col-sm-1">
-            <span *ngIf="!item.edittable">{{item.Madanhmuc}}</span>
-            <input type="text" class="form-control form-control-sm" [(ngModel)]="madanhmuc" *ngIf="item.edittable" />
+        <tr>
+          <td colspan="12">
+            <input class="form-control form-control-sm" [attr.disabled]="true" formControlName="Masododung"
+              placeholder="Mã Tài Sản">
           </td>
-          <td class="col-sm-8">
-            <span *ngIf="!item.edittable">{{item.Tendanhmuc}}</span>
-            <input type="text" class="form-control form-control-sm" [(ngModel)]="tendanhmuc" *ngIf="item.edittable" />
-          </td>
-          <td class="col-sm-1">
-            <span *ngIf="!item.edittable">{{item.Tinhtrang?'Kích hoạt':'Khóa'}}</span>
-            <select class="form-control form-control-sm" *ngIf="item.edittable" [(ngModel)]="trangthai"
-              (change)="onEvent($event.target.value)">
-              <option hidden>--Trạng thái--</option>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <input #Nguoidango class="form-control form-control-sm margin-input" formControlName="Tendodung"
+              placeholder="Tên Tài Sản">
+            <div style="display: inline-block;width: 100%;">
+              <div style="display: inline-table;width: 50%">
+                <input #Giatri class="form-control form-control-sm margin-input" (keyup)="onSearch($event)"
+                  formControlName="Trigia" placeholder="VND">
+              </div>
+              <div style="display: inline-table;width: 48.8%;margin-left: 5px;">
+                <select class="form-control form-control-sm margin-input" style="font-weight:bold;"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="Menhgia"
+                  (change)="onEventCurrency($event.target.value)">
+                  <option value="dong">Đồng</option>
+                  <option value="nghin">Nghìn</option>
+                </select>
+              </div>
+            </div>
+            <input #Soluong class="form-control form-control-sm margin-input" [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="Soluongtaisan">
+              <input #Hanmuc type="number" class="form-control form-control-sm margin-input" formControlName="Hanmuc"
+              placeholder="Hạn mức tối thiểu trong kho">
+            <textarea rows="10" style="max-height: 130px;color: darkslategray;padding: 5px;"
+              class="text-input-form1 col-md-12 margin-input" formControlName="Ghichu" placeholder="Ghi chú"></textarea>
+            <select class="form-control form-control-sm margin-input" style="font-weight:bold;" [(ngModel)]="trangthai"
+              [ngModelOptions]="{standalone: true}" (change)="onEventTrangthai($event.target.value)">
               <option value="true">Kích hoạt</option>
               <option value="false">Khóa</option>
             </select>
           </td>
-          <td class="col-sm-1">
-            <a class="btn" (click)="modalopen(item)" *ngIf="!item.edittable">
-              <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <span *ngIf="item.edittable">
-              <a class="btn" (click)="modalclose(item)">
-                <i class="fas fa-save"></i>
-              </a>
-            </span>
-            <a class="btn text-danger" style="margin-left: 15px;" (click)="openDelete(item)">
-              <i class="far fa-trash-alt"></i>
-            </a>
-            <input type="hidden" (click)="modalDelete.show()" id="modalDelete">
-            <input type="hidden" (click)="modalDelete.hide()" id="modalDeleteHide">
+          <td colspan="6">
+            <div class="div-image">
+              <input type="hidden" formControlName="Anh" />
+              <label style="display: block;">
+                <a class="file-tep" style="cursor: pointer;">
+                  <i class="fa fa-paperclip" style="color: deepskyblue;"> </i>
+                  Chọn hình ảnh đính kèm
+                </a>
+                <input type="file" (change)="onFileUpload($event)" style="display: none" />
+              </label>
+              <!-- <img src="assets/dieuhoa.PNG" height="150"> -->
+            </div>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </table>
+    </form>
+    <!-- -------------------------------------------------------------------------------- -->
+    <div *ngIf="Checkaddtaisan">
+        <div style="display: inline-block;width: 100%;margin-bottom: -15px;margin-top: 10px;">
+            <p style="font-weight:bold;float: left;">2.Nhập tài sản:</p>
+            <div style="float: right;">
+              <app-pagding-mini1 [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize">
+              </app-pagding-mini1>
+            </div>
+          </div>
+          <table class="table table-sm table-bordered" style="min-height: 125px;">
+            <thead>
+              <tr>
+                <td colspan="3">
+                  <div style="font-weight:bold;">Ngày Tạo</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Trước nhập kho</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Sau nhập kho</div>
+                </td>
+                <td colspan="1">
+                  <div style=" font-weight:bold;">Số lượng nhập kho</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Tệp</div>
+                </td>
+                <td colspan="3">
+                  <div style="font-weight:bold;width: 150px;">Ghi chú</div>
+                </td>
+                <td colspan="2">
+                  <div style="font-weight:bold;">
+                    <ul class="ulbutton"  style=" padding: 5px;"  (click)="modalnhap.show()">
+                      <a class="abutton" title="Thêm" role="button">
+                        <i class="fas fa-plus" style="color: #ff6313"></i>
+                      </a>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of GetAllNhapTaisanKTX | slice:pageIndex*pageSize:(pageIndex+1)*pageSize;">
+                <td colspan="3">{{item.Ngaycapnhap}}</td>
+                <td colspan="1">{{item.Truocnhap}}</td>
+                <td colspan="1">{{item.Saunhap}}</td>
+                <td colspan="1">{{item.Soluong}}</td>
+                <td colspan="1">{{item.Tep}}</td>
+                <td colspan="3">{{item.Ghichu}}</td>
+                <td colspan="2">
+                  <div style="font-weight:bold">
+                    <ul class="ulbutton"  style=" padding: 5px;"  (click)="OpenDeleteNhap(item)">
+                      <a class="abutton" title="Xóa" role="button">
+                        <i class="far fa-trash-alt" style="color: black"></i>
+                      </a>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="display: inline-block;width: 100%;margin-bottom: -15px;margin-top: 10px;">
+            <p style="font-weight:bold;float: left;">3.Báo phế tài sản:</p>
+            <div style="float: right;">
+              <app-pagding-mini2 [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds">
+              </app-pagding-mini2>
+            </div>
+          </div>
+          <table class="table table-sm table-bordered" style="min-height: 125px;">
+            <thead>
+              <tr>
+                <td colspan="3">
+                  <div style=" font-weight:bold;">Ngày Tạo</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Trước báo phế</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Sau báo phế</div>
+                </td>
+                <td colspan="1">
+                  <div style=" font-weight:bold;">Số lượng báo phế</div>
+                </td>
+                <td colspan="1">
+                  <div style="font-weight:bold;">Tệp</div>
+                </td>
+                <td colspan="3">
+                  <div style="font-weight:bold; width: 150px;">Ghi chú</div>
+                </td>
+                <td colspan="2">
+                  <div style="font-weight:bold">
+                    <ul class="ulbutton"  style=" padding: 5px;"  (click)="modalbaophe.show()">
+                      <a class="abutton" title="Thêm" role="button">
+                        <i class="fas fa-plus" style="color: #ff6313"></i>
+                      </a>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of GetAllBaopheTaisanKTX | slice:pageIndexds*pageSizeds:(pageIndexds+1)*pageSizeds;">
+                <td colspan="3">{{item.Ngaycapnhap}}</td>
+                <td colspan="1">{{item.Truocbaophe}}</td>
+                <td colspan="1">{{item.Saubaophe}}</td>
+                <td colspan="1">{{item.Soluong}}</td>
+                <td colspan="1">{{item.Tep}}</td>
+                <td colspan="3">{{item.Ghichu}}</td>
+                <td colspan="2">
+                  <div style="font-weight:bold;">
+                    <ul class="ulbutton" style=" padding: 5px;" (click)="OpenDeletebaophe(item)">
+                      <a class="abutton" title="Xóa" role="button">
+                        <i class="far fa-trash-alt" style="color: black"></i>
+                      </a>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <app-modal #modalnhap [modalTitle]="'Nhập tài sản!'" [width]="500" [zIndex]="zIndex+2" [backgroundcolor]="'#4267b2'"
+            [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false"
+            [southEast]="false">
+            <ng-container class="app-t-header">
+            </ng-container>
+            <ng-container class="app-modal-body">
+              <table class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <td>
+                      <!-- <input class="form-control form-control-sm" placeholder="Số lượng nhập kho"> -->
+                      <input type="number" class="form-control form-control-sm" name="Soluong" #Soluong="ngModel"
+                        [(ngModel)]="selectNhaptaisan.Soluong" placeholder="Số lượng nhập kho">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" name="Ghichu" #Ghichu="ngModel"
+                        [(ngModel)]="selectNhaptaisan.Ghichu" placeholder="Ghi chú">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <label style="display: block;">
+                          <a class="file-tep" style="cursor: pointer;float: left;">
+                            <i class="fa fa-paperclip" style="color: deepskyblue;"> </i>
+                            Chọn tệp đính kèm
+                          </a>
+                          <input type="file" (change)="onFileUpload1($event)" style="display: none" />
+                        </label>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" disabled name="Tep" #Tep="ngModel"
+                        [(ngModel)]="selectNhaptaisan.Tep" title="" />
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+            </ng-container>
+            <ng-container class="app-modal-footer">
+              <button type="button" (click)="onAddNhaptaisan(selectNhaptaisan)" style="width: 75px;"
+                class="btn btn-info btn-sm">
+                <i class="far fa-save tu"></i>
+                Lưu</button>
+              <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalnhap.hide()">
+                <i class="far fa-times-circle"></i>
+                Thoát</button>
+                <input type="hidden" (click)="modalnhap.hide()" id="modalnhapClose">
+                <input type="hidden" (click)="modalnhap.show()" id="modalnhapShow">
+            </ng-container>
+          </app-modal>
+          <app-modal #modalbaophe [modalTitle]="'Báo phế tài sản'" [width]="500" [zIndex]="zIndex+2"
+            [backgroundcolor]="'#4267b2'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false"
+            [south]="false" [east]="false" [southEast]="false">
+            <ng-container class="app-t-header">
+            </ng-container>
+            <ng-container class="app-modal-body">
+              <table class="table table-sm table-bordered">
+                <thead>
+                  <tr>
+                    <td>
+                      <!-- <input class="form-control form-control-sm" placeholder="Số lượng nhập kho"> -->
+                      <input type="number" class="form-control form-control-sm" name="Soluong" #Soluong="ngModel"
+                        [(ngModel)]="selectBaophetaisan.Soluong" placeholder="Số lượng báo">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control form-control-sm" name="Ghichu" #Ghichu="ngModel"
+                        [(ngModel)]="selectBaophetaisan.Ghichu" placeholder="Ghi chú">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <label style="display: block;">
+                          <a class="file-tep" style="cursor: pointer;float: left;">
+                            <i class="fa fa-paperclip" style="color: deepskyblue;"> </i>
+                            Chọn tệp đính kèm
+                          </a>
+                          <input type="file" (change)="onFileUpload1($event)" style="display: none" />
+                        </label>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" disabled name="Tep" #Tep="ngModel"
+                        [(ngModel)]="selectBaophetaisan.Tep" title="" />
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+            </ng-container>
+            <ng-container class="app-modal-footer">
+              <button type="button" (click)="onAddBaophe(selectBaophetaisan)" style="width: 75px;" class="btn btn-info btn-sm">
+                <i class="far fa-save tu"></i>
+                Xóa</button>
+              <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalbaophe.hide()">
+                <i class="far fa-times-circle"></i>
+                Thoát</button>
+                <input type="hidden" (click)="modalbaophe.hide()" id="modalbaopheClose">
+                <input type="hidden" (click)="modalbaophe.show()" id="modalbaopheShow">
+            </ng-container>
+          </app-modal>
+          <app-modal #modalDeletebaophe [modalTitle]="'Xóa báo phế'" [width]="500" [zIndex]="zIndex+2"
+            [backgroundcolor]="'#4267b2'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false"
+            [south]="false" [east]="false" [southEast]="false">
+            <ng-container class="app-t-header">
+            </ng-container>
+            <ng-container class="app-modal-body">
+              <div class="form-row">
+                  <div class="form-group col-md-6">Tên tài sản:{{selectBaophetaisan.Tendodung}}</div>
+                  <div class="form-group col-md-6">Số lượng:{{selectBaophetaisan.Soluong}}</div>
+              </div>
+            </ng-container>
+            <ng-container class="app-modal-footer">
+              <button type="button" (click)="onDeleteBaophe(selectBaophetaisan)" style="width: 75px;" class="btn btn-info btn-sm">
+                <i class="far fa-save tu"></i>
+                Xóa</button>
+              <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalDeletebaophe.hide()">
+                <i class="far fa-times-circle"></i>
+                Thoát</button>
+                <input type="hidden" (click)="modalDeletebaophe.hide()" id="modalDeletebaopheClose">
+                <input type="hidden" (click)="modalDeletebaophe.show()" id="modalDeletebaopheShow">
+            </ng-container>
+          </app-modal>
+          <app-modal #modalDeleteNhap [modalTitle]="'Xóa nhập kho'" [width]="500" [zIndex]="zIndex+2"
+            [backgroundcolor]="'#4267b2'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false"
+            [south]="false" [east]="false" [southEast]="false">
+            <ng-container class="app-t-header">
+            </ng-container>
+            <ng-container class="app-modal-body">
+              <div class="form-row">
+                  <div class="form-group col-md-6">Tên tài sản:{{selectNhaptaisan.Tendodung}}</div>
+                  <div class="form-group col-md-6">Số lượng:{{selectNhaptaisan.Soluong}}</div>
+              </div>
+            </ng-container>
+            <ng-container class="app-modal-footer">
+              <button type="button" (click)="onDeleteNhap(selectNhaptaisan)" style="width: 75px;" class="btn btn-info btn-sm">
+                <i class="far fa-save tu"></i>
+                Xóa</button>
+              <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalDeleteNhap.hide()">
+                <i class="far fa-times-circle"></i>
+                Thoát</button>
+                <input type="hidden" (click)="modalDeleteNhap.hide()" id="modalDeleteNhapClose">
+                <input type="hidden" (click)="modalDeleteNhap.show()" id="modalDeleteNhapShow">
+            </ng-container>
+          </app-modal>
+    </div>
+    <!-- ------------------------------------------------------------------------------- -->
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" type="button" (click)="onSubmit()">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" (click)="modalRoot.hide()">Thoát</button>
+    </div>
+    <input type="hidden" (click)="modalRoot.hide()" id="modalRootClose">
+    <input type="hidden" (click)="modalRoot.show()" id="modalRootShow">
+  </ng-container>
+</app-modal>
+
+<app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex"
+  [backgroundcolor]="'#4267b2'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false"
+  [south]="false" [east]="false" [southEast]="false">
+  <ng-container class="app-t-header">
+  </ng-container>
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">Mã tài sản:{{selectTaisanktx.Masododung}}</div>
+      <div class="form-group col-md-6">Tên tài sản:{{selectTaisanktx.Tendodung}}</div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <button type="button" (click)="onDeleteTaisan(selectTaisanktx)" style="width: 75px;" class="btn btn-info btn-sm">
+      <i class="far fa-save tu"></i>
+      Xóa</button>
+    <button type="button" class="btn btn-info btn-sm" style="float: right;" (click)="modalDelete.hide()">
+      <i class="far fa-times-circle"></i>
+      Thoát</button>
+    <input type="hidden" (click)="modalDelete.hide()" id="modalDeleteClose">
+    <input type="hidden" (click)="modalDelete.show()" id="modalDeleteShow">
+  </ng-container>
+</app-modal>
+
+
+<div class="content-header">
+  <div class="col-md-6">
+    <ul class="ulbutton" (click)="addTaisanKTX()">
+      <a class="abutton" title="Thêm" role="button">
+        <i class="fas fa-plus"></i>
+      </a>
+    </ul>
+    <ul class="ulbutton" (click)="lammoi()">
+      <a class="abutton" title="làm mới" role="button">
+        <i class="fas fa-retweet"></i>
+      </a>
+    </ul>
   </div>
-  <div class="fixed-bottom">
-    <!-- <div style="float: left;">
+  <div class="col-md-6">
+
+  </div>
+</div>
+<div class="content-center">
+  <table class="table table-sm table-fixed table-hover">
+    <thead style="background-color: #dbdbdb80;">
+      <tr class="row" style=" border: 0.09rem solid rgb(221, 213, 213);color:  #364f69">
+        <th class="col-sm-1">Ngày</th>
+        <th class="col-sm-1">Mã tài sản</th>
+        <th class="col-sm-2">Tên tài sản</th>
+        <th class="col-sm-1">Phân loại</th>
+        <th class="col-sm-1">Trị giá</th>
+        <th class="col-sm-1">Số lượng tổng</th>
+        <th class="col-sm-1">Số lượng đang dùng</th>
+        <th class="col-sm-1">Số lượng chưa dùng</th>
+        <th class="col-sm-1">Nơi cấp phát</th>
+        <th class="col-sm-1">Ghi chú</th>
+        <th class="col-sm-1">Chức năng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of GetAllTaisanKTX" class="row">
+        <td class="col-sm-1">{{item.Ngaycapnhap | date:'HH:mm dd-MM-yy'}}</td>
+        <td class="col-sm-1">{{item.Masododung}}</td>
+        <td class="col-sm-2">{{item.Tendodung}}</td>
+        <td class="col-sm-1">{{item.Phanloai?'TS Cố Định':'TS Tiêu Hao'}}</td>
+        <td class="col-sm-1">{{item.Trigia}}</td>
+        <td class="col-sm-1" style="font-weight:bold;">
+          <span [ngStyle]="{'background-color': item.Hanmuc>item.Soluongtong?'Yellow' : 'transparent' }">{{item.Soluongtong}}</span>
+        </td>
+        <td class="col-sm-1" style="font-weight:bold;">{{item.Soluongdadung}}</td>
+        <td class="col-sm-1" style="font-weight:bold;">{{item.Soluongchuadung}}</td>
+        <td class="col-sm-1"></td>
+        <td class="col-sm-1">{{item.Ghichu}}</td>
+        <td class="col-sm-1">
+          <a class="btn" (click)="modalEdit(item,i)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn text-danger" style="margin-left: 10px;" (click)="openDelete(item)">
+            <i class="far fa-trash-alt"></i>
+          </a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-toaster-container></app-toaster-container>
+<div class="fixed-bottom">
+  <!-- <div style="float: left;">
         <app-custom-pagding [itemCount]="countds" [(pageIndex)]="pageIndexds" [pageSize]="pageSizeds"></app-custom-pagding>
         <button class="btn btn-secondary" disabled>Tổng: {{countds}}</button>
     </div>
@@ -118,4 +447,4 @@
       <app-pagding [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize"></app-pagding>
       <button class="btn btn-secondary" disabled>Tổng: {{count}}</button>
    </div> -->
-  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="btn-group" role="group">
+    <a class="pagding-a"  (click)="moveToFirstPage()"><i class="fa fa-angle-double-left"></i></a>
+    <a class="pagding-a"  (click)="moveToPreviousPage()"><i class="fa fa-angle-left"></i></a>
+    <a class="pagding-a1"  style="width:50px;color:lightslategrey ;">{{pageIndex + 1}} / {{_pageCount}}</a>
+    <a class="pagding-a"  (click)="moveToNextPage()"><i class="fa fa-angle-right"></i></a>
+    <a class="pagding-a"  (click)="moveToLastPage()"><i class="fa fa-angle-double-right"></i></a>
+    <a class="pagding-a1" style="color: lightslategrey;">{{itemCount}}</a>
+  </div>

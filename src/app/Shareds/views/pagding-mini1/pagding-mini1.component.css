@@ -1,0 +1,21 @@
+.pagding-a{
+    width: 20px;
+    text-align: center;
+    background-color: #f3f3f3;
+    border: 0.5px solid azure
+}
+.pagding-a:hover{
+    width: 20px;
+    text-align: center;
+    background-color: #f77535;
+    border: 0.5px solid azure;
+    cursor: pointer;
+}
+.pagding-a1{
+    text-align: center;
+    background-color: #f3f3f3;
+    border: 0.5px solid azure;
+}
+.fa{
+   color: darkslateblue;
+}

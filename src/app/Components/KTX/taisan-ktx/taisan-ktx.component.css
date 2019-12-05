@@ -19,20 +19,11 @@
     padding: 10px;
     margin:0;
     display: inline-block;
-    cursor: pointer;
+    cursor: pointer;   
+    position: relative;
+    right: 5px;
   }
   .rightcontent{
-      /* text-align:center;
-    background-color: #2e5075;
-    color: #f7f7f8;
-    font-family:Arial, Helvetica, sans-serif;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
-    border:2px solid rgb(196, 192, 192);
-    margin-bottom: 5px; */
     height: 64px;
    }
    .fa-plus,.fa-retweet,.fa-file-export,.fa-bullhorn,.fa-pencil-square-o,.fa-save,.fa-file-signature,.fa-flag,.fa-check-square,.fa-square{
@@ -45,9 +36,75 @@
     .table thead th {
       border:0;
   }
+  .btn-luu{
+    border-radius: unset;
+    background: #f77535;
+    border-color: transparent;
+    width:10%;
+  }
+  .btn-xoa{
+    margin-left: 10px;
+    border-radius: unset;
+    border-color: transparent;
+    width:10%;
+    background: lightgray;
+  }
+  .btn-luu:hover{
+    border-radius: unset;
+    background: #f85604;
+    border-color: transparent;
+    width:10%;
+  }
+  .btn-xoa:hover{
+    margin-left: 10px;
+    border-radius: unset;
+    border-color: transparent;
+    width:10%;
+    background: rgb(185, 184, 184);
+  }
   .btn{
     padding: 1px 1px;
+    cursor: pointer;
 }
+.margin-input{
+  margin-bottom: 10px;
+  
+  }
+  .pagding-a{
+    text-align: center;
+    background-color: lightgray;
+    border: 0.5px solid azure
+}
+.pagding-a:hover{
+    text-align: center;
+    background-color: lightgray;
+    border: 0.5px solid azure;
+    cursor: pointer;
+}
+  form.emp-form{
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    padding: 10px;
+}
+.col-md-6 {
+  padding: 0;
+  display: inline-table;
+}
+.table{
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+.tu{
+  color: #fff;
+}
+.table-bordered td{
+  line-height: 1.0;border: 1px solid #5b94ce;
+ 
+}
+a.file-tep:hover{
+ text-decoration: underline;
+}
+
 @media only screen and (max-width: 768px){
   .rightcontent{
     display:none;

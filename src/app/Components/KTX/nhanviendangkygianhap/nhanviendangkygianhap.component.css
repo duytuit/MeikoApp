@@ -35,7 +35,7 @@
     margin-bottom: 5px; */
     height: 64px;
    }
-   .fa-plus,.fa-retweet,.fa-file-export,.fa-bullhorn,.fa-pencil-square-o,.fa-save,.fa-file-signature,.fa-flag,.fa-check-square,.fa-square{
+   .fa-plus,.fa-retweet,.fa-file-export,.fa-bullhorn,.fa-pencil-square-o,.fa-save,.fa-file-signature,.fa-flag,.fa-check-square,.fa-square,.fa{
     color: #2e5075;
   }
   .row{
@@ -47,6 +47,7 @@
   }
   .table{
     margin-bottom: 0.5rem;
+    font-size: 0.8rem;
   }
   .btn{
     padding: 1px 1px;
@@ -62,11 +63,9 @@
   padding: 0;
   width: 100%;
   color: #2b28ef;
-  font-size: 17px;
+  font-size: 0.8rem;
 }
-.table-bordered td{
-  line-height: 1.0;border: 1px solid #5b94ce;
-}
+
 .text-input-form:focus{
   border-bottom: 1px dotted gray;
   display: inline-block;
@@ -78,7 +77,10 @@
   width: 100%;
   color: #2b28ef;
   outline: none;
-  font-size: 17px;
+  font-size: 0.8rem;
+}
+.table-bordered td{
+  line-height: 1.0;border: 1px solid #5b94ce;
 }
 .text-input-form1{
   border-bottom: 1px dotted gray;
@@ -87,6 +89,7 @@
   border-top-width: 0;
   border-left-width: 0;
   padding: 0;
+  font-size: 0.8rem;
 }
 .text-input-form1:focus{
   border-bottom: 1px dotted gray;
@@ -96,6 +99,7 @@
   border-left-width: 0;
   padding: 0;
   outline: none;
+  font-size: 0.8rem;
 }
 .btn-luu{
   border-radius: unset;

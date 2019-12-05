@@ -178,6 +178,10 @@ const routes: Routes = [
     component: NhanviendangkygianhapComponent
   },
   {
+    path: 'admintaisanktx',
+    component: TaisanKtxComponent
+  },
+  {
     path: 'may12',
     component: MayComponent
   },

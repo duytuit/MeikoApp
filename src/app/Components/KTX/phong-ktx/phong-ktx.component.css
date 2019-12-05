@@ -1,15 +1,4 @@
 .rightcontent{
-    /* text-align:center;
-    background-color: #2e5075;
-    color: #f7f7f8;
-    font-family:Arial, Helvetica, sans-serif;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
-    border:2px solid rgb(196, 192, 192);
-    margin-bottom: 5px; */
     height: 64px;
    }
    .abutton:hover{
@@ -252,7 +241,7 @@ font-family: Arial, Helvetica, sans-serif;
     .inp input:focus + span + .border {
       transform: scaleX(1);
     }
-    .col-md-6{
+    .col-md-6,.col-md-4{
       padding:0;
       display: inline-block;
     }
@@ -332,6 +321,9 @@ font-family: Arial, Helvetica, sans-serif;
       height: 56px;
       padding: 0;
     }
+    .table{
+      font-size: 0.8rem;
+    }
     .progress {
       margin-top: 5px;
       padding:0;
@@ -341,7 +333,36 @@ font-family: Arial, Helvetica, sans-serif;
       background:#e5e5e5;
       border-radius:6px;
     }
-    
+    .btn-luu{
+      border-radius: unset;
+      background: #f77535;
+      border-color: transparent;
+      width:10%;
+    }
+    .btn-xoa{
+      margin-left: 10px;
+      border-radius: unset;
+      border-color: transparent;
+      width:10%;
+      background: lightgray;
+    }
+    .btn-luu:hover{
+      border-radius: unset;
+      background: #f85604;
+      border-color: transparent;
+      width:10%;
+    }
+    .btn-xoa:hover{
+      margin-left: 10px;
+      border-radius: unset;
+      border-color: transparent;
+      width:10%;
+      background: rgb(185, 184, 184);
+    }
+    .btn{
+      padding: 1px 1px;
+      cursor: pointer;
+  }
     .bar {
       position:relative;
       float:left;
@@ -376,7 +397,7 @@ font-family: Arial, Helvetica, sans-serif;
         background-color: antiquewhite;
         border: 0.5px solid #95959583;
         position: relative;
-        cursor: pointer;
+        cursor: default;
       }
       .cblock{
         text-align: left;
@@ -390,7 +411,7 @@ font-family: Arial, Helvetica, sans-serif;
         background-color:  aliceblue;
         border: 0.5px solid #95959583;
         position: relative;
-        cursor: pointer;
+        cursor: default;
       }
       .phong-ktx{
         display: inline;
@@ -401,13 +422,24 @@ font-family: Arial, Helvetica, sans-serif;
         text-align: center;
         font-weight:bold;
       }
-      doi-tuong{
+      .doi-tuong{
         display: inline-table;
         width: 100%;
       }
-      tinh-trang{
+      .tinh-trang{
         display: inline-table;
         width: 100%;
+      }
+      .chuc-nang{
+        text-align: right;
+        display: inline-table;
+        width: 40%;
+      }
+      .con-trong{
+        display: inline-table;
+        width: 60%;
+        margin-top: 0.2rem;
+        height: 27px;
       }
       .darkcyan:focus{
         outline: none;
@@ -441,6 +473,14 @@ font-family: Arial, Helvetica, sans-serif;
         outline: none;
         box-shadow: 0px 0px 0px 1px darkcyan;
       }
+form.emp-form{
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    padding: 10px;
+}
+.margin-input{
+width: 99%;
+}
     @media only screen and (max-width: 768px){
       .rightcontent{
         display:none;

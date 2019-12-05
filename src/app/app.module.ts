@@ -67,6 +67,9 @@ import { TieusunhanvienComponent } from './Components/KTX/tieusunhanvien/tieusun
 import { NhanvientraphongComponent } from './Components/KTX/nhanvientraphong/nhanvientraphong.component';
 import { DialogKtxComponent } from './Shareds/views/dialog-ktx/dialog-ktx.component';
 import { DialogKnkComponent } from './Shareds/views/dialog-knk/dialog-knk.component';
+import { PagdingMini1Component } from './Shareds/views/pagding-mini1/pagding-mini1.component';
+import { PagdingMini2Component } from './Shareds/views/pagding-mini2/pagding-mini2.component';
+import { FilterKtxComponent } from './Shareds/Filterdropdown/filter-ktx/filter-ktx.component';
 
 
 @NgModule({
@@ -129,7 +132,10 @@ import { DialogKnkComponent } from './Shareds/views/dialog-knk/dialog-knk.compon
     TieusunhanvienComponent,
     NhanvientraphongComponent,
     DialogKtxComponent,
-    DialogKnkComponent
+    DialogKnkComponent,
+    PagdingMini1Component,
+    PagdingMini2Component,
+    FilterKtxComponent
   ],
   imports: [
     BrowserModule,

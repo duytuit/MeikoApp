@@ -130,7 +130,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   calcBodyHeight() {
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+50;
+    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+70;
     const contentHeight = this.modalRoot.nativeElement.offsetHeight - diffHeight;
     this.modalBody.nativeElement.style.height = contentHeight + 'px';
     this.modalBody.nativeElement.style.maxHeight = 'none';
@@ -185,7 +185,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
     this.modalRoot.nativeElement.style.left = '0px';
     this.modalRoot.nativeElement.style.width = '100vw';
     this.modalRoot.nativeElement.style.height = '100vh';
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+50;
+    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight+70;
     this.modalBody.nativeElement.style.height = 'calc(100vh - ' + diffHeight + 'px)';
     this.modalBody.nativeElement.style.maxHeight = 'none';
 

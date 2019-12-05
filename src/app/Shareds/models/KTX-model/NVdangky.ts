@@ -4,6 +4,7 @@ export class NVdangkyKTX{
     Cmt:string
     Congdoan:string
     Doituong :string
+    Loai:number
     Lydo_ophong :string
     Lydodangky:string
     Lydotra :string
@@ -16,7 +17,8 @@ export class NVdangkyKTX{
     Solan_gianhap:number
     Somayle :string
     Sonharieng :string
-    Sotienboithuong :number
+    Sotienboithuong :string
+    Tongsotienboithuong :string
     Thoigianky :string
     Thoigianhoanthanh :string
     Thoigiantao :string
@@ -49,6 +51,9 @@ export class NVdangkyKTX{
     Tinhtrang:string
     Ghichu:string
     Xacnhan:boolean
+    Ophong:string
+    Nguoixacnhan:string
+    Nguoixacnhanid:string
     edittable:boolean=false  
 
 }
