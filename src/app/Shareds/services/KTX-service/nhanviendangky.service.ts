@@ -23,8 +23,9 @@ export class NhanviendangkyService {
   GetTTNV_dept(code:string){
     return this.http.get<any[]>(this.Api_GetCodeDept+code).toPromise();
   }
-  GetNhanviendangky():Observable<NVdangkyKTX[]>{
-    return this.http.get<NVdangkyKTX[]>(this.Api1);
+  GetNhanviendangky(year):Observable<NVdangkyKTX[]>{
+    const url = `${this.Api1}/${year}`;
+    return this.http.get<NVdangkyKTX[]>(url);
   }
   DeleteNhanviendangky(id:string):Observable<any>{
     const url=`${this.Api}/${id}`;

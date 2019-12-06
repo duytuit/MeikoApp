@@ -59,6 +59,7 @@ export class FluxComponent implements OnInit {
   getArrayControls() {
     return (this.form.get('credentials') as FormArray).controls;
   }
+  //Chưa xử lý tối ưu phân vùng dữ liệu quy trình và group theo năm
   getAllflux() {
     let strtrinhky_id: string = sessionStorage.getItem('Trinhkyid');
     this.servicequytrinh.GetQuytrinhByIdTrinhky(strtrinhky_id).subscribe(data => {

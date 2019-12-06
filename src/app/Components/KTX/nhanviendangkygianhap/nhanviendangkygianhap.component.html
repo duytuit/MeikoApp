@@ -269,7 +269,7 @@
           </td>
           <td style="width: 60px;">
             <div style="font-weight:bold;">
-              <ul class="ulbutton" style="padding:5px;" (click)="childModal.show()">
+              <ul class="ulbutton" style="padding:5px;" (click)="OpenchildModalCapphatphong()">
                 <a class="abutton" title="Thêm" role="button">
                   <i class="fas fa-plus" style="color: #ff6313"></i>
                 </a>
@@ -278,13 +278,13 @@
           </td>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td colspan="5">P.101</td>
-          <td colspan="5">Công nhân</td>
+      <tbody  style=" color: #2b28ef;">
+        <tr *ngFor="let item of getAllCapphatphong">
+          <td colspan="5">{{item.Tenphong}}</td>
+          <td colspan="5">{{item.Ghichu}}</td>
           <td>
             <div style="font-weight:bold;">
-              <ul class="ulbutton" style="padding:5px;">
+              <ul class="ulbutton" style="padding:5px;" (click)="OpenDeleteCapphatphong(item)">
                 <a class="abutton" title="Xóa" role="button">
                   <i class="far fa-trash-alt" style="color: black"></i>
                 </a>
@@ -319,7 +319,7 @@
           </td>
         </tr>
       </thead>
-      <tbody>
+      <tbody  style=" color: #2b28ef;">
         <tr *ngFor="let item of getAllCapphatdodung">
           <td colspan="2">{{item.Tendodung}}</td>
           <td colspan="2">{{item.Trigia}}</td>
@@ -349,11 +349,11 @@
           </td>
         </tr>
       </thead>
-      <tbody>
+      <tbody  style=" color: #2b28ef;">
         <tr>
           <td colspan="9"><input type="text" class="text-input-form" name="Sotienboithuong" #Sotienboithuong="ngModel"
             [(ngModel)]="selectNVdangky.Sotienboithuong"></td>
-          <td colspan="3"></td>
+          <td colspan="3">{{selectNVdangky.Tongsotienboithuong}}</td>
         </tr>
       </tbody>
     </table>
@@ -378,7 +378,7 @@
           </td>
         </tr>
       </thead>
-      <tbody>
+      <tbody  style=" color: #2b28ef;">
         <tr *ngFor="let item of GetDetailNVdangky">
           <td colspan="2">{{item.Thoigianky}}</td>
           <td colspan="3">{{item.Nguoixacnhan}}</td>
@@ -484,16 +484,14 @@
         <table class="table table-sm table-bordered">
           <tbody>
             <tr *ngFor="let creds of getArrayControlsCapphatphong(); let i = index" [formGroupName]="i">
-              <td colspan="3">
-                <input class="text-input-form" formControlName="Tenphong" placeholder="Tên phòng">
+              <td colspan="5" style="position: relative;">
+                <app-filter-ktx [dataSet]="gettenphong" [placeholderText]="'Tên phòng'" [maxLen]="6" (typeahead)="getphongid($event,i)">
+                </app-filter-ktx>
               </td>
-              <td colspan="4">
+              <td colspan="5">
                 <input class="text-input-form" formControlName="Ghichu" placeholder="Ghi chú">
               </td>
-              <td colspan="4">
-               
-              </td>
-              <td colspan="1">
+              <td >
                 <span class="remove" (click)="removeGroupCapphatphong(i)">
                   <img width="24" height="24" src="assets/delete-icon.png">
                 </span>
@@ -505,20 +503,28 @@
     </form>
   </ng-container>
   <ng-container class="app-modal-footer">
-    <button type="button" class="button" (click)="childModalCapphatphong.hide()">Thoát</button>
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" type="button" (click)="onSubmitCapphatphong()">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" (click)="childModalCapphatphong.hide()">Thoát</button>
+    </div>
     <input type="hidden" (click)="childModalCapphatphong.hide()" id="childModalCapphatphongClose">
     <input type="hidden" (click)="childModalCapphatphong.show()" id="childModalCapphatphongShow">
   </ng-container>
 </app-modal>
 
-<app-modal #DeletechildModalCapphatphong [modalTitle]="'Xóa cấp phát phòng'" [width]="550" [zIndex]="zIndex+2" [backgroundcolor]="'#4267b2'"
+<app-modal #DeletechildModalCapphatphong [modalTitle]="'Xóa cấp phát phòng'" [width]="300" [zIndex]="zIndex+2" [backgroundcolor]="'#4267b2'"
   [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false"
   [southEast]="false">
   <ng-container class="app-modal-body">
-   
+    <div class="form-row" style="font-weight: bold;text-align: center;display: block;">
+      Phòng:{{selectCapphatphong.Tenphong}}
+    </div>
   </ng-container>
   <ng-container class="app-modal-footer">
-    <button type="button" class="button" (click)="DeletechildModalCapphatphong.hide()">Thoát</button>
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" style="width:30%;" type="button" (click)="onDeleteCapphatphong(selectCapphatphong)">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" style="width:30%;margin-right: 40px;"  (click)="DeletechildModalCapphatphong.hide()">Thoát</button>
+    </div>
     <input type="hidden" (click)="DeletechildModalCapphatphong.hide()" id="DeletechildModalCapphatphongClose">
     <input type="hidden" (click)="DeletechildModalCapphatphong.show()" id="DeletechildModalCapphatphongShow">
   </ng-container>
@@ -968,6 +974,9 @@
         <i class="fas fa-retweet"></i>
       </a>
     </ul>
+    <select [value]="getcurrentYear" style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" (change)="onSelectYear($event.target.value)">
+      <option *ngFor="let item of listYear" value="{{item}}">{{item}}</option>
+    </select>
     <ul class="ulbutton" (click)="lammoi()">
       <a class="abutton" title="Duyệt dữ liệu vào" role="button">
         <i class="fa fa-check" aria-hidden="true"></i>

@@ -28,7 +28,7 @@ export class NVdangkyKTX{
     Hotenkhaisinh :string
     Hotenkhac:string
     Hoten:string
-    Gioitinh :boolean
+    Gioitinh :number
     Ngaysinh :string
     Noisinh :string
     Quequan:string

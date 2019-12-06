@@ -17,6 +17,8 @@ import { CapphatdodungService } from 'src/app/Shareds/services/KTX-service/capph
 import { CapphatphongService } from 'src/app/Shareds/services/KTX-service/capphatphong.service';
 import { Capphatdodung } from 'src/app/Shareds/models/KTX-model/capphatdodung';
 import { Capphatphong } from 'src/app/Shareds/models/KTX-model/capphatphong';
+import { BaophetaisanktxService } from 'src/app/Shareds/services/KTX-service/baophetaisanktx.service';
+import { Baophetaisanktx } from 'src/app/Shareds/models/KTX-model/baophetaisanktx';
 
 @Component({
   selector: 'app-nhanviendangkygianhap',
@@ -25,6 +27,9 @@ import { Capphatphong } from 'src/app/Shareds/models/KTX-model/capphatphong';
 })
 export class NhanviendangkygianhapComponent implements OnInit {
   @Input() zIndex: number = 1000000000;
+  getcurrentYear
+  someYear:string = formatDate(Date.now(), 'yyyy', 'en-US');
+  listYear=[]
   getthongtinnhanvien
   getphong
   getban
@@ -66,6 +71,7 @@ export class NhanviendangkygianhapComponent implements OnInit {
     private _serviceTaisanktx: TaisanktxService,
     private _serviceCapphatdodung: CapphatdodungService,
     private _serviceCapphatphong: CapphatphongService,
+    private _serviceBaophetaisanktx: BaophetaisanktxService, 
   ) {
     this.formCapphatphong = this.fb.group({
       credentialsCapphatphong: this.fb.array([]),
@@ -95,10 +101,10 @@ export class NhanviendangkygianhapComponent implements OnInit {
   addCredsCapphatphong() {
     const credsCapphatphong = this.formCapphatphong.controls.credentialsCapphatphong as FormArray;
     credsCapphatphong.push(this.fb.group({
-      Phongid: '',
-      Tenphong: '',
-      Ghichu: '',
-      Nhanviendangkyid: ''
+      Phongid:  ['', Validators.required],
+      Tenphong:  ['', Validators.required],
+      Ghichu: [''],
+      Nhanviendangkyid:['', Validators.required],
     }));
   }
   removeGroupCapphatphong(i: number) {
@@ -112,7 +118,7 @@ export class NhanviendangkygianhapComponent implements OnInit {
       Tendodung: ['', Validators.required],
       Soluong: ['', Validators.required],
       Trigia: ['', Validators.required],
-      Ghichu: ['',],
+      Ghichu: [''],
       Nhanviendangkyid: ['', Validators.required]
     }));
   }
@@ -141,17 +147,33 @@ export class NhanviendangkygianhapComponent implements OnInit {
   }
   ngOnInit() {
     this.toaster.subject.next(null)
-    this.getAllNhanviendangky();
+    this.getcurrentYear=this.someYear
+    this.getlistYear()
+    this.getAllNhanviendangky(this.someYear);
     this.getAllPhongKTX()
     this.getAllDodungKTX()
+  }
+  getlistYear()
+  {
+    let valueYear=parseInt(this.someYear);
+    this.listYear.push(valueYear.toString())
+   for(let i=0;i<4;i++)
+   {
+       valueYear-=1;
+       this.listYear.push(valueYear.toString())
+   }
   }
   getAllPhongKTX() {
     this._servicePhongktx.GetPhongktx().subscribe(data => {
       this.getAllPhong = data;
-      for (let i = 0; i < data.length; i++) {
-        this.gettenphong.push(data[i]['Tenphong'])
-      }
     })
+  }
+  Capphatphongchodoituong(gioitinh:number){
+    for (let i = 0; i < this.getAllPhong.length; i++) {
+      if (this.getAllPhong[i].Controng > 0&&this.getAllPhong[i].Gioitinh==gioitinh) {
+        this.gettenphong.push(this.getAllPhong[i]['Tenphong'])
+      }
+    }
   }
   getAllDodungKTX() {
     this._serviceTaisanktx.GetTaisanktx().subscribe(data => {
@@ -184,7 +206,7 @@ export class NhanviendangkygianhapComponent implements OnInit {
       for (let i = 0; i < capphatdodung.length; i++) {
         let checksoluong = this.CheckSoluongdodung(capphatdodung[i]['Soluong'], i)
         if (checksoluong == true) {
-          if(capphatdodung[i]['Soluong']>0){
+          if (capphatdodung[i]['Soluong'] > 0) {
             this._serviceCapphatdodung.AddCapphatdodungktx(capphatdodung[i]).subscribe(data => {
               for (let j = 0; j < this.getAllDodung.length; j++) {
                 if (this.getAllDodung[j].Dodungid == capphatdodung[i]['Dodungid']) {
@@ -197,11 +219,10 @@ export class NhanviendangkygianhapComponent implements OnInit {
               }
               this.getAllCapphatdodungKTX(this.selectNVdangky.Nhanviendangkyid)
             })
-          }else
-          {
+          } else {
             this.toaster.show('warning', 'Thông báo!', 'Số lượng > 0');
           }
-         
+
         } else {
           this.toaster.show('warning', 'Thông báo!', 'Trong kho không còn ' + capphatdodung[i]['Tendodung'], 20000);
         }
@@ -216,6 +237,61 @@ export class NhanviendangkygianhapComponent implements OnInit {
         this.addCredsCapphatdodung();
       }
     } else {
+
+      this.toaster.show('error', 'Thất Bại!', 'Cần nhập đầy đủ thông tin.');
+    }
+  }
+  onSubmitCapphatphong() {
+    var control = <FormArray>this.formCapphatphong.get('credentialsCapphatphong');
+    for (let i = 0; i < control.length; i++) {
+      control.controls[i].get('Nhanviendangkyid').setValue(this.selectNVdangky.Nhanviendangkyid);
+    }
+    if (control.valid) {
+
+      var df = JSON.stringify(this.formCapphatphong.value);
+      var json: any[] = JSON.parse(df);
+      let capphatphong = Object.values(json)[0]
+      for (let i = 0; i < capphatphong.length; i++) {
+        if (capphatphong[i]['Phongid'] && capphatphong[i]['Tenphong'] && capphatphong[i]['Nhanviendangkyid']) {
+
+          for (let j = 0; j < this.getAllPhong.length; j++) {
+            if (this.getAllPhong[j].Phongid == capphatphong[i]['Phongid']) {
+              if (this.getAllPhong[j].Controng >= 1) {
+                this._serviceCapphatphong.AddCapphatphongktx(capphatphong[i]).subscribe(data => {
+                  for(let a=0;a<this.GetAllNVdangky.length;a++)
+                  {
+                      if(this.GetAllNVdangky[a].Nhanviendangkyid=this.selectNVdangky.Nhanviendangkyid)
+                      {
+                        this.GetAllNVdangky[a].Ophong=(parseInt(this.GetAllNVdangky[a].Ophong)+1).toString()
+                        break
+                      }
+                  }
+                  this.getAllPhong[j].Controng -= 1
+                  this.gettenphong = []
+                  this.Capphatphongchodoituong(this.selectNVdangky.Gioitinh)
+                  this.getAllCapphatphongKTX(this.selectNVdangky.Nhanviendangkyid)
+                })
+                break;
+              }
+
+            }
+
+          }
+
+        }
+      }
+    
+      let element: HTMLElement = document.getElementById('childModalCapphatphongClose') as HTMLElement;
+      element.click();
+      this.formCapphatphong.reset();
+      for (let i = control.length; 0 <= i; i--) {
+        control.removeAt(i)
+      }
+      for (let i = 0; i < 2; i++) {
+        this.addCredsCapphatphong();
+      }
+    }
+    else {
 
       this.toaster.show('error', 'Thất Bại!', 'Cần nhập đầy đủ thông tin.');
     }
@@ -255,6 +331,19 @@ export class NhanviendangkygianhapComponent implements OnInit {
       control.controls[i].get('Dodungid').setValue(dodung.Dodungid);
       control.controls[i].get('Trigia').setValue(dodung.Trigia);
     }
+  }
+  getphongid(tenphong: string, i) {
+    if (tenphong) {
+      var control = <FormArray>this.formCapphatphong.get('credentialsCapphatphong');
+      control.controls[i].get('Tenphong').setValue(tenphong);
+      let phong = this.getAllPhong.find(x => x.Tenphong == tenphong)
+      control.controls[i].get('Phongid').setValue(phong.Phongid);
+    }
+  }
+  OpenchildModalCapphatphong(){
+    this.Capphatphongchodoituong(this.selectNVdangky.Gioitinh)
+    let element: HTMLElement = document.getElementById('childModalCapphatphongShow') as HTMLElement;
+    element.click();
   }
   async GetTTNV(value: string) {
     this.selectNVdangky = new NVdangkyKTX();
@@ -333,7 +422,8 @@ export class NhanviendangkygianhapComponent implements OnInit {
         this.ListNVdangky.push(item)
         this._serviceNhanviendangky.AddNhanviendangky(this.ListNVdangky).subscribe(data => {
           this.ListNVdangky = []
-          this.getAllNhanviendangky();
+          this.getcurrentYear=this.someYear
+          this.getAllNhanviendangky(this.someYear)
           let element: HTMLElement = document.getElementById('modalRootClose') as HTMLElement;
           element.click();
         })
@@ -374,6 +464,8 @@ export class NhanviendangkygianhapComponent implements OnInit {
   }
   openDelete(item: NVdangkyKTX) {
     this.selectNVdangky = item;
+    this.getAllCapphatdodungKTX(this.selectNVdangky.Nhanviendangkyid)
+    this.getAllCapphatphongKTX(this.selectNVdangky.Nhanviendangkyid)
     let element: HTMLElement = document.getElementById('modalDelete') as HTMLElement;
     element.click();
   }
@@ -391,8 +483,12 @@ export class NhanviendangkygianhapComponent implements OnInit {
       }
     }
   }
-  getAllNhanviendangky() {
-    this._serviceNhanviendangky.GetNhanviendangky().subscribe(data => {
+  onSelectYear(year){
+    this.getcurrentYear=year
+    this.getAllNhanviendangky(year)
+  }
+  getAllNhanviendangky(Year) {
+    this._serviceNhanviendangky.GetNhanviendangky(Year).subscribe(data => {
       this.haha = data;
       this.tesst()
       this.GetAllNVdangky = data.filter(x => x.Tinhtrang == 'IN');
@@ -424,18 +520,60 @@ export class NhanviendangkygianhapComponent implements OnInit {
     this.getAllCapphatdodungKTX(this.selectNVdangky.Nhanviendangkyid)
     this.getAllCapphatphongKTX(this.selectNVdangky.Nhanviendangkyid)
     this.GetDetailNVdangky = this.haha.filter(x => x.Nhanviendangkyid == item.Nhanviendangkyid)
+    if (this.selectNVdangky.Sotienboithuong) {
+      if (this.selectNVdangky.Sotienboithuong.indexOf(';')) {
+        let tam = this.selectNVdangky.Sotienboithuong.split(';')
+        if (tam) {
+          let tong = 0
+          for (let i = 0; i < tam.length; i++) {
+            let t = tam[i].indexOf('(');
+
+            if (t > 0) {
+              let z = tam[i].slice(t + 1, tam[i].length - 1)
+              tong += parseInt(z)
+            }
+          }
+          this.selectNVdangky.Tongsotienboithuong = tong.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        }
+      }
+    }
+    else {
+      this.selectNVdangky.Tongsotienboithuong = null
+    }
     let element: HTMLElement = document.getElementById('modalXacNhanShow') as HTMLElement;
     element.click();
   }
   onSubmitXacNhan() {
-    this.selectNVdangky.Xacnhan = true;
-    this.selectNVdangky.Trangthai = true;
-    this.selectNVdangky.Nguoixacnhan = this.FullName;
-    this.selectNVdangky.Nguoixacnhanid = this.UserID
-    this.selectNVdangky.Thoigianky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
-    this._serviceQuytrinh.UpdateQuytrinh(this.selectNVdangky).subscribe();
-    this._serviceNhanviendangky.UpdateNhanviendangky(this.selectNVdangky).subscribe()
-    this.tesst();
+    if (this.selectNVdangky.Ghichu) {
+      if(this.selectNVdangky.Tinhtrang=='OUT'&&this.selectNVdangky.Xacnhan==false)
+      {
+            if(this.getAllCapphatphong.length>0||this.getAllCapphatdodung.length>0)
+            {
+              this.toaster.show('warning', 'Thất Bại!', 'Chưa trả đồ dùng, phòng cấp phát');
+              this.selectNVdangky.Ghichu=null
+            }else
+            {
+              this.selectNVdangky.Xacnhan = true;
+              this.selectNVdangky.Trangthai = true;
+              this.selectNVdangky.Nguoixacnhan = this.FullName;
+              this.selectNVdangky.Nguoixacnhanid = this.UserID
+              this.selectNVdangky.Thoigianky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+              this._serviceQuytrinh.UpdateQuytrinh(this.selectNVdangky).subscribe();
+              this._serviceNhanviendangky.UpdateNhanviendangky(this.selectNVdangky).subscribe()
+              this.tesst();
+            }
+      }else
+      {
+        this.selectNVdangky.Xacnhan = true;
+        this.selectNVdangky.Trangthai = true;
+        this.selectNVdangky.Nguoixacnhan = this.FullName;
+        this.selectNVdangky.Nguoixacnhanid = this.UserID
+        this.selectNVdangky.Thoigianky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
+        this._serviceQuytrinh.UpdateQuytrinh(this.selectNVdangky).subscribe();
+        this._serviceNhanviendangky.UpdateNhanviendangky(this.selectNVdangky).subscribe()
+        this.tesst();
+      }
+    }
     let element: HTMLElement = document.getElementById('modalXacNhanClose') as HTMLElement;
     element.click();
   }
@@ -443,12 +581,18 @@ export class NhanviendangkygianhapComponent implements OnInit {
     this.selectNVdangky = item;
   }
   onDeleteDK(item: NVdangkyKTX) {
-    this._serviceNhanviendangky.DeleteNhanviendangky(item.Nhanviendangkyid).subscribe(data => {
-      this.getAllNhanviendangky();
-      this.selectNVdangky = new NVdangkyKTX();
-      let element: HTMLElement = document.getElementById('modalDeleteHide') as HTMLElement;
-      element.click();
-    });
+    if(this.getAllCapphatphong.length>0||this.getAllCapphatdodung.length>0)
+    {
+      this.toaster.show('warning', 'Thất Bại!', 'Chưa trả đồ dùng,phòng cấp phát');
+    }else
+    {
+      this._serviceNhanviendangky.DeleteNhanviendangky(item.Nhanviendangkyid).subscribe(data => {
+        this.getAllNhanviendangky(this.getcurrentYear)
+        this.selectNVdangky = new NVdangkyKTX();
+        let element: HTMLElement = document.getElementById('modalDeleteHide') as HTMLElement;
+        element.click();
+      });
+    }
   }
   onThoatDK() {
     this.selectNVdangky = new NVdangkyKTX();
@@ -585,6 +729,38 @@ export class NhanviendangkygianhapComponent implements OnInit {
     item.edittable = !item.edittable
 
   }
+  OpenDeleteCapphatphong(item:Capphatphong){
+    this.selectCapphatphong = item
+    let element: HTMLElement = document.getElementById('DeletechildModalCapphatphongShow') as HTMLElement;
+    element.click();
+  }
+  onDeleteCapphatphong(item:Capphatphong){
+      this._serviceCapphatphong.DeleteCapphatphongktx(item.Nhanvien_nhanphongid).subscribe(data=>{
+        for (let i = 0; i < this.getAllCapphatphong.length; i++) {
+          if(this.getAllCapphatphong[i].Nhanvien_nhanphongid==item.Nhanvien_nhanphongid)
+          {
+            this.getAllCapphatphong.splice(i, 1)
+            for (let j = 0; j < this.getAllPhong.length; j++) {
+              if (this.getAllPhong[j].Phongid == item.Nhanvien_nhanphongid) {
+                    this.getAllPhong[j].Controng += 1
+                    this.gettenphong = []
+                    this.Capphatphongchodoituong(this.selectNVdangky.Gioitinh)
+                  break;
+              }
+            }
+          }
+        }
+      })
+      for (let i = 0; i < this.GetAllNVdangky.length; i++){
+           if(this.GetAllNVdangky[i].Nhanviendangkyid==item.Nhanviendangkyid)
+           {
+            this.GetAllNVdangky[i].Ophong=(parseInt(this.GetAllNVdangky[i].Ophong)-1).toString()  
+            break 
+           }
+      }
+      let element: HTMLElement = document.getElementById('DeletechildModalCapphatphongClose') as HTMLElement;
+      element.click();
+  }
   OpenDeleteCapphatdodung(item: Capphatdodung) {
     this.LydoXoaCapphatdodung = 'true'
     this.selectCapphatdodung = item
@@ -599,8 +775,8 @@ export class NhanviendangkygianhapComponent implements OnInit {
             this.getAllCapphatdodung.splice(i, 1)
             for (let j = 0; j < this.getAllDodung.length; j++) {
               if (this.getAllDodung[j].Dodungid == item.Dodungid) {
-                this.getAllDodung[j].Soluongdadung -=  item.Soluong
-                this.getAllDodung[j].Soluongchuadung +=  item.Soluong
+                this.getAllDodung[j].Soluongdadung -= item.Soluong
+                this.getAllDodung[j].Soluongchuadung += item.Soluong
                 this._serviceTaisanktx.UpdateTaisanktx(this.getAllDodung[j]).subscribe()
                 break
               }
@@ -613,31 +789,31 @@ export class NhanviendangkygianhapComponent implements OnInit {
       })
     } else {
       if (this.selectNVdangky.Sotienboithuong == null) {
-        this.selectNVdangky.Sotienboithuong = item.Tendodung + '(' +parseFloat(item.Trigia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ""))*item.Soluong + ');'
-        let tam =this.selectNVdangky.Sotienboithuong.split('(').toString().split(');')
-        let tong=0
-        for(let i=0;i<tam.length;i++)
-        {
-             if(parseInt(tam[i])%2==0)
-             {
-                 tong+=parseInt(tam[i])
-             }
+        this.selectNVdangky.Sotienboithuong = item.Tendodung + '(' + parseFloat(item.Trigia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, "")) * item.Soluong + ');'
+        let tam = this.selectNVdangky.Sotienboithuong.split(';')
+        let tong = 0
+        for (let i = 0; i < tam.length; i++) {
+          let t = tam[i].indexOf('(');
+
+          if (t > 0) {
+            let z = tam[i].slice(t + 1, tam[i].length - 1)
+            tong += parseInt(z)
+          }
         }
-        this.selectNVdangky.Tongsotienboithuong=tong.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        console.log(this.selectNVdangky.Tongsotienboithuong)
+        this.selectNVdangky.Tongsotienboithuong = tong.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       } else {
-        this.selectNVdangky.Sotienboithuong += item.Tendodung + '(' + parseFloat(item.Trigia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ""))*item.Soluong + ');'
-        let tam =this.selectNVdangky.Sotienboithuong.split('(').toString().split(');')
-        let tong=0
-        for(let i=0;i<tam.length;i++)
-        {
-             if(parseInt(tam[i])%2==0)
-             {
-                 tong+=parseInt(tam[i])
-             }
+        this.selectNVdangky.Sotienboithuong += item.Tendodung + '(' + parseFloat(item.Trigia.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, "")) * item.Soluong + ');'
+        let tam = this.selectNVdangky.Sotienboithuong.split(';')
+        let tong = 0
+        for (let i = 0; i < tam.length; i++) {
+          let t = tam[i].indexOf('(');
+
+          if (t > 0) {
+            let z = tam[i].slice(t + 1, tam[i].length - 1)
+            tong += parseInt(z)
+          }
         }
-        this.selectNVdangky.Tongsotienboithuong=tong.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        console.log(this.selectNVdangky.Tongsotienboithuong)
+        this.selectNVdangky.Tongsotienboithuong = tong.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       }
       for (let i = 0; i < this.GetAllNVdangky.length; i++) {
         if (this.GetAllNVdangky[i].Nhanviendangkyid == this.selectNVdangky.Nhanviendangkyid) {
@@ -652,10 +828,24 @@ export class NhanviendangkygianhapComponent implements OnInit {
             this.getAllCapphatdodung.splice(i, 1)
             for (let j = 0; j < this.getAllDodung.length; j++) {
               if (this.getAllDodung[j].Dodungid == item.Dodungid) {
-                this.getAllDodung[j].Soluongtong -= item.Soluong
-                this.getAllDodung[j].Soluongdadung -=  item.Soluong
-                this.getAllDodung[j].Soluongchuadung -=  item.Soluong
-                this._serviceTaisanktx.UpdateTaisanktx(this.getAllDodung[j]).subscribe()
+                let baotaisan=new Baophetaisanktx();
+                baotaisan.Dodungid=item.Dodungid
+                baotaisan.MaNVL=this.getAllDodung[j].MaNVL
+                baotaisan.Masododung=this.getAllDodung[j].Masododung
+                baotaisan.Masododung=this.getAllDodung[j].Tendodung
+                baotaisan.Truocbaophe=this.getAllDodung[j].Soluongtong
+                baotaisan.Saubaophe=this.getAllDodung[j].Soluongtong-item.Soluong
+                baotaisan.Soluong=item.Soluong
+                baotaisan.Ghichu='Nhân viên bồi thường'
+                baotaisan.Nguoitaoid=this.UserID
+                baotaisan.Nguoitao=this.FullName
+                this._serviceBaophetaisanktx.AddBaophetaisanktx(baotaisan).subscribe(data=>{
+                  this.getAllDodung[j].Soluongtong -= item.Soluong
+                  this.getAllDodung[j].Soluongdadung -= item.Soluong
+                  this.getAllDodung[j].Soluongchuadung = this.getAllDodung[j].Soluongtong-this.getAllDodung[j].Soluongdadung
+                  this._serviceTaisanktx.UpdateTaisanktx(this.getAllDodung[j]).subscribe()
+                })
+             
                 break
               }
             }
