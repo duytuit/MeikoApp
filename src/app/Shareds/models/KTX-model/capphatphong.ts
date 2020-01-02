@@ -3,6 +3,8 @@ export class Capphatphong{
     Phongid:string
     Tenphong :string
     Nhanviendangkyid :string
+    Manhanvien :string
+    Hoten:string
     Trangthai :boolean
     Ghichu :string
     Ngaycapnhap :string

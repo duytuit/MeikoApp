@@ -1,45 +1,40 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { NhanviendangkyService } from 'src/app/Shareds/services/KTX-service/nhanviendangky.service';
-import { ToasterService } from 'src/app/Shareds/services/toaster.service';
-import { NgForm, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NVdangkyKTX } from 'src/app/Shareds/models/KTX-model/NVdangky';
+import { Component, OnInit, Input, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { TieusunhanvienService } from 'src/app/Shareds/services/KTX-service/tieusunhanvien.service';
-import { ThanhphangiadinhnhanvienService } from 'src/app/Shareds/services/KTX-service/thanhphangiadinhnhanvien.service';
-import { Tieusunhanvien } from 'src/app/Shareds/models/KTX-model/Tsnhanvien';
+import { NVdangkyKTX } from 'src/app/Shareds/models/KTX-model/NVdangky';
 import { Giadinhnhanvien } from 'src/app/Shareds/models/KTX-model/Gdnhanvien';
-import { QuytrinhvaoraService } from 'src/app/Shareds/services/KTX-service/quytrinhvaora.service';
-import { PhongktxService } from 'src/app/Shareds/services/KTX-service/phongktx.service';
-import { TaisanktxService } from 'src/app/Shareds/services/KTX-service/taisanktx.service';
+import { Tieusunhanvien } from 'src/app/Shareds/models/KTX-model/Tsnhanvien';
 import { Phongktx } from 'src/app/Shareds/models/KTX-model/Phongktx';
 import { Taisanktx } from 'src/app/Shareds/models/KTX-model/taisanktx';
-import { CapphatdodungService } from 'src/app/Shareds/services/KTX-service/capphatdodung.service';
-import { CapphatphongService } from 'src/app/Shareds/services/KTX-service/capphatphong.service';
 import { Capphatdodung } from 'src/app/Shareds/models/KTX-model/capphatdodung';
 import { Capphatphong } from 'src/app/Shareds/models/KTX-model/capphatphong';
+import { FormGroup, FormBuilder, Validators, FormArray, NgForm } from '@angular/forms';
+import { ToasterService } from 'src/app/Shareds/services/toaster.service';
+import { NhanviendangkyService } from 'src/app/Shareds/services/KTX-service/nhanviendangky.service';
+import { ThanhphangiadinhnhanvienService } from 'src/app/Shareds/services/KTX-service/thanhphangiadinhnhanvien.service';
+import { TieusunhanvienService } from 'src/app/Shareds/services/KTX-service/tieusunhanvien.service';
+import { PhongktxService } from 'src/app/Shareds/services/KTX-service/phongktx.service';
+import { QuytrinhvaoraService } from 'src/app/Shareds/services/KTX-service/quytrinhvaora.service';
+import { TaisanktxService } from 'src/app/Shareds/services/KTX-service/taisanktx.service';
+import { CapphatdodungService } from 'src/app/Shareds/services/KTX-service/capphatdodung.service';
+import { CapphatphongService } from 'src/app/Shareds/services/KTX-service/capphatphong.service';
 import { BaophetaisanktxService } from 'src/app/Shareds/services/KTX-service/baophetaisanktx.service';
-import { Baophetaisanktx } from 'src/app/Shareds/models/KTX-model/baophetaisanktx';
-import { HttpErrorResponse, HttpResponse, HttpEvent } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError,from  } from 'rxjs';
-import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
 import { ExcelService } from 'src/app/Shareds/services/excel.service';
 import { FileService } from 'src/app/Shareds/services/file.service';
-import { ThongtinNVService } from 'src/app/Shareds/services/thongtin-nv.service';
-import { TTnv } from 'src/app/Shareds/models/TTnhanvien';
-import { promise } from 'protractor';
-import { TTpb } from 'src/app/Shareds/models/TTphongban';
-import { DECLARATION_VIEW } from '@angular/core/src/render3/interfaces/view';
+import { Baophetaisanktx } from 'src/app/Shareds/models/KTX-model/baophetaisanktx';
 const EXCEL_TYPE = 'application/vnd.ms-excel;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import { TTnv } from 'src/app/Shareds/models/TTnhanvien';
+import { TTpb } from 'src/app/Shareds/models/TTphongban';
+import { ThongtinNVService } from 'src/app/Shareds/services/thongtin-nv.service';
 
 @Component({
-  selector: 'app-nhanviendangkygianhap',
-  templateUrl: './nhanviendangkygianhap.component.html',
-  styleUrls: ['./nhanviendangkygianhap.component.css']
+  selector: 'app-nhanviendangky',
+  templateUrl: './nhanviendangky.component.html',
+  styleUrls: ['./nhanviendangky.component.css']
 })
-export class NhanviendangkygianhapComponent implements OnInit {
+export class NhanviendangkyComponent implements OnInit {
   @Input() zIndex: number = 1000000000;
   getthongtinnhanvien
   getphong
@@ -83,7 +78,6 @@ export class NhanviendangkygianhapComponent implements OnInit {
   UserID: string = sessionStorage.getItem('Userid');
   @ViewChild('MaIDNV') MaIDNV: ElementRef;
   @ViewChild('ghichuDuyet') ghichuDuyet: ElementRef;
-  @ViewChild('NDXN') NDXN: ElementRef;
   constructor(private fb: FormBuilder,
     private _serviceNhanviendangky: NhanviendangkyService,
     private toaster: ToasterService,
@@ -226,7 +220,7 @@ export class NhanviendangkygianhapComponent implements OnInit {
     })
   }
   async getAllCapphatdodungKTX() {
-    this.getAllCapphatdodung1= await this._serviceCapphatdodung.GetCapphatdodungktx()
+    this.getAllCapphatdodung1=  await this._serviceCapphatdodung.GetCapphatdodungktx()
   }
   getAllCapphatphongKTXbyid(nhanviendangkyid: string) {
     this._serviceCapphatphong.GetCapphatphongktxbyid(nhanviendangkyid).subscribe(data => {
@@ -1024,13 +1018,13 @@ async getAllCapphatphongKTX() {
     }
     let phanloaihangtieuhao = this.getAllDodung.filter(x => x.Phanloai == false&&x.Trangthai==true)
     for (let i = 0; i < this.GetAllNVdangky.length; i++) {
-      if (this.GetAllNVdangky[i].edittable == true) {
+      if (this.GetAllNVdangky[i].edittable === true) {
         for (let j = 0; j < phanloaihangtieuhao.length; j++) {
-          let checknhanviennhantaisan =  this.getAllCapphatdodung1.filter(x => x.Nhanviendangkyid == this.GetAllNVdangky[i].Nhanviendangkyid && x.Dodungid == phanloaihangtieuhao[j].Dodungid)
+          let checknhanviennhantaisan = this.getAllCapphatdodung1.filter(x => x.Nhanviendangkyid == this.GetAllNVdangky[i].Nhanviendangkyid && x.Dodungid == phanloaihangtieuhao[j].Dodungid).length
           let checksoluongchuadung
           checksoluongchuadung= this.getAllDodung.find(y=>y.Dodungid==phanloaihangtieuhao[j].Dodungid)
             if(checksoluongchuadung.Soluongchuadung>0){
-              if (checknhanviennhantaisan.length == 0){
+              if (checknhanviennhantaisan == 0){
                 let nhanviennhantaisan = new Capphatdodung()
                 nhanviennhantaisan.Dodungid = phanloaihangtieuhao[j].Dodungid
                 nhanviennhantaisan.Nhanviendangkyid = this.GetAllNVdangky[i].Nhanviendangkyid
@@ -1040,12 +1034,16 @@ async getAllCapphatphongKTX() {
                 nhanviennhantaisan.Nguoitaoid = this.UserID
                 nhanviennhantaisan.Nguoitao = this.FullName
                 this.getAllCapphatdodung1.push(nhanviennhantaisan)
-                this._serviceCapphatdodung.AddCapphatdodungktx(nhanviennhantaisan).subscribe(data=>{
-                   phanloaihangtieuhao[j].Soluongdadung +=1 
-                   phanloaihangtieuhao[j].Soluongchuadung -=1 
-                  this._serviceTaisanktx.UpdateTaisanktx(phanloaihangtieuhao[j]).subscribe()
-                })
+                for (let z = 0; z < this.getAllDodung.length; z++) {
+                  if (this.getAllDodung[z].Dodungid == nhanviennhantaisan.Dodungid) {
+                    this.getAllDodung[z].Soluongdadung +=1 
+                    this.getAllDodung[z].Soluongchuadung -=1 
+                    this._serviceTaisanktx.UpdateTaisanktx(this.getAllDodung[z]).subscribe()
+                  }
+                }
+                this._serviceCapphatdodung.AddCapphatdodungktx(nhanviennhantaisan).subscribe()
               }
+             
             }
             else{
               this.toaster.show('error', 'Thất Bại!', 'Số lượng '+checksoluongchuadung.Tendodung+' đã hết!');
@@ -1238,60 +1236,46 @@ async getAllCapphatphongKTX() {
     this._serviceExcel.exportAsExcelFileNVdanglamviecdangky()
   }
   Danhsachsapphong(){
-
-    let checkselect:boolean=false
+    let dssapphong=[]
     for (let i = 0; i < this.GetAllNVdangky.length; i++) {
-      if (this.GetAllNVdangky[i].edittable === true) {
-        checkselect=true
-        break
-      }
-    }
-    if(checkselect==true)
-    {
-      let dssapphong=[]
-      for (let i = 0; i < this.GetAllNVdangky.length; i++) {
-        if (this.GetAllNVdangky[i].edittable == true) {
-               for(let j=0;j<this.getAllCapphatphong1.length;j++)
-               {
-                  if(this.GetAllNVdangky[i].Manhanvien==this.getAllCapphatphong1[j].Manhanvien)
+      if (this.GetAllNVdangky[i].edittable == true) {
+             for(let j=0;j<this.getAllCapphatphong1.length;j++)
+             {
+                if(this.GetAllNVdangky[i].Manhanvien==this.getAllCapphatphong1[j].Manhanvien)
+                {
+                  let ds = 
                   {
-                    let ds = 
-                    {
-                      "Manhanvien":this.getAllCapphatphong1[j].Manhanvien,
-                      "Hoten":this.getAllCapphatphong1[j].Hoten,
-                      "Tenphong":this.getAllCapphatphong1[j].Tenphong,
-                      "Ghichu":this.getAllCapphatphong1[j].Ghichu
-                    }
-                    dssapphong.push(ds)
-                    
+                    "Manhanvien":this.getAllCapphatphong1[j].Manhanvien,
+                    "Hoten":this.getAllCapphatphong1[j].Hoten,
+                    "Tenphong":this.getAllCapphatphong1[j].Tenphong,
+                    "Ghichu":this.getAllCapphatphong1[j].Ghichu
                   }
-               }
-               this.GetAllNVdangky[i].edittable=false
-               let CountTam = i;
-               if (CountTam < this.pageSize) {
-                 const tbody = document.getElementById(CountTam.toString());
-                 this.renderer.removeStyle(tbody, 'background-color');
-               } else {
-                 while (CountTam > 0) {
-                   CountTam = CountTam - this.pageSize;
-                   if (0 < CountTam && CountTam < this.pageSize) {
-                     const tbody = document.getElementById(CountTam.toString());
-                     this.renderer.removeStyle(tbody, 'background-color');
-                   }
+                  dssapphong.push(ds)
+                  
+                }
+             }
+             this.GetAllNVdangky[i].edittable=false
+             let CountTam = i;
+             if (CountTam < this.pageSize) {
+               const tbody = document.getElementById(CountTam.toString());
+               this.renderer.removeStyle(tbody, 'background-color');
+             } else {
+               while (CountTam > 0) {
+                 CountTam = CountTam - this.pageSize;
+                 if (0 < CountTam && CountTam < this.pageSize) {
+                   const tbody = document.getElementById(CountTam.toString());
+                   this.renderer.removeStyle(tbody, 'background-color');
                  }
                }
-        }
+             }
       }
-      if(dssapphong.length>0)
-      {
-        this._serviceExcel.exportAsExcelFile(dssapphong,'Danh sách Sắp Phòng')
-      }else
-      {
-        this.toaster.show('error', 'Thất Bại!', 'Nhân viên chưa được sắp phòng!');
-      }
+    }
+    if(dssapphong.length>0)
+    {
+      this._serviceExcel.exportAsExcelFile(dssapphong,'Danh sách Sắp Phòng')
     }else
     {
-      this.toaster.show('error', 'Thất Bại!', 'Chưa có dòng lựa chọn!');
+      this.toaster.show('error', 'Thất Bại!', 'Nhân viên chưa được sắp phòng!');
     }
   }
   Uploadfilenhanviendanglamviec(ev){
@@ -1325,51 +1309,6 @@ async getAllCapphatphongKTX() {
     }else
     {
       this.toaster.show('error', 'Thất Bại!', 'Vui lòng input file excel!');
-    }
-  }
-  NDxacnhan(){
-    let checkselect:boolean=false
-    for (let i = 0; i < this.GetAllNVdangky.length; i++) {
-      if (this.GetAllNVdangky[i].edittable === true) {
-        checkselect=true
-        break
-      }
-    }
-    if(checkselect==true)
-    {
-      for (let i = 0; i < this.GetAllNVdangky.length; i++) {
-        if (this.GetAllNVdangky[i].edittable == true) {
-          this.GetAllNVdangky[i].Ghichu= this.NDXN.nativeElement.value
-          this.GetAllNVdangky[i].Trangthai = true;
-          this.GetAllNVdangky[i].Nguoixacnhan = this.FullName;
-          this.GetAllNVdangky[i].Nguoixacnhanid = this.UserID
-          this.GetAllNVdangky[i].Thoigianky = formatDate(Date.now(), 'yyyy-MM-dd HH:mm', 'en-US');
-          this._serviceQuytrinh.UpdateQuytrinh(this.GetAllNVdangky[i]).subscribe();
-          this._serviceNhanviendangky.UpdateNhanviendangky(this.GetAllNVdangky[i]).subscribe(data=>{
-            this.NDXN.nativeElement.value=null
-            let element: HTMLElement = document.getElementById('NoidungxacnhanClose') as HTMLElement;
-             element.click();
-          })
-               this.GetAllNVdangky[i].edittable=false
-               let CountTam = i;
-               if (CountTam < this.pageSize) {
-                 const tbody = document.getElementById(CountTam.toString());
-                 this.renderer.removeStyle(tbody, 'background-color');
-               } else {
-                 while (CountTam > 0) {
-                   CountTam = CountTam - this.pageSize;
-                   if (0 < CountTam && CountTam < this.pageSize) {
-                     const tbody = document.getElementById(CountTam.toString());
-                     this.renderer.removeStyle(tbody, 'background-color');
-                   }
-                 }
-               }
-        }
-      }
-    }else
-    {
-      this.NDXN.nativeElement.value=null
-      this.toaster.show('error', 'Thất Bại!', 'Chưa có dòng lựa chọn!');
     }
   }
 }

@@ -2,7 +2,7 @@
 
 </div>
 <app-modal #modalRoot [width]="800" [zIndex]="zIndex" [backgroundcolor]="'#4267b2'" [keydownesc]="true"
-  [closemodal]="false" [maximizable]="true" [maximized]="false" [south]="true" [east]="true" [southEast]="false">
+  [closemodal]="false" [maximizable]="true" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
   <ng-container class="app-t-header">
   </ng-container>
 
@@ -96,6 +96,102 @@
     <input type="hidden" (click)="modalRoot.show()" id="modalRootShow">
   </ng-container>
 </app-modal>
+<app-modal #Addnhanvienvaophong  [modalTitle]="'Thêm nhân viên vào phòng!'" [width]="800" [zIndex]="zIndex" [backgroundcolor]="'#4267b2'" [keydownesc]="true"
+  [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
+  <ng-container class="app-modal-body">
+       <div style="display: flex;">
+            <div style="float: left;width: 48%;display:inline-table">
+              <table class="table table-sm table-fixed table-hover"  style="min-height: 380px;">
+                <thead style="background-color: rgba(0, 191, 255, 0.644);">
+                    <tr class="row row1">
+                      <th class="col-sm-4">
+                        <label for="manv" class="inp" style="height: 37px;">
+                          <input type="text" id="manv" style="height: 37px;border-bottom: none" placeholder="&nbsp;" [(ngModel)]="listFilterNV">
+                          <span class="label" style="top:3px">Mã ID</span>
+                          <span class="border"></span>
+                        </label>
+                      </th>
+                      <th class="col-sm-8" style="padding-top: 6px;">Nhân viên đăng ký</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr class="row row1" *ngFor="let item of Getallnhanviendangkyvao | slice:pageIndex*pageSize:(pageIndex+1)*pageSize;let i = index" id="Vao-{{i}}">
+                      <td class="col-sm-4" style="font-weight:bold;padding: 7px;" (click)="OnSelectVao(item,i)">{{item.Manhanvien}}</td>
+                      <td class="col-sm-8" style="text-align: left;padding: 7px;" (click)="OnSelectVao(item,i)">{{item.Hotenkhaisinh}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="float: right;" (click)="ClearOnSelect()">
+                <app-pagding-mini1 [itemCount]="count" [(pageIndex)]="pageIndex" [pageSize]="pageSize">
+                </app-pagding-mini1>
+              </div>
+            </div>
+            <div style="display:inline-table;padding-top: 137px;padding-left: 25px;">
+              <button type="button" class="darkcyan" style="border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:darkcyan" (click)="Ra()"><i class="fa fa-angle-double-left"></i></button>
+              <button type="button" class="brown" style=" margin-top: 20px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:brown"(click)="Vao()"><i class="fa fa-angle-double-right"></i></button>
+            </div>
+            <div style="float: left;width: 48%;display:inline-table">
+              <table class="table table-sm table-fixed table-hover" style="min-height: 380px;">
+                <thead style="background-color: rgba(255, 255, 0, 0.603);">
+                    <tr class="row row1">
+                      <th class="col-sm-4">
+                        <label for="manv1" class="inp" style="height: 37px;">
+                          <input type="text" id="manv1" style="height: 37px;border-bottom: none" placeholder="&nbsp;" [(ngModel)]="listFilterNV1">
+                          <span class="label" style="top:3px">Mã ID</span>
+                          <span class="border"></span>
+                        </label>
+                      </th>
+                      <th class="col-sm-8"  style="padding-top: 6px;">Nhân viên phòng {{selectPhongktx.Tenphong}}</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr class="row row1" *ngFor="let item of Getallnhanvienbyphong;let i = index" id="Ra-{{i}}">
+                      <td class="col-sm-4" style="font-weight:bold;padding: 7px;"(click)="OnSelectRa(item,i)">{{item.Manhanvien}}</td>
+                      <td class="col-sm-8" style="text-align: left;padding: 7px;" (click)="OnSelectRa(item,i)">{{item.Hoten}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="float: right;">
+                <a class="pagding-a1"  style="width:50px;color:lightslategrey ;">Còn trống: {{selectPhongktx.Controng}}/{{selectPhongktx.So_nguoi_o}}</a>
+              </div>
+            </div>
+       </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <div style="text-align: right;">
+      <button class="btn btn-primary btn-luu" type="button" (click)="Duyet()">Lưu</button>
+      <button type="button" class="btn btn-default btn-xoa" (click)="CloseAddnhanvienvaophong(selectPhongktx)">Thoát</button>
+    </div>
+    <input type="hidden" (click)="Addnhanvienvaophong.hide()" id="AddnhanvienvaophongClose">
+    <input type="hidden" (click)="Addnhanvienvaophong.show()" id="AddnhanvienvaophongShow">
+  </ng-container>
+</app-modal>
+<app-modal #Xacnhanduyet [modalTitle]="'Xác nhận duyệt'" [width]="400" [zIndex]="zIndex" [backgroundcolor]="'#4267b2'"
+  [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false"
+  [southEast]="false">
+  <ng-container class="app-modal-body">
+    <div class="form-row">
+      <div class="form-group col-md-12">Nội dung: </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12"><input type="text" class="form-control form-control-sm" #ghichuDuyet /></div>
+    </div>
+  </ng-container>
+  <ng-container class="app-modal-footer">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <div style="text-align: right;">
+          <button type="button" class="btn btn-primary btn-luu" style="width: 25%;" (click)="XNduyet(ghichuDuyet.value)">Xác
+            Nhận</button>
+          <button type="button" class="btn btn-default btn-xoa" style="width: 25%;"
+            (click)="Xacnhanduyet.hide()">Thoát</button>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" (click)="Xacnhanduyet.hide()" id="XacnhanduyetClose">
+    <input type="hidden" (click)="Xacnhanduyet.show()" id="XacnhanduyetShow">
+  </ng-container>
+</app-modal>
 <app-modal #modalDelete [modalTitle]="'Bạn có muốn xóa không !'" [width]="500" [zIndex]="zIndex"[backgroundcolor]="'#4267b2'" [keydownesc]="true" [closemodal]="false" [maximizable]="false" [maximized]="false" [south]="false" [east]="false" [southEast]="false">
   <ng-container class="app-t-header">
   </ng-container>
@@ -105,6 +201,7 @@
       <div class="form-group col-md-6">Phòng: {{selectPhongktx.Doituong}}</div>
     </div>
   </ng-container>
+
   <ng-container class="app-modal-footer">
     <button type="button" (click)="onDelete(selectPhongktx)" style="width: 75px;" class="btn btn-info btn-sm">
       <i class="far fa-save tu"></i>
@@ -124,7 +221,7 @@
       </a>
     </ul>
     <ul class="ulbutton" (click)="lammoi()">
-      <a class="abutton" title="làm mới" role="button">
+      <a class="abutton" title="làm mới" role="button1">
         <i class="fas fa-retweet"></i>
       </a>
     </ul>
@@ -179,19 +276,19 @@
     </thead>
     <tbody (mouseenter)="onMouseEnterClose()">
       <div class="mblock" *ngFor="let item of Getallphong ;let i = index;">
-        <div class="cblock"(mouseenter)="onMouseEnter(item)" style="cursor: pointer;">
-          <img width="60" height="60" src="assets/64-64-8f208345c54f2da2a9af237ccfc05668-door.png">
+        <div class="cblock"(mouseenter)="onMouseEnter(item)" (click)="Opennhanvienvaophong(item)">
+          <img width="60" height="60" src="assets/door.png">
         </div>
         <div class="phong-ktx" (mouseenter)="onMouseEnter(item)" >
-          <div class="chi-tiet-phong" [ngStyle]="{'background-color': item.Trangthai==false?'cadetblue' : 'indianred' }">
+          <div class="chi-tiet-phong" (click)="Opennhanvienvaophong(item)" [ngStyle]="{'background-color': item.Trangthai==false?'cadetblue' : 'indianred' }">
             {{item.Tenphong}}
           </div>
-          <div class="doi-tuong" title="{{item.Doituong}}">
+          <div class="doi-tuong" (click)="Opennhanvienvaophong(item)" title="{{item.Doituong}}">
             Phòng: {{item.Doituong | slice:0:15}}
           </div>
           <div class="tinh-trang">
-            <div class="con-trong">
-                Còn trống: {{item.Controng}}
+            <div class="con-trong" (click)="Opennhanvienvaophong(item)">
+                Còn trống: {{item.Controng}}/{{item.So_nguoi_o}}
             </div>
             <div class="chuc-nang" *ngIf="item.edittable">
                 <a class="btn" (click)="openEdit(item,i)">

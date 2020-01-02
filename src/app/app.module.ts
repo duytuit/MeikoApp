@@ -43,14 +43,9 @@ import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChatService } from './Shareds/services/chat.service';
 import { TaisanKtxComponent } from './Components/KTX/taisan-ktx/taisan-ktx.component';
-import { DodungcanhanComponent } from './Components/KTX/dodungcanhan/dodungcanhan.component';
 import { PhongKtxComponent } from './Components/KTX/phong-ktx/phong-ktx.component';
-import { NhanvienNhanphongComponent } from './Components/KTX/nhanvien-nhanphong/nhanvien-nhanphong.component';
 import { NhanviendangkygianhapComponent } from './Components/KTX/nhanviendangkygianhap/nhanviendangkygianhap.component';
 import { KhainhankhauComponent } from './Components/KTX/khainhankhau/khainhankhau.component';
-import { ThanhphangiadinhnhanvienComponent } from './Components/KTX/thanhphangiadinhnhanvien/thanhphangiadinhnhanvien.component';
-import { TieusunhanvienComponent } from './Components/KTX/tieusunhanvien/tieusunhanvien.component';
-import { NhanvientraphongComponent } from './Components/KTX/nhanvientraphong/nhanvientraphong.component';
 import { FilterKtxComponent } from './Shareds/Filterdropdown/filter-ktx/filter-ktx.component';
 import { PagdingComponent } from './Shareds/Pagding/pagding/pagding.component';
 import { FilterDropdownComponent } from './Shareds/Filterdropdown/filter-dropdown/filter-dropdown.component';
@@ -70,6 +65,11 @@ import { DialogKtxComponent } from './Shareds/Dialogs/dialog-ktx/dialog-ktx.comp
 import { DialogKnkComponent } from './Shareds/Dialogs/dialog-knk/dialog-knk.component';
 import { PagdingMini2Component } from './Shareds/Pagding/pagding-mini2/pagding-mini2.component';
 import { PagdingMini1Component } from './Shareds/Pagding/pagding-mini1/pagding-mini1.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { httpSetHeaders } from './http.interceptor';
+import { NhanviendangkyComponent } from './Components/KTX/nhanviendangky/nhanviendangky.component';
+import { ThongkenvvaoraktxComponent } from './Components/KTX/thongkenvvaoraktx/thongkenvvaoraktx.component';
+import { ThongkexuatnhapkhoktxComponent } from './Components/KTX/thongkexuatnhapkhoktx/thongkexuatnhapkhoktx.component';
 
 
 @NgModule({
@@ -123,19 +123,17 @@ import { PagdingMini1Component } from './Shareds/Pagding/pagding-mini1/pagding-m
     PagdingRigthMa5Component,
     PagdingLeftMa5Component,
     TaisanKtxComponent,
-    DodungcanhanComponent,
     PhongKtxComponent,
-    NhanvienNhanphongComponent,
     NhanviendangkygianhapComponent,
     KhainhankhauComponent,
-    ThanhphangiadinhnhanvienComponent,
-    TieusunhanvienComponent,
-    NhanvientraphongComponent,
     DialogKtxComponent,
     DialogKnkComponent,
     PagdingMini1Component,
     PagdingMini2Component,
-    FilterKtxComponent
+    FilterKtxComponent,
+    NhanviendangkyComponent,
+    ThongkenvvaoraktxComponent,
+    ThongkexuatnhapkhoktxComponent
   ],
   imports: [
     BrowserModule,
@@ -146,9 +144,12 @@ import { PagdingMini1Component } from './Shareds/Pagding/pagding-mini1/pagding-m
     HttpClientModule,
     BrowserAnimationsModule,
     ModalModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
-  providers: [ChatService],
+  providers: [
+    ChatService,
+    // {provide: HTTP_INTERCEPTORS, useClass: httpSetHeaders, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

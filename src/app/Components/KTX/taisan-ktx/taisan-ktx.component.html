@@ -401,7 +401,7 @@
       <tr class="row" style=" border: 0.09rem solid rgb(221, 213, 213);color:  #364f69">
         <th class="col-sm-1">Ngày</th>
         <th class="col-sm-1">Mã tài sản</th>
-        <th class="col-sm-2">Tên tài sản</th>
+        <th class="col-sm-1">Tên tài sản</th>
         <th class="col-sm-1">Phân loại</th>
         <th class="col-sm-1">Trị giá</th>
         <th class="col-sm-1">Số lượng tổng</th>
@@ -409,6 +409,7 @@
         <th class="col-sm-1">Số lượng chưa dùng</th>
         <th class="col-sm-1">Nơi cấp phát</th>
         <th class="col-sm-1">Ghi chú</th>
+        <th class="col-sm-1">Trạng thái</th>
         <th class="col-sm-1">Chức năng</th>
       </tr>
     </thead>
@@ -416,16 +417,19 @@
       <tr *ngFor="let item of GetAllTaisanKTX" class="row">
         <td class="col-sm-1">{{item.Ngaycapnhap | date:'HH:mm dd-MM-yy'}}</td>
         <td class="col-sm-1">{{item.Masododung}}</td>
-        <td class="col-sm-2">{{item.Tendodung}}</td>
+        <td class="col-sm-1">{{item.Tendodung}}</td>
         <td class="col-sm-1">{{item.Phanloai?'TS Cố Định':'TS Tiêu Hao'}}</td>
         <td class="col-sm-1">{{item.Trigia}}</td>
-        <td class="col-sm-1" style="font-weight:bold;">
-          <span [ngStyle]="{'background-color': item.Hanmuc>item.Soluongtong?'Yellow' : 'transparent' }">{{item.Soluongtong}}</span>
-        </td>
+        <td class="col-sm-1" style="font-weight:bold;">{{item.Soluongtong}}</td>
         <td class="col-sm-1" style="font-weight:bold;">{{item.Soluongdadung}}</td>
-        <td class="col-sm-1" style="font-weight:bold;">{{item.Soluongchuadung}}</td>
+        <td class="col-sm-1" style="font-weight:bold;">
+          <span [ngStyle]="{'background-color': item.Hanmuc>item.Soluongchuadung?'Yellow' : 'transparent' }">{{item.Soluongchuadung}}</span>
+        </td>
         <td class="col-sm-1"></td>
         <td class="col-sm-1">{{item.Ghichu}}</td>
+        <td class="col-sm-1">
+          <span [ngStyle]="{'color': item.Trangthai?'BLUE' : 'RED' }">{{item.Trangthai?'Kích hoạt':'Khóa'}}</span>
+        </td>
         <td class="col-sm-1">
           <a class="btn" (click)="modalEdit(item,i)">
             <i class="fa fa-pencil-square-o"></i>

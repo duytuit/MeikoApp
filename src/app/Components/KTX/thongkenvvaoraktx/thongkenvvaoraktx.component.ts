@@ -5,11 +5,11 @@ import { NhanviendangkyService } from 'src/app/Shareds/services/KTX-service/nhan
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-khainhankhau',
-  templateUrl: './khainhankhau.component.html',
-  styleUrls: ['./khainhankhau.component.css']
+  selector: 'app-thongkenvvaoraktx',
+  templateUrl: './thongkenvvaoraktx.component.html',
+  styleUrls: ['./thongkenvvaoraktx.component.css']
 })
-export class KhainhankhauComponent implements OnInit {
+export class ThongkenvvaoraktxComponent implements OnInit {
   canvas: any;
   ctx: any;
   str: string = formatDate(Date.now(), 'yyyy', 'en-US');
@@ -36,8 +36,8 @@ export class KhainhankhauComponent implements OnInit {
         }
       }
       for (let a = 1; a < 13; a++) {
-        this.Count_Vao.push(this.GetAllnhanviendangkyktx.filter(x => x.Thoigianky == a.toString() && x.Xacnhan == true && x.Tinhtrang == 'IN').length)
         this.Count_Ra.push(this.GetAllnhanviendangkyktx.filter(x => x.Thoigianky == a.toString() && x.Xacnhan == true && x.Tinhtrang == 'OUT').length)
+        this.Count_Vao.push(this.GetAllnhanviendangkyktx.filter(x => x.Thoigianky == a.toString() && x.Xacnhan == true && x.Tinhtrang == 'IN').length-this.GetAllnhanviendangkyktx.filter(x => x.Thoigianky == a.toString() && x.Xacnhan == true && x.Tinhtrang == 'OUT').length)
 
         new Chart(this.ctx, {
           type: 'bar',
@@ -49,7 +49,7 @@ export class KhainhankhauComponent implements OnInit {
               backgroundColor: "red",
               borderColor: "rgb(255, 99, 132)",
               fill: true,
-              data: this.Count_Vao
+              data: this.Count_Vao,
             },
             {
               label: 'Ra',

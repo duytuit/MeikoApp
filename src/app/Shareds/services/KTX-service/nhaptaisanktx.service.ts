@@ -17,6 +17,9 @@ export class NhaptaisanktxService {
     const url = `${this.Api1}/${dodungid}`;
     return this.http.get<Nhaptaisanktx[]>(url);
   }
+  GetNhaptaisanktx1(){
+    return this.http.get<Nhaptaisanktx[]>(this.Api).toPromise();
+  }
   DeleteNhaptaisanktx(id:string):Observable<any>{
     const url=`${this.Api}/${id}`;
     return this.http.delete(url);

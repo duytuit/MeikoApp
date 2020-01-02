@@ -5,11 +5,11 @@
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1005;
+    z-index: 1000000001;
   }
   
   .dialog {
-    z-index: 1010;
+    z-index: 1000000002;
     position: fixed;
     right: 0;
     left: 0;

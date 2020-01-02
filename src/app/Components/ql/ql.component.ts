@@ -211,6 +211,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
       }
     }
     reader.readAsBinaryString(file);
+    
   }
   onFileUpload(ev){
     const file = ev.target.files[0];
@@ -220,6 +221,7 @@ FluxFilterMaLot(filterByMalot:string): flux[] {
         
           // this.progress = Math.round(100 * event.loaded / event.total);
         });
+       
   }
   DownloadFile(tentep){
     this.servicefile.DownloadFile(tentep).subscribe((result: any) => {  

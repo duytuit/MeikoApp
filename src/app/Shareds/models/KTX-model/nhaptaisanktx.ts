@@ -14,4 +14,5 @@ export class Nhaptaisanktx{
     Nguoitao :string
     Nguoitaoid :string
     edittable:boolean=false
+    Tongsoluong:number
 }

@@ -137,9 +137,7 @@
   border-radius:6px;
   cursor: pointer;
 }
-.col-md-6{
-  display: initial;
-}
+
 .bar {
   position:relative;
   float:left;
@@ -158,8 +156,8 @@
   font-size:12px;
   color:white;
 }
- /* css text box input */
- .inp {
+/* css text box input */
+.inp {
   position: relative;
   margin: auto;
   width: 100%;

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NhanvienNhanphongComponent } from './nhanvien-nhanphong.component';
+import { NhanviendangkyComponent } from './nhanviendangky.component';
 
-describe('NhanvienNhanphongComponent', () => {
-  let component: NhanvienNhanphongComponent;
-  let fixture: ComponentFixture<NhanvienNhanphongComponent>;
+describe('NhanviendangkyComponent', () => {
+  let component: NhanviendangkyComponent;
+  let fixture: ComponentFixture<NhanviendangkyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NhanvienNhanphongComponent ]
+      declarations: [ NhanviendangkyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NhanvienNhanphongComponent);
+    fixture = TestBed.createComponent(NhanviendangkyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

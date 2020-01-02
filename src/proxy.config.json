@@ -1,0 +1,9 @@
+{
+    "/AsoftAPI/*":
+        {
+            "target": "http://192.84.100.207",
+            "secure": false,
+            "logLevel": "debug",
+            "changeOrigin": true
+        }
+}

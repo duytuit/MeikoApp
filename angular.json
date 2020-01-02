@@ -54,8 +54,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
                 }
               ]
             }
@@ -64,7 +64,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MeikoApp:build"
+            "browserTarget": "MeikoApp:build",
+            "proxyConfig": "src/proxy.config.json"
           },
           "configurations": {
             "production": {

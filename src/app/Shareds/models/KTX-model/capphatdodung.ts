@@ -11,4 +11,6 @@ export class Capphatdodung{
     Nguoitao :string
     Nguoitaoid :string
     edittable:boolean=false
+    Tongsoluong:number
+   
 }

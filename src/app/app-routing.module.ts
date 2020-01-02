@@ -25,6 +25,9 @@ import { ChatboxComponent } from './Shareds/views/chatbox/chatbox.component';
 import { PhongKtxComponent } from './Components/KTX/phong-ktx/phong-ktx.component';
 import { TaisanKtxComponent } from './Components/KTX/taisan-ktx/taisan-ktx.component';
 import { NhanviendangkygianhapComponent } from './Components/KTX/nhanviendangkygianhap/nhanviendangkygianhap.component';
+import { NhanviendangkyComponent } from './Components/KTX/nhanviendangky/nhanviendangky.component';
+import { ThongkenvvaoraktxComponent } from './Components/KTX/thongkenvvaoraktx/thongkenvvaoraktx.component';
+import { ThongkexuatnhapkhoktxComponent } from './Components/KTX/thongkexuatnhapkhoktx/thongkexuatnhapkhoktx.component';
 
 const routes: Routes = [
   {
@@ -120,8 +123,20 @@ const routes: Routes = [
         component: TaisanKtxComponent
       },
       {
-        path: 'nvdangkyktx',
+        path: 'qlnvdangkyktx',
         component: NhanviendangkygianhapComponent
+      },
+      {
+        path: 'nvdangkyktx',
+        component: NhanviendangkyComponent
+      },
+      {
+        path: 'thongkeravaoktx',
+        component: ThongkenvvaoraktxComponent
+      },
+      {
+        path: 'thongkexuatnhapkho',
+        component: ThongkexuatnhapkhoktxComponent
       }
     ]
   },
@@ -174,7 +189,7 @@ const routes: Routes = [
     component: PhongKtxComponent
   },
   {
-    path: 'adminnvdangkyktx',
+    path: 'qladminnvdangkyktx',
     component: NhanviendangkygianhapComponent
   },
   {
@@ -182,9 +197,21 @@ const routes: Routes = [
     component: TaisanKtxComponent
   },
   {
+    path: 'adminnvdangkyktx',
+    component: NhanviendangkyComponent
+  },
+  {
     path: 'may12',
     component: MayComponent
   },
+  {
+    path: 'adminthongkexuatnhapkho',
+    component: ThongkexuatnhapkhoktxComponent
+  },
+  {
+    path: 'adminthongkeravaoktx',
+    component: ThongkenvvaoraktxComponent
+  }
 ];
 
 @NgModule({

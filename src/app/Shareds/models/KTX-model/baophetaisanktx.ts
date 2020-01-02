@@ -8,10 +8,11 @@ export class Baophetaisanktx{
     Saubaophe:number
     Soluong:number
     Tep :string
-    Trangthai :boolean
     Ghichu :string
+    Trangthai :boolean
     Ngaycapnhap :string
     Nguoitao :string
     Nguoitaoid :string
     edittable:boolean=false
+    Tongsoluong:number
 }

@@ -17,6 +17,9 @@ export class BaophetaisanktxService {
     const url = `${this.Api1}/${dodungid}`;
     return this.http.get<Baophetaisanktx[]>(url);
   }
+  GetBaophetaisanktx1(){
+    return this.http.get<Baophetaisanktx[]>(this.Api).toPromise();
+  }
   DeleteBaophetaisanktx(id:string):Observable<any>{
     const url=`${this.Api}/${id}`;
     return this.http.delete(url);

@@ -387,4 +387,9 @@ export class TaisanKtxComponent implements OnInit {
       element.click();
      })
   }
+  lammoi(){
+    this.toaster.subject.next(null)
+    this.GetAllTaisan();
+    this.getallPhongKTX();
+  }
 }
