@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { NVdangkyKTX } from 'src/app/Shareds/models/KTX-model/NVdangky';
 import { NhanviendangkyService } from 'src/app/Shareds/services/KTX-service/nhanviendangky.service';
@@ -17,13 +17,30 @@ export class ThongkenvvaoraktxComponent implements OnInit {
   Count_Vao = []
   Count_Ra = []
   @ViewChild('mychart') mychart;
-
+  @ViewChild('ItemSubmenu') ItemSubmenu:ElementRef;
   constructor(private _serviceNhanviendangky: NhanviendangkyService, ) {
 
   }
-
   ngOnInit() {
     this.getAllNhanviendangky()
+  }
+  CheckButton()
+  {
+    this.ItemSubmenu.nativeElement.classList.toggle('show')
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    var ele=<Element>event.target;
+    if (!ele.matches('.dropbtn')){
+    var dropdowns = document.getElementsByClassName("submenu");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
   }
   getAllNhanviendangky() {
     this.canvas = this.mychart.nativeElement;
