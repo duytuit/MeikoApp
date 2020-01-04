@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
-import * as XLSX from 'xlsx';
+// import * as XLSX from 'xlsx';
+import * as ExcelJS from 'exceljs';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 @Injectable({
@@ -9,12 +10,6 @@ const EXCEL_EXTENSION = '.xlsx';
 export class ExcelService {
   constructor() { }
   public exportAsExcelFile(json: any[], excelFileName: string): void {
-    
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    const workbook: XLSX.WorkBook = { Sheets: { 'Sheet1': worksheet }, SheetNames: ['Sheet1'] };
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
-    this.saveAsExcelFile(excelBuffer, excelFileName);
   }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {
@@ -23,40 +18,50 @@ export class ExcelService {
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
-  public exportAsExcelFileNVdangky(): void {
-    
-    var wb = XLSX.utils.book_new()
-    var ws_name = "Sheet1";
-    /* make worksheet */
-    var ws_data = [
-      [ "STT", "Manhanvien", "Hotenkhaisinh", "Gioitinh", "Cmt","ngaycap_cmt","noicap_cmt","Ngaysinh","Noisinh","Phong","Ban","Congdoan","Capbac", "Sodidong","Lydodangky" ],
-    ];
-   
-  // XLSX.utils.format_cell
-     var ws = XLSX.utils.aoa_to_sheet(ws_data);
-    
-    /* Add the worksheet to the workbook */
-   XLSX.utils.book_append_sheet(wb, ws, ws_name);
-    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-   
-   this.saveAsExcelFile(excelBuffer,'Form Đăng Ký Mẫu');
-  }
+  public exportAsExcelFileNVdangky():void {
+  let workbook = new ExcelJS.Workbook();
+  let sheet = workbook.addWorksheet('Sheet1');
+  sheet.getColumn(2).numFmt='@'
+  sheet.getColumn(6).numFmt='@'
+  sheet.getColumn(8).numFmt='@'
+  sheet.getColumn(2).width=10
+  sheet.getColumn(6).width=10
+  sheet.getColumn(8).width=10
+  let rowValues = [];
+  rowValues[1] = 'STT';
+  rowValues[2] = 'Manhanvien';
+  rowValues[3] = 'Hotenkhaisinh';
+  rowValues[4] = 'Gioitinh';
+  rowValues[5] = 'Cmt';
+  rowValues[6] = 'ngaycap_cmt';
+  rowValues[7] = 'noicap_cmt';
+  rowValues[8] = 'Ngaysinh';
+  rowValues[9] = 'Noisinh';
+  rowValues[10] = 'Phong';
+  rowValues[11] = 'Ban';
+  rowValues[12] = 'Congdoan';
+  rowValues[13] = 'Capbac';
+  rowValues[14] = 'Sodidong';
+  rowValues[15] = 'Lydodangky';
+  
+  sheet.addRow(rowValues);
+  workbook.xlsx.writeBuffer().then(data=>{
+    this.saveAsExcelFile(data,'Form Đăng Ký Mẫu');
+  })
+   }
   public exportAsExcelFileNVdanglamviecdangky(): void {
-    
-    var wb = XLSX.utils.book_new()
-    var ws_name = "Sheet1";
-    /* make worksheet */
-    var ws_data = [
-      [ "STT", "Manhanvien", "Hoten"],
-    ];
-   
-  // XLSX.utils.format_cell
-     var ws = XLSX.utils.aoa_to_sheet(ws_data);
-    
-    /* Add the worksheet to the workbook */
-   XLSX.utils.book_append_sheet(wb, ws, ws_name);
-    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-   
-   this.saveAsExcelFile(excelBuffer,'Form Đăng Ký Mẫu');
+  let workbook = new ExcelJS.Workbook();
+  let sheet = workbook.addWorksheet('Sheet1');
+  sheet.getColumn(2).numFmt='@'
+  sheet.getColumn(2).width=10
+  let rowValues = [];
+  rowValues[1] = 'STT';
+  rowValues[2] = 'Manhanvien';
+  rowValues[3] = 'Hoten';
+  
+  sheet.addRow(rowValues);
+  workbook.xlsx.writeBuffer().then(data=>{
+    this.saveAsExcelFile(data,'Form Đăng Ký NV đang làm Mẫu');
+  })
   }
 }

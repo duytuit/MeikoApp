@@ -23,7 +23,6 @@ export class KhainhankhauComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllNhanviendangky()
   }
   getAllNhanviendangky() {
     this.canvas = this.mychart.nativeElement;
