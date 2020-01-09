@@ -137,81 +137,82 @@ const routes: Routes = [
       {
         path: 'thongkexuatnhapkho',
         component: ThongkexuatnhapkhoktxComponent
+      },
+      {
+        path: 'adminremoveMa5',
+        component: RemoveListMa5Component
+      },
+      {
+        path: 'administratordanhmuc',
+        component: DanhmucComponent
+      },
+      {
+        path: 'administratortrinhky',
+        component: TrinhkyComponent
+      },
+      {
+        path: 'administratormenu',
+        component: MenuComponent
+      },
+      {
+        path: 'administratorphanquyen',
+        component: PhanquyenComponent
+      },
+      {
+        path: 'administratorthongke',
+        component: ThongkeComponent
+      },
+      {
+        path: 'administratornhomky',
+        component: NhomkyComponent
+      },
+      {
+        path: 'administratorcongdoan1',
+        component: Congdoan1Component
+      },
+      {
+        path: 'thongtin12',
+        component: ThongtinComponent
+      },
+      {
+        path: 'administratorusernhomky',
+        component: UsernhomComponent
+      },
+      {
+        path: 'adminichatbox',
+        component: ChatboxComponent
+      },
+      {
+        path: 'adminphongktx',
+        component: PhongKtxComponent
+      },
+      {
+        path: 'qladminnvdangkyktx',
+        component: NhanviendangkygianhapComponent
+      },
+      {
+        path: 'admintaisanktx',
+        component: TaisanKtxComponent
+      },
+      {
+        path: 'adminnvdangkyktx',
+        component: NhanviendangkyComponent
+      },
+      {
+        path: 'may12',
+        component: MayComponent
+      },
+      {
+        path: 'adminthongkexuatnhapkho',
+        component: ThongkexuatnhapkhoktxComponent
+      },
+      {
+        path: 'adminthongkeravaoktx',
+        component: ThongkenvvaoraktxComponent
       }
     ]
   },
-  {
-    path: 'adminremoveMa5',
-    component: RemoveListMa5Component
-  },
-  {
-    path: 'administratordanhmuc',
-    component: DanhmucComponent
-  },
-  {
-    path: 'administratortrinhky',
-    component: TrinhkyComponent
-  },
-  {
-    path: 'administratormenu',
-    component: MenuComponent
-  },
-  {
-    path: 'administratorphanquyen',
-    component: PhanquyenComponent
-  },
-  {
-    path: 'administratorthongke',
-    component: ThongkeComponent
-  },
-  {
-    path: 'administratornhomky',
-    component: NhomkyComponent
-  },
-  {
-    path: 'administratorcongdoan1',
-    component: Congdoan1Component
-  },
-  {
-    path: 'thongtin12',
-    component: ThongtinComponent
-  },
-  {
-    path: 'administratorusernhomky',
-    component: UsernhomComponent
-  },
-  {
-    path: 'adminichatbox',
-    component: ChatboxComponent
-  },
-  {
-    path: 'adminphongktx',
-    component: PhongKtxComponent
-  },
-  {
-    path: 'qladminnvdangkyktx',
-    component: NhanviendangkygianhapComponent
-  },
-  {
-    path: 'admintaisanktx',
-    component: TaisanKtxComponent
-  },
-  {
-    path: 'adminnvdangkyktx',
-    component: NhanviendangkyComponent
-  },
-  {
-    path: 'may12',
-    component: MayComponent
-  },
-  {
-    path: 'adminthongkexuatnhapkho',
-    component: ThongkexuatnhapkhoktxComponent
-  },
-  {
-    path: 'adminthongkeravaoktx',
-    component: ThongkenvvaoraktxComponent
-  }
+ 
 ];
 
 @NgModule({
