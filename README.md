@@ -28,5 +28,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 import 'exceljs/dist/exceljs.min.js';
   export interface TypedArray {
-    
     }
+ ng build --base-href "/flux/" --prod --aot=false --build-optimizer=false

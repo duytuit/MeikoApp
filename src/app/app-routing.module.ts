@@ -205,14 +205,14 @@ const routes: Routes = [
       {
         path: 'adminthongkexuatnhapkho',
         component: ThongkexuatnhapkhoktxComponent
-      },
-      {
-        path: 'adminthongkeravaoktx',
-        component: ThongkenvvaoraktxComponent
       }
+     
     ]
   },
- 
+  {
+    path: 'adminthongkeravaoktx',
+    component: ThongkenvvaoraktxComponent
+  }
 ];
 
 @NgModule({

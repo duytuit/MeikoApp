@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { NVdangkyKTX } from 'src/app/Shareds/models/KTX-model/NVdangky';
 import { NhanviendangkyService } from 'src/app/Shareds/services/KTX-service/nhanviendangky.service';
 import { formatDate } from '@angular/common';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-thongkenvvaoraktx',
@@ -16,13 +17,43 @@ export class ThongkenvvaoraktxComponent implements OnInit {
   GetAllnhanviendangkyktx: NVdangkyKTX[]
   Count_Vao = []
   Count_Ra = []
+  form: FormGroup;
   @ViewChild('mychart') mychart;
   @ViewChild('ItemSubmenu') ItemSubmenu:ElementRef;
-  constructor(private _serviceNhanviendangky: NhanviendangkyService, ) {
-
+  addCreds() {
+    const creds = this.form.controls.credentials as FormArray;
+    creds.push(this.fb.group({
+      Mahang: '',
+      Malot: '',
+      Doday: '',
+      Soluong: '',
+      Ghichu: '',
+      Trangthai: ''
+    }));
+  }
+  getArrayControls() {
+    return (this.form.get('credentials') as FormArray).controls;
+  }
+  removeGroup(i: number) {
+    const control = <FormArray>this.form.controls['credentials'];
+    control.removeAt(i);
+  }
+  constructor(private _serviceNhanviendangky: NhanviendangkyService, private fb: FormBuilder, ) {
+    this.form = this.fb.group({
+      credentials: this.fb.array([]),
+    });
+    for (let i = 0; i < 3; i++) {
+      this.addCreds();
+    }
+  }
+  onSubmit()
+  {
+    var df = JSON.stringify(this.form.value);
+    var json: any[] = JSON.parse(df);
+    console.log(Object.values(json)[0])
   }
   ngOnInit() {
-    this.getAllNhanviendangky()
+   // this.getAllNhanviendangky()
   }
   CheckButton()
   {

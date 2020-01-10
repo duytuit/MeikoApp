@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
         if (this.flag == 1) {
           this.NameLogIn = 'Xin Chào! Admin';
           sessionStorage.setItem('Userid', userid);
-          this.getAllPhanQuyenTree('Admin');
+          this.getAllPhanQuyenTree(this.getUserNhom[0].Nhomky_id);
         }
 
         this.formdata.reset()
@@ -272,6 +272,7 @@ export class HomeComponent implements OnInit {
     else if (this.flag == 1) {
       //this.getall = this.getphanquyen;
       this.MenuCha = this.getphanquyen.filter(x => x.Idcha == null);
+      console.log(this.getphanquyen)
     } else {
       this.CallMainCloseLogOut()
     }

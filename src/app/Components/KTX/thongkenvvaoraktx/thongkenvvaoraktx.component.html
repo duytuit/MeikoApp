@@ -1,7 +1,7 @@
 <div class="rightcontent"></div>
-<div style="width:100%;" >
+<!-- <div style="width:100%;" >
 	<canvas  id="myChart" width="700" height="250" #mychart></canvas>
-</div>
+</div> -->
 <!-- <div class="form-row">
 	<div class="menu">
 		  <button type="button"  id="idbutton" class="btn btn-block btn-info dropbtn" (click)="CheckButton()">Home</button>
@@ -24,3 +24,42 @@
 		  </ul>
   </div>
   </div> -->
+  <!-- <div style="width: 50%;">
+	<button class="btn btn-block btn-info btn-sm" (click)="addCreds()">
+	  <i class="fas fa-plus-circle"></i>
+	  Tạo</button></div>
+  <form [formGroup]="form">
+	<div formArrayName="credentials">
+	  <div class="form-row" *ngFor="let creds of getArrayControls(); let i = index" [formGroupName]="i">
+		<div class="form-group col-md-2">
+		  <input type="hidden" formControlName="Mahang">
+		</div>
+		<div class="form-group col-md-2">
+		  <input type="hidden" formControlName="Malot">
+		</div>
+		<div class="form-group col-md-2">
+		  <input class="form-control form-control-sm" formControlName="Doday" placeholder="độ dày">
+		</div>
+		<div class="form-group col-md-2">
+		  <input class="form-control form-control-sm" formControlName="Soluong" placeholder="số lượng">
+		</div>
+		<div class="form-group col-md-2">
+		  <input class="form-control form-control-sm" formControlName="Ghichu" placeholder="ghi chú">
+		  <select style="margin-left:10px;background-color: #dbdbdb80;height:30px;border-radius:5px;border:0.09rem solid rgb(221, 213, 213);color:#364f69" formControlName="Ghichu">
+			<option value="1">1</option>
+            <option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+		</div>
+		<span class="remove" (click)="removeGroup(i)">
+		  <img width="24" height="24" src="assets/delete-icon.png">
+		</span>
+	  </div>
+	</div>
+  </form>
+  <button type="button" (click)="onSubmit()" class="btn btn-info btn-sm">
+	<i class="far fa-save tu"></i>
+	Lưu</button> -->
