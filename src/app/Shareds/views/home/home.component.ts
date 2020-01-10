@@ -272,7 +272,6 @@ export class HomeComponent implements OnInit {
     else if (this.flag == 1) {
       //this.getall = this.getphanquyen;
       this.MenuCha = this.getphanquyen.filter(x => x.Idcha == null);
-      console.log(this.getphanquyen)
     } else {
       this.CallMainCloseLogOut()
     }
