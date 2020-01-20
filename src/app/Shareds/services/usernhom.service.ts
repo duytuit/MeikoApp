@@ -8,8 +8,8 @@ import data from 'src/assets/path.json';
   providedIn: 'root'
 })
 export class UsernhomService {
-  public Api:string=data['path1']+"Api/Data3";
-  public Api1:string=this.Api+"/GetUserNhom";
+  private Api:string=data['path1']+"Api/Data3";
+  private Api1:string=this.Api+"/GetUserNhom";
  
 
   constructor(private http: HttpClient) { }

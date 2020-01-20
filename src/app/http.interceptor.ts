@@ -9,41 +9,38 @@ import {
 } from '@angular/common/http';
  
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthServiceService } from './Shareds/services/auth-service.service';
+import { SessionService } from './Shareds/services/session.service';
  
 @Injectable()
 export class httpSetHeaders implements HttpInterceptor {
-    
-    constructor(
-        ) { }
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
- 
- 
-        if (!request.headers.has('Content-Type')) {
-            request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-        }
- 
-        request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
- 
-       // request = request.clone({ headers: request.headers.set('Freaky', 'Jolly') });
- 
-        return next.handle(request).pipe(
-            map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                  
-                }
-                return event;
-            }),
-            catchError((error: HttpErrorResponse) => {
-                let data = {};
-                data = {
-                    message: error.message,
-                    status:error.status,
-                    ok:error.ok
-                };
-                
-                return throwError(error);
-            }));
+    constructor(private router: Router,  private auth: AuthServiceService,  private session: SessionService) {
+       // this.session.accessToken=null
+     }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+       if (req.headers.get('No-Auth') == "True")
+       return next.handle(req.clone());
+
+    if (this.session.accessToken) {
+        const clonedreq = req.clone({
+            headers: req.headers.set("Authorization", "Bearer " + this.session.accessToken)
+        });
+        return next.handle(clonedreq).pipe(tap(
+            succ => { },
+            err => {
+                if (err.status === 401)
+                    this.router.navigateByUrl('');
+                else (err.status === 403)
+                this.router.navigateByUrl('/forbidden');
+            }
+        ))
+        
+    }
+    else {
+        this.router.navigateByUrl('');
+    }
     }
 }
  

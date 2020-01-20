@@ -70,7 +70,7 @@ import { httpSetHeaders } from './http.interceptor';
 import { NhanviendangkyComponent } from './Components/KTX/nhanviendangky/nhanviendangky.component';
 import { ThongkenvvaoraktxComponent } from './Components/KTX/thongkenvvaoraktx/thongkenvvaoraktx.component';
 import { ThongkexuatnhapkhoktxComponent } from './Components/KTX/thongkexuatnhapkhoktx/thongkexuatnhapkhoktx.component';
-
+import { AuthGuard } from './Shareds/views/auth.guard';
 
 @NgModule({
   declarations: [
@@ -148,7 +148,8 @@ import { ThongkexuatnhapkhoktxComponent } from './Components/KTX/thongkexuatnhap
   ],
   providers: [
     ChatService,
-    // {provide: HTTP_INTERCEPTORS, useClass: httpSetHeaders, multi: true}
+    AuthGuard,
+  // {provide: HTTP_INTERCEPTORS, useClass: httpSetHeaders, multi: true}
   ],
   bootstrap: [AppComponent]
 })

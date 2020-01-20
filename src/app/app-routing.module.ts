@@ -28,7 +28,7 @@ import { NhanviendangkygianhapComponent } from './Components/KTX/nhanviendangkyg
 import { NhanviendangkyComponent } from './Components/KTX/nhanviendangky/nhanviendangky.component';
 import { ThongkenvvaoraktxComponent } from './Components/KTX/thongkenvvaoraktx/thongkenvvaoraktx.component';
 import { ThongkexuatnhapkhoktxComponent } from './Components/KTX/thongkexuatnhapkhoktx/thongkexuatnhapkhoktx.component';
-
+import { AuthGuard } from './Shareds/views/auth.guard';
 const routes: Routes = [
   {
     path: '',
@@ -36,108 +36,136 @@ const routes: Routes = [
     children: [
       {
         path: 'flux',
-        component: FluxComponent
+        component: FluxComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'ql',
-        component: QlComponent
+        component: QlComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'pq',
-        component: PqComponent
+        component: PqComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'pq1',
-        component: Pq1Component
+        component: Pq1Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'menu',
-        component: MenuComponent
+        component: MenuComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'danhmuc',
-        component: DanhmucComponent
+        component: DanhmucComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'usernhom',
-        component: UsernhomComponent
+        component: UsernhomComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'phanquyen',
-        component: PhanquyenComponent
+        component: PhanquyenComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'nhomky',
-        component: NhomkyComponent
+        component: NhomkyComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'removeMa5',
-        component: RemoveListMa5Component
+        component: RemoveListMa5Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongtin',
-        component: ThongtinComponent
+        component: ThongtinComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'trinhky',
-        component: TrinhkyComponent
+        component: TrinhkyComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'congdoan1',
-        component: Congdoan1Component
+        component: Congdoan1Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'congdoan1v1',
-        component: Congdoan1V1Component
+        component: Congdoan1V1Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'congdoan2',
-        component: Congdoan2Component
+        component: Congdoan2Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'congdoan2v1',
-        component: Congdoan2V1Component
+        component: Congdoan2V1Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongkema5',
-        component: ThongkeMA5Component
+        component: ThongkeMA5Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongkema5v1',
-        component: ThongkeMa5V1Component
+        component: ThongkeMa5V1Component,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongke',
-        component: ThongkeComponent
+        component: ThongkeComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'may',
-        component: MayComponent
+        component: MayComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'phongktx',
-        component: PhongKtxComponent
+        component: PhongKtxComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'taisanktx',
-        component: TaisanKtxComponent
+        component: TaisanKtxComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'qlnvdangkyktx',
-        component: NhanviendangkygianhapComponent
+        component: NhanviendangkygianhapComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'nvdangkyktx',
-        component: NhanviendangkyComponent
+        component: NhanviendangkyComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongkeravaoktx',
-        component: ThongkenvvaoraktxComponent
+        component: ThongkenvvaoraktxComponent,
+        canActivate:[AuthGuard]
       },
       {
         path: 'thongkexuatnhapkho',
-        component: ThongkexuatnhapkhoktxComponent
-      },
+        component: ThongkexuatnhapkhoktxComponent,
+        canActivate:[AuthGuard]
+      }
+    ]
+  },
       {
         path: 'adminremoveMa5',
         component: RemoveListMa5Component
@@ -206,13 +234,6 @@ const routes: Routes = [
         path: 'adminthongkexuatnhapkho',
         component: ThongkexuatnhapkhoktxComponent
       }
-     
-    ]
-  },
-  {
-    path: 'adminthongkeravaoktx',
-    component: ThongkenvvaoraktxComponent
-  }
 ];
 
 @NgModule({

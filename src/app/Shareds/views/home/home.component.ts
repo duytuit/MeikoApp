@@ -13,6 +13,7 @@ import { TimerService } from '../../services/timer.service';
 import { timer } from '../../models/timer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { AuthServiceService } from '../../services/auth-service.service';
 // library.add(fas);
 
 @Component({
@@ -76,7 +77,15 @@ export class HomeComponent implements OnInit {
     passwdChange: new FormControl()
   });
   showDialog: boolean
-  constructor(private servicePhanQuyen: PhanquyenService, private router: Router, private serviceLogin: LoginService, private serviceUserNhom: UsernhomService, private servicetrinhky: TrinhkyService, private serviceUser: UserService, private serviceTimer: TimerService) {
+  constructor(private servicePhanQuyen: PhanquyenService, 
+    private router: Router, 
+    private serviceLogin: LoginService,
+    private serviceUserNhom: UsernhomService,
+     private servicetrinhky: TrinhkyService,
+      private serviceUser: UserService, 
+      private serviceTimer: TimerService,
+      private auth: AuthServiceService
+      ) {
     this.countDown();
     library.add(fas);
   }
@@ -92,16 +101,17 @@ export class HomeComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.getAllTimer();
+  //  this.getAllTimer();
     this.getAllUserNhom();
-    this.getAlltrinhky();
-    sessionStorage.setItem('Danhmucid', null);
-    sessionStorage.setItem('Username', null);
-    sessionStorage.setItem('Userid', null);
-    sessionStorage.setItem('Trinhkyid', null);
-    sessionStorage.setItem('IdApp', null);
-    sessionStorage.setItem('Fullname', null);
-    this.router.navigate(['']);
+  //  this.getAlltrinhky();
+   sessionStorage.setItem('Danhmucid', null);
+   sessionStorage.setItem('Username', null);
+   sessionStorage.setItem('Userid', null);
+   sessionStorage.setItem('Trinhkyid', null);
+   sessionStorage.setItem('IdApp', null);
+   sessionStorage.setItem('Fullname', null);
+   //sessionStorage.setItem('userToken',null);
+    //this.router.navigate(['']);
   }
   getAlltrinhky() {
     this.servicetrinhky.GetTrinhKy().subscribe(data => {
@@ -115,12 +125,21 @@ export class HomeComponent implements OnInit {
       "Manhanvien": data.uname,
       "password": data.passwd
     }]
-    this.serviceLogin.LogIn(dataLogIn[0]).subscribe(data => {
+    this.serviceLogin.userAuthentication(dataLogIn[0]).subscribe(data => {
+      var json: any[] = JSON.parse(data['role']);
+    //  sessionStorage.setItem('userToken',data['access_token'])
+      this.auth.doSignIn(
+        data['access_token'],
+        json['UserLogin']
+      );
       this.MenuCha = [];
       this.getall = [];
-      let userid = data['UserLogin']
-      this.flag = data['flag']
+      let userid = json['UserLogin']
+      this.flag = json['flag']
       if (userid != null) {
+        this.getAllTimer();
+       // this.getAllUserNhom();
+        this.getAlltrinhky();
         if (this.flag == 2) {
           let listnhomkybyUser = this.getUserNhom.filter(data => data.Manhanvien == userid);
           this.FgetUserNhom = listnhomkybyUser;
@@ -133,7 +152,7 @@ export class HomeComponent implements OnInit {
           this.NameLogIn = 'Xin Chào! ' + ten.split(' ')[lengthName - 1].trim();
           sessionStorage.setItem('Username', ten);
           sessionStorage.setItem('Userid', userid);
-          sessionStorage.setItem('IdApp', data['IdUser']);
+          sessionStorage.setItem('IdApp', json['IdUser']);
           this.badge=true;
         }
         if (this.flag == 1) {
@@ -237,6 +256,7 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('Userid', null);
     sessionStorage.setItem('Trinhkyid', null);
     sessionStorage.setItem('IdApp', null);
+   // sessionStorage.setItem('userToken',null);
     this.NameLogIn = null;
     this.getAllUserNhom();
     this.getAllTimer();
