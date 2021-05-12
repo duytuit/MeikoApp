@@ -29,7 +29,7 @@
     "@types/jquery": "^3.3.31",
     "@types/signalr": "^2.2.35",
     "bootstrap": "^4.3.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "exceljs": "^3.5.0",
     "file-saver": "^2.0.2",
